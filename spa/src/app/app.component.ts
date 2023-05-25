@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { ToolsService } from 'src/app-core/tools.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MdComponent } from './components/md/md.component';
@@ -13,18 +13,44 @@ import domtoimage from 'dom-to-image-more';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   brownCards: number[]; // Array to hold the number of brown cards
   blueCards: number[]; // Array to hold the number of blue cards
   goldCards: number[]; // Array to hold the number of gold cards
+
+  imgHorizontalPositionTg: number = 0;
+  imgVerticalPositionTg: number = 0;
+  backgroundSizeTg: string = 'auto';
+  defTg: string = '';
+  atkTg: string = '';
+  imgFactionTg: string = '';
+  imgFactionsTg: string[] = [];
+  cardTitleTg: string = '';
+  colorCodes: { code: string, quantity: number, showHide: boolean }[] = [];
+  ageRequiredTg: number = 1;
+  cardEffectTg: string = '';
+  cardDescriptionTg: string = '';
+  showHideImgHorizontal: boolean = false;
+  showHideImgVertical: boolean = false;
+  showHideBackgroundSize: boolean = false;
+  showHideAttackDefense: boolean = false;
+  showHideFaction: boolean = false;
+  showHideRequiredAge: boolean = false;
+  showHideEffect: boolean = false;
+  showHideDescription: boolean = false;
 
   constructor(private dialog: MatDialog, private tools: ToolsService) {
     this.brownCards = Array(4).fill(0);
     this.blueCards = Array(4).fill(0);
     this.goldCards = Array(5).fill(0);
+    this.randomColor();
+  }
+  ngAfterViewInit(): void {
+    this.formattedPaths = this.formatFilePaths(this.filePaths);
+    console.log(this.formattedPaths)
   }
 
-  colorCodes: { code: string; name: string; quantity: number }[] = [
+  colorCodesList: { code: string; name: string; quantity: number }[] = [
     { code: "#7a35b0", name: "shadows-tribes", quantity: 1 },
     { code: "#1e90ff", name: "mystic-dominion", quantity: 1 },
     { code: "#cc7920", name: "dragon-clan", quantity: 1 },
@@ -57,7 +83,7 @@ export class AppComponent {
 
   backgroundSize = 'cover';
 
-  imgPj = './assets/images/dragon-clan/dragon-sp-3.png'
+  img = './assets/images/dragon-clan/dragon-sp-3.png'
 
   imgFaction = './assets/images/_faction-icons/dragon-clan.png'
   imgFactions: string[] = [
@@ -139,5 +165,97 @@ export class AppComponent {
     }
   }
   imgBack = './assets/images/back/1.png'
+
+
+  uploadFront() { }
+  uploadBack() { }
+  seePics() { }
+
+  selectedColor: string = '#e3d04f'; // Initialize with a default color
+
+  changeColor(c = '') {
+    if (c != '') {
+      this.changeColor2();
+      return '10px solid ' + c
+    } else {
+      this.changeColor2();
+      return '10px solid ' + this.selectedColor
+    }
+  }
+  changeColor2(c = '') {
+    return this.selectedColor
+  }
+
+  randomColor() {
+    const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    this.selectedColor = randomColor
+  }
+
+  formatFilePaths(filePaths: string[]): string[] {
+    const formattedPaths: string[] = [];
+
+    for (const filePath of filePaths) {
+      const formattedPath = filePath
+        .replace(/\\/g, '/') // Replace backslashes with forward slashes
+        .replace(/.*?assets/, './assets'); // Replace the initial path with './assets'
+
+      formattedPaths.push(formattedPath);
+    }
+
+    return formattedPaths;
+  }
+
+  formattedPaths: any;
+  filePaths = [
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\-\\atk-old.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\-\\blood-cult-2.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\-\\coal.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\-\\def.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\-\\def1.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\-\\dragon.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\-\\eterium.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\-\\night.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\-\\shadows-tribes-2.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\-\\vital-essence.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\back\\1.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\back\\2.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\back\\3.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\dragon-clan\\dragon-cav-2.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\dragon-clan\\dragon-chief.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\dragon-clan\\dragon-inf-2.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\dragon-clan\\dragon-sp-1.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\dragon-clan\\dragon-sp-2.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\dragon-clan\\dragon-sp-3.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\mechanic-league\\tc-ml_0.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\_faction-icons\\blood-cult.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\_faction-icons\\dragon-clan.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\_faction-icons\\mechanic-league.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\_faction-icons\\mystic-dominion.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\_faction-icons\\shadows-tribes.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\_general\\atk.png',
+    'C:\\Users\\PC\\Documents\\Misty-Ages\\misty-ages\\src\\assets\\images\\_general\\def.png'
+  ];
+
+  neutralColors: string[] = [
+    '#000000',   // Black
+    '#808080',   // Gray
+    '#F5F5DC',   // Beige
+    '#483C32',   // Taupe
+    '#FFFFF0',   // Ivory
+    '#C2B280',   // Sand
+    '#708090',   // Slate
+    '#B2BEB5',   // Ash
+    '#BA9E88',   // Mushroom
+    '#877C77',   // Stone
+    '#FAF0E6'    // Linen
+  ];
+
+
+  applyColor(color: string) {
+    this.selectedColor = color;
+    console.log('Applying color:', color);
+    this.changeColor(color)
+  }
+
 
 }
