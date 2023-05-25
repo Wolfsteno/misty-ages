@@ -237,7 +237,12 @@ export class AppComponent implements AfterViewInit {
   ];
 
   neutralColors: string[] = [
-    '#000000',   // Black
+    '#000000',   
+    '#7a35b0',   
+    '#1e90ff',   
+    '#cc7920',   
+    '#c0c0c0',   
+    '#ff0000',   // Black
     '#808080',   // Gray
     '#F5F5DC',   // Beige
     '#483C32',   // Taupe
