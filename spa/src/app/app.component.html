@@ -1,0 +1,143 @@
+<button (click)="saveAsImage()">Save as Image</button>
+<button (click)="switch()">Switch to {{frontView?'back':'front'}}</button>
+
+<span #cardElement>
+
+  <ng-container *ngIf="frontView">
+
+    <div class="card" [style.backgroundPositionY]="imgVerticalPosition"
+      [style.backgroundPositionX]="imgHorizontalPosition" [style.background-size]="backgroundSize"
+      [style.background-image]="'url(' + imgPj + ')'">
+
+
+      <div class="faction">
+        <div class="faction" [style.background-image]="'url(' + imgFaction + ')'"></div>
+      </div>
+
+
+      <div class="rectangle">{{cardTitle}}</div>
+
+      <div class="color-row-resource" style="justify-content: flex-end; margin-top: -1.5px;margin-right: -20px;">
+        <ng-container *ngFor="let resource of colorCodes">
+          <div *ngIf="resource.quantity!=0" [style.background-color]="resource.code"
+            [style.boxShadow]="'0 0 10px 5px rgba(0, 0, 0, 0.3)'" class="circle-resource">
+            <div class="shadow-resource"></div>
+            <div class="number-resource">{{resource.quantity}}</div>
+          </div>
+        </ng-container>
+      </div>
+
+      <div *ngIf="def!='hide'" class="circle bottom-left">
+        <div class="circle" style="background-image: url('./assets/images/_general/def.png');"></div>
+        <div class="blur"></div>
+        <div class="text">{{def}}</div>
+      </div>
+
+      <div *ngIf="atk!='hide'" class="circle bottom-right">
+        <div class="circle" style="background-image: url('./assets/images/_general/atk.png');"></div>
+        <div class="blur"></div>
+        <div class="text">{{atk}}</div>
+      </div>
+
+      <div class="rectangle-b">&nbsp;</div>
+      <div class="effect">
+        <p>{{cardEffect}}</p>
+      </div>
+
+
+      <div class="description">
+        <p>" {{cardDescription}} " </p>
+      </div>
+
+      <div class="diagonal-lines" *ngIf="ageRequired > 0 && ageRequired <= 3">
+        <div class="line"></div>
+        <div class="line" *ngIf="ageRequired > 1"></div>
+        <div class="line" *ngIf="ageRequired > 2"></div>
+      </div>
+
+    </div>
+
+  </ng-container>
+
+  <ng-container *ngIf="!frontView">
+
+    <div class="card-back"
+      [style.background-image]="'url(' + imgBack + ')'">
+    </div>
+
+  </ng-container>
+</span>
+
+<br>
+
+<div class="input-container">
+  <label>Img horizontal position:</label>
+  <input (change)="imgHorizontalPositionParser(imgHorizontalPosition)" type="range" style="width: 300px"
+    [(ngModel)]="imgHorizontalPosition" name="imgHorizontalPosition" min="-1000" max="1000">
+  <input [(ngModel)]="imgHorizontalPosition" name="imgHorizontalPosition">
+  <br>
+</div>
+
+<div class="input-container">
+  <label>Img vertical position:</label>
+  <input (change)="imgVerticalPositionParser(imgVerticalPosition)" type="range" style="width: 300px"
+    [(ngModel)]="imgVerticalPosition" name="imgVerticalPosition" min="-1000" max="1000">
+  <input [(ngModel)]="imgVerticalPosition" name="imgVerticalPosition">
+</div>
+
+<br>
+
+<label for="background-size">Background Size: </label>
+<select id="background-size" [(ngModel)]="backgroundSize" name="backgroundSize">
+  <option value="auto">Auto</option>
+  <option value="contain">Contain</option>
+  <option value="cover">Cover</option>
+</select>
+
+<br>
+<br>
+
+<strong>If attack or defense is set to the key word 'hide' then the icon will be hidden.</strong>
+<br>
+<label>DEF: </label>
+<input [(ngModel)]="def" name="def">
+<span style="margin: 10px;"></span>
+<label>ATK: </label>
+<input [(ngModel)]="atk" name="atk">
+
+<br>
+<br>
+
+<label>Faction: </label>
+<select [(ngModel)]="imgFaction">
+  <option *ngFor="let f of imgFactions" [value]="f">{{ f }}</option>
+</select>
+
+<br>
+<br>
+<label>Card Title: </label>
+<input [(ngModel)]="cardTitle" name="cardTitle"><br>
+
+<br>
+
+<label>Required resources: </label>
+<div *ngFor="let color of colorCodes" class="number-box" [style.backgroundColor]="color.code">
+  <input type="number" [(ngModel)]="color.quantity" min="0">
+</div>
+
+<br>
+<br>
+
+<label>Required age: </label>
+<input type="number" (change)="changeAge()" [(ngModel)]="ageRequired" min="1" max="3">
+
+<br>
+
+<br>
+<br>
+
+<label>Effect: </label> <br>
+<textarea style="width: 600px; height: 100px;" [(ngModel)]="cardEffect" name="cardEffect"></textarea>
+<br>
+<label>Card description: </label> <br>
+<textarea style="width: 600px; height: 100px;" [(ngModel)]="cardDescription" name="cardDescription"></textarea>

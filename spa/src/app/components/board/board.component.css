@@ -1,0 +1,40 @@
+.board {
+    margin: 20px;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .card {
+    width: 130px;
+    height: 180px;
+    margin: 5px;
+    cursor: pointer; 
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .card:hover {
+    background-color:lightgray; 
+    color: lightgray; 
+  }
+  
+  .red-card {
+    background-color: red;
+  }
+  
+  .brown-card {
+    background-color: brown;
+  }
+  
+  .blue-card {
+    background-color: blue;
+  }
+  
+  .gold-card {
+    background-color: gold;
+    width: 110px;
+    height: 110px;
+    margin: 5px;
+  }
