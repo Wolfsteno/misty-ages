@@ -6,11 +6,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CardPjComponent } from './cards/card-pj/card-pj.component';
 import { CardActionComponent } from './cards/card-action/card-action.component';
 import { MdComponent } from './components/md/md.component';
 import { ToolsService } from 'src/app-core/tools.service';
 import { FormsModule } from '@angular/forms';
+import { CardMinionComponent } from './cards/card-minion/card-minion.component';
+import { CardPjComponent } from './cards/card-pj/card-pj.component';
+import { CardBuildingComponent } from './cards/card-building/card-building.component';
 
 @NgModule({
   imports: [
@@ -18,12 +20,14 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MatDialogModule,
     AppRoutingModule,
-    FormsModule 
+    FormsModule
   ],
   declarations: [
     AppComponent,
-    CardPjComponent,
     CardActionComponent,
+    CardBuildingComponent,
+    CardMinionComponent,
+    CardPjComponent,
     MdComponent
   ],
   exports: [

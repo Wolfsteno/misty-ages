@@ -44,6 +44,7 @@
     1px -1px 5px #000,
     -1px 1px 5px #000,
     1px 1px 5px #000;
+  z-index: -1;
 }
 
 .bottom-left {
@@ -74,7 +75,7 @@
   top: -8px;
   background-size: cover;
   background-position: center;
-  z-index: 1;
+  z-index: 0;
 }
 
 .faction-b {

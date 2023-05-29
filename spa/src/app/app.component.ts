@@ -13,7 +13,17 @@ import domtoimage from 'dom-to-image-more';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements AfterViewInit {
+
+  selectedPhoto: any;
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    console.log(file);
+    this.selectedPhoto = URL.createObjectURL(file);
+    console.log(this.selectedPhoto);
+  }
+
   brownCards: number[]; // Array to hold the number of brown cards
   blueCards: number[]; // Array to hold the number of blue cards
   goldCards: number[]; // Array to hold the number of gold cards
@@ -43,7 +53,7 @@ export class AppComponent implements AfterViewInit {
     this.brownCards = Array(4).fill(0);
     this.blueCards = Array(4).fill(0);
     this.goldCards = Array(5).fill(0);
-    this.randomColor();
+    // this.randomColor();
   }
   ngAfterViewInit(): void {
     this.formattedPaths = this.formatFilePaths(this.filePaths);
@@ -83,7 +93,7 @@ export class AppComponent implements AfterViewInit {
 
   backgroundSize = 'cover';
 
-  img = './assets/images/dragon-clan/dragon-sp-3.png'
+  img = './assets/images/dragon-clan/dragon-sp-2.png'
 
   imgFaction = './assets/images/_faction-icons/dragon-clan.png'
   imgFactions: string[] = [
