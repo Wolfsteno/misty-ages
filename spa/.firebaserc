@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "misty-ages": {
+      "hosting": {
+        "misty-ages": [
+          "misty-ages"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "misty-ages"
+  }
+}

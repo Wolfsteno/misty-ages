@@ -4,12 +4,14 @@ import { CardActionComponent } from './cards/card-action/card-action.component';
 import { CardBuildingComponent } from './cards/card-building/card-building.component';
 import { CardMinionComponent } from './cards/card-minion/card-minion.component';
 import { CardPjComponent } from './cards/card-pj/card-pj.component';
+import { CardGenericComponent } from './cards/card-generic/card-generic.component';
 
 const routes: Routes = [
   { path: 'card-pj', component: CardPjComponent },
   { path: 'card-minion', component: CardMinionComponent },
   { path: 'card-building', component: CardBuildingComponent },
   { path: 'card-action', component: CardActionComponent },
+  { path: 'card-generic', component: CardGenericComponent },
 ];
 
 @NgModule({

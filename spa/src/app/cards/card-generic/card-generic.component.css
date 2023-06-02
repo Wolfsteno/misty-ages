@@ -1,0 +1,52 @@
+.split-screen {
+    display: flex;
+    height: 90vh;
+  }
+  
+  .left-half, .right-half {
+    position: relative;
+    flex: 1;
+    border: 2px solid brown;
+  }
+
+  .image-container {
+    position: relative;
+    width: 100%;
+    width: 600px;
+    top: 50px;
+    z-index: -1;
+  }
+    
+  .back-image {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+  
+  .left-half {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .image-container {
+    position: relative;
+  }
+  
+  .back-image {
+    position: absolute;
+    top: 80px;
+    left: 85px;
+    z-index: 0;
+  }
+  
+  .front-image {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  .form-group{
+    margin: 15px;
+  }

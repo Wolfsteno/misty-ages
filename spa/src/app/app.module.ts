@@ -13,14 +13,30 @@ import { FormsModule } from '@angular/forms';
 import { CardMinionComponent } from './cards/card-minion/card-minion.component';
 import { CardPjComponent } from './cards/card-pj/card-pj.component';
 import { CardBuildingComponent } from './cards/card-building/card-building.component';
+import { CardGenericComponent } from './cards/card-generic/card-generic.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { ImgCropperComponent } from './components/ImgCropper/ImgCropper.component';
+
+import { environment } from "src/environments/environment";
+import { AngularFireModule } from '@angular/fire/compat';
+import { FirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore/'; 
+// import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+// import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 
 @NgModule({
   imports: [
+    // provideFirebaseApp(() => initializeApp({})),
+    // provideFirestore(() => getFirestore()),
     BrowserModule,
     BrowserAnimationsModule,
     MatDialogModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ImageCropperModule,
+    AngularFirestoreModule,
+    FirestoreModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
   ],
   declarations: [
     AppComponent,
@@ -28,7 +44,9 @@ import { CardBuildingComponent } from './cards/card-building/card-building.compo
     CardBuildingComponent,
     CardMinionComponent,
     CardPjComponent,
-    MdComponent
+    CardGenericComponent,
+    MdComponent,
+    ImgCropperComponent
   ],
   exports: [
     MdComponent

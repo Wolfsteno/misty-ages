@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "misty-ages",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

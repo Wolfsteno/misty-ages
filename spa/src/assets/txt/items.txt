@@ -1,0 +1,78 @@
+A trebuchet, with fire isolated on a mountainside --no people
+A longbow, with wind isolated on a cliff --no people
+A war hammer, with earth isolated in a cave --no people
+A mace, with lightning isolated in a forest --no people
+A crossbow, with ice isolated on a frozen lake --no people
+A halberd, with water isolated near a waterfall --no people
+A flail, with darkness isolated in an abandoned castle --no people
+A lance, with light isolated on a hilltop --no people
+A morning star, with thunder isolated in a stormy sky --no people
+A siege tower, with smoke isolated on an open field --no people
+A battle axe, with metal isolated in a blacksmith's forge --no people
+A rapier, with shadows isolated in a moonlit graveyard --no people
+A pike, with silence isolated in a dense forest --no people
+A catapult, with stone isolated on a rocky cliff --no people
+A dagger, with blood isolated in a secret chamber --no people
+A gauntlet, with fireflies isolated in a hidden cavern --no people
+A morning star, with fog isolated on a misty moor --no people
+A greatsword, with echoes isolated in a forgotten temple --no people
+A flanged mace, with echoes isolated in a ruined cathedral --no people
+A war hammer, with thunderstorms isolated on a desolate island --no people
+A crossbow, with leaves isolated in an ancient forest --no people
+A battle axe, with cobwebs isolated in a haunted mansion --no people
+A pike, with moonlight isolated on a desolate battlefield --no people
+A longsword, with whispers isolated in a forgotten library --no people
+A mace, with dust isolated in a long-abandoned dungeon --no people
+A halberd, with footsteps isolated in an underground labyrinth --no people
+A flail, with embers isolated in a ruined village --no people
+A trebuchet, with ruins isolated in a lost civilization --no people
+A scimitar, with echoes isolated in an ancient tomb --no people
+A lance, with moonlight isolated on a crumbling tower --no people
+A morning star, with mist isolated in a cursed swamp --no people
+A war hammer, with echoes isolated in a forgotten crypt --no people
+A pike, with whispers isolated in a haunted forest --no people
+A longbow, with sunlight isolated on a tranquil meadow --no people
+A greatsword, with cobwebs isolated in a ghostly shipwreck --no people
+A mace, with darkness isolated in a forsaken catacomb --no people
+A flail, with echoes isolated in an abandoned mine --no people
+A crossbow, with silence isolated in an overgrown jungle --no people
+A halberd, with moonlight isolated on an ancient stone circle --no people
+A trebuchet, with echoes isolated in a decaying palace --no people
+A battle axe, with mist isolated on a haunted hilltop --no people
+A morning star, with whispers isolated in an enchanted forest --no people
+A dagger, with moonlight isolated in a secret garden --no people
+A greatsword, with echoes isolated in a forgotten cathedral --no people
+A pike, with mist isolated on a foggy coastline --no people
+A war hammer, with whispers isolated in an ancient ruin --no people
+A flail, with sunlight isolated on a desolate wasteland --no people
+A crossbow, with shadows isolated in a crumbling fortress --no people
+A halberd, with moonlight isolated in a hidden valley --no people
+A trebuchet, with echoes isolated in a haunted tower --no people
+A battle axe, with mist isolated in an eerie swamp --no people
+A morning star, with whispers isolated in a forsaken village --no people
+A longsword, with moonlight isolated on a mystical island --no people
+A mace, with darkness isolated in a cursed cavern --no people
+A dagger, with echoes isolated in a remote mountain pass --no people
+A lance, with moonlight isolated in a forgotten coliseum --no people
+A flail, with whispers isolated in an ancient burial ground --no people
+A crossbow, with mist isolated on a haunted ship --no people
+A trebuchet, with sunlight isolated on a barren wasteland --no people
+A war hammer, with echoes isolated in a lost underground city --no people
+A dagger, with moonlight isolated in a secret garden --no people
+A greatsword, with echoes isolated in a forgotten cathedral --no people
+A pike, with mist isolated on a foggy coastline --no people
+A war hammer, with whispers isolated in an ancient ruin --no people
+A flail, with sunlight isolated on a desolate wasteland --no people
+A crossbow, with shadows isolated in a crumbling fortress --no people
+A halberd, with moonlight isolated in a hidden valley --no people
+A trebuchet, with echoes isolated in a haunted tower --no people
+A battle axe, with mist isolated in an eerie swamp --no people
+A morning star, with whispers isolated in a forsaken village --no people
+A longsword, with moonlight isolated on a mystical island --no people
+A mace, with darkness isolated in a cursed cavern --no people
+A dagger, with echoes isolated in a remote mountain pass --no people
+A lance, with moonlight isolated in a forgotten coliseum --no people
+A flail, with whispers isolated in an ancient burial ground --no people
+A crossbow, with mist isolated on a haunted ship --no people
+A trebuchet, with sunlight isolated on a barren wasteland --no people
+A war hammer, with echoes isolated in a lost underground city --no people

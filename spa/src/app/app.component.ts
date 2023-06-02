@@ -7,7 +7,6 @@ import html2canvas from 'html2canvas';
 import { ElementRef, ViewChild } from '@angular/core';
 import domtoimage from 'dom-to-image-more';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -57,7 +56,7 @@ export class AppComponent implements AfterViewInit {
   }
   ngAfterViewInit(): void {
     this.formattedPaths = this.formatFilePaths(this.filePaths);
-    console.log(this.formattedPaths)
+    //console.log(this.formattedPaths)
   }
 
   colorCodesList: { code: string; name: string; quantity: number }[] = [
