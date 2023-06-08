@@ -14,11 +14,21 @@
         Upload blood cult building</button>
       <input type="file" (change)="onImageSelected($event)" />
       <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+
         <div style="margin: 5px;" *ngFor="let img of imgBuildings.bloodCult">
           <a [href]="img" target="_blank">
             <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
           </a>
+
+          <!-- <div style="width: 100%;">
+            <textarea>{{buildings[0]}} {{img}}</textarea>
+            <button style="width: 85%; height: 25px; font-size: 10px;" class="btn btn-danger"
+              (click)="deleteImg(parseFirebasePath(buildings[0], img))"><fa-icon [icon]="faTimes"></fa-icon>
+            </button>
+          </div> -->
+          
         </div>
+
       </div>
     </div>
   </div>
@@ -40,7 +50,6 @@
     </div>
   </div>
 
-
   <div class="card">
     <div class="card-body">
       <h5>Mystic dominion </h5>
@@ -56,7 +65,6 @@
       </div>
     </div>
   </div>
-
 
   <div class="card">
     <div class="card-body">
@@ -346,9 +354,9 @@
 
   <div class="card">
     <div class="card-body">
-      <h5>action's frames </h5>
+      <h5>Obsidian eclipse </h5>
       <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(actions[3])">
-        Upload action's frames actions</button>
+        Upload obsidian eclipse actions</button>
       <input type="file" (change)="onImageSelected($event)" />
       <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
         <div style="margin: 5px;" *ngFor="let img of imgActions.obisidianEclipse">
@@ -517,5 +525,21 @@
     </div>
   </div>
 
+
+  <div class="card">
+    <div class="card-body">
+      <h5>Back </h5>
+      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(gameAssets[3])">
+        Upload back assets</button>
+      <input type="file" (change)="onImageSelected($event)" />
+    </div>
+    <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+      <div style="margin: 5px;" *ngFor="let img of imgGameAssets.back">
+        <a [href]="img" target="_blank">
+          <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+        </a>
+      </div>
+    </div>
+  </div>
 
 </app-md>

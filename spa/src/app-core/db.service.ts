@@ -12,7 +12,7 @@ export class DbService {
   constructor(
     private firestore: AngularFirestore,
     private storage: AngularFireStorage
-  ) {}
+  ) { }
 
   getCards(): Observable<any> {
     return this.firestore.collection('cards').snapshotChanges();
@@ -62,23 +62,26 @@ export class DbService {
     return urls;
   }
 
-  // List all files in a directory
-// List all files in a directory
-async listAll(directory: string): Promise<string[]> {
-  try {
-    const ref = this.storage.ref(directory);
-    const res = await ref.listAll().toPromise();
-    if (res != undefined) {
-      return res.items.map(item => item.fullPath);      
-    } else {
-      return Promise.resolve(['ERROR']);
+  async listAll(directory: string): Promise<string[]> {
+    try {
+      const ref = this.storage.ref(directory);
+      const res = await ref.listAll().toPromise();
+      if (res != undefined) {
+        return res.items.map(item => item.fullPath);
+      } else {
+        return Promise.resolve(['ERROR']);
+      }
+    } catch (error) {
+      console.error('Failed to list all files:', error);
+      return [];
     }
-  } catch (error) {
-    console.error('Failed to list all files:', error);
-    return [];
   }
-}
 
+  // Delete a single image
+  async deleteImage(path: string): Promise<void> {
+    const ref = this.storage.ref(path);
+    return ref.delete().toPromise();
+  }
 
 
 }

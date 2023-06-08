@@ -6,6 +6,7 @@ import { GameAssets } from './models/game-assets';
 import { BuildingCards } from './models/building-cards';
 import { MinionCards } from './models/minion-cards';
 import { ActionCards } from './models/action-cards';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-game-assets-list',
@@ -13,6 +14,7 @@ import { ActionCards } from './models/action-cards';
   styleUrls: ['./game-assets-list.component.css']
 })
 export class GameAssetsListComponent implements AfterViewInit {
+  faTimes = faTimes
 
 
   buildings: string[] = [
@@ -54,7 +56,8 @@ export class GameAssetsListComponent implements AfterViewInit {
   gameAssets: string[] = [
     'general/ages',
     'general/icons',
-    'general/rarity'
+    'general/rarity',
+    'general/back'
   ];
 
   imgBuildings: BuildingCards = new BuildingCards();
@@ -251,12 +254,17 @@ export class GameAssetsListComponent implements AfterViewInit {
         const urls = await this.fire.getImages(this.imgGameAssets.rarity);
         this.imgGameAssets.rarity = urls;
       }
+      if (i == 3) {
+        this.imgGameAssets.rarity = await this.fire.listAll(e);
+        const urls = await this.fire.getImages(this.imgGameAssets.rarity);
+        this.imgGameAssets.rarity = urls;
+      }
 
     }
   }
 
   selectedImage?: File;
-  
+
   onImageSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
@@ -267,8 +275,12 @@ export class GameAssetsListComponent implements AfterViewInit {
   async uploadImage(p: string) {
     if (this.selectedImage) {
       const url = await this.fire.uploadImage(this.selectedImage, p + '/' + this.selectedImage.name);
+      this.loadImages();
       this.loadBuildings();
       this.loadMinions();
+      this.loadActions();
+      this.loadFrames();
+      this.loadGameAssets();
     }
     this.selectedImage = undefined;
   }
@@ -278,6 +290,33 @@ export class GameAssetsListComponent implements AfterViewInit {
   handleOk() { }
 
   handleCancel() { }
+
+  async deleteImg(path: string) {
+    try {
+      await this.fire.deleteImage(path);
+      console.log('Image deleted successfully');
+      this.loadImages();
+      this.loadBuildings();
+      this.loadMinions();
+      this.loadActions();
+      this.loadFrames();
+      this.loadGameAssets();
+    } catch (error) {
+      console.error('Failed to delete image:', error);
+    }
+
+  }
+
+// Method to parse Firebase Storage path from download URL
+parseFirebasePath(directory: string, downloadUrl: string): string {
+  // Extract the file path from the download URL
+  const filePath = decodeURIComponent(downloadUrl.split('/o/')[1].split('?')[0]);
+
+  // Append the file path to the directory
+  const fullPath = `${directory}/${filePath.split('/').pop()}`;
+
+  return fullPath;
+}
 
 
 }

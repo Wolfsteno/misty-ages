@@ -24,6 +24,7 @@ import { GameAssetsListComponent } from './game-assets-list/game-assets-list.com
 import { LoreComponent } from './lore/lore.component';
 import { GameRulesComponent } from './game-rules/game-rules.component';
 import { DeckCreatorComponent } from './deck-creator/deck-creator.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { DeckCreatorComponent } from './deck-creator/deck-creator.component';
     AngularFirestoreModule,
     FirestoreModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    FontAwesomeModule,
   ],
   declarations: [
     AppComponent,
