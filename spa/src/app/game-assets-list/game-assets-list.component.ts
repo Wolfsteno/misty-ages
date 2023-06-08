@@ -255,9 +255,9 @@ export class GameAssetsListComponent implements AfterViewInit {
         this.imgGameAssets.rarity = urls;
       }
       if (i == 3) {
-        this.imgGameAssets.rarity = await this.fire.listAll(e);
-        const urls = await this.fire.getImages(this.imgGameAssets.rarity);
-        this.imgGameAssets.rarity = urls;
+        this.imgGameAssets.back = await this.fire.listAll(e);
+        const urls = await this.fire.getImages(this.imgGameAssets.back);
+        this.imgGameAssets.back = urls;
       }
 
     }
