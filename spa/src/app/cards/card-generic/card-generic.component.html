@@ -1,222 +1,229 @@
 <input type="file" (change)="fileChangeEvent($event)" />
-<button (click)="createCard()">Create Card</button>
-
+<button class="btn btn-primary" (click)="createCard()">Create Card</button>
 
 <div class="split-screen">
-
-
   <div class="left-half">
     <div class="image-container">
       <img class="front-image" [src]="path" />
-      <img class="back-image" width="435" [src]="croppedImage" />
+      <img class="back-image" width="535" [src]="croppedImage" />
     </div>
   </div>
 
-
   <div class="right-half">
-    <!-- <pre>
-    <code [innerHtml]="beautifyJson(cardJson)"></code>
-  </pre> -->
-
-    <!-- <pre>
-    <code>{{ cardJson }}</code>
-  </pre> -->
     <div>
       <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="3 / 4"
         format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded($event)"
         (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
     </div>
-
   </div>
 
-
   <div class="right-half">
-    <input [(ngModel)]="path">
+    <!-- <input [(ngModel)]="path" class="form-control"> -->
 
-    <div class="form-group">
-      <label for="id">ID:</label>
-      <input class="form-control" [(ngModel)]="card.id" type="number" id="id" placeholder="ID">
+
+    <div *ngFor="let path of paths">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+        <img width="50" [src]="path" alt="Image">
     </div>
-
-    <div class="form-group">
-      <label for="title">Title:</label>
-      <input class="form-control" [(ngModel)]="card.title" type="text" id="title" placeholder="Title">
+  </div>
+    
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="id">ID:</label>
+          <input class="form-control" [(ngModel)]="card.id" type="number" id="id" placeholder="ID">
+        </div>
+    
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input class="form-control" [(ngModel)]="card.title" type="text" id="title" placeholder="Title">
+        </div>
+    
+        <div class="form-group">
+          <label for="faction">Faction:</label>
+          <input class="form-control" [(ngModel)]="card.faction" type="text" id="faction" placeholder="Faction">
+        </div>
+    
+        <div class="form-group">
+          <label for="cost1">Cost 1:</label>
+          <input class="form-control" [(ngModel)]="card.cost[0]" type="number" id="cost1" placeholder="Cost 1">
+        </div>
+    
+        <div class="form-group">
+          <label for="cost2">Cost 2:</label>
+          <input class="form-control" [(ngModel)]="card.cost[1]" type="number" id="cost2" placeholder="Cost 2">
+        </div>
+    
+        <div class="form-group">
+          <label for="cost3">Cost 3:</label>
+          <input class="form-control" [(ngModel)]="card.cost[2]" type="number" id="cost3" placeholder="Cost 3">
+        </div>
+    
+        <div class="form-group">
+          <label for="cost4">Cost 4:</label>
+          <input class="form-control" [(ngModel)]="card.cost[3]" type="number" id="cost4" placeholder="Cost 4">
+        </div>
+    
+        <div class="form-group">
+          <label for="cost5">Cost 5:</label>
+          <input class="form-control" [(ngModel)]="card.cost[4]" type="number" id="cost5" placeholder="Cost 5">
+        </div>
+    
+        <div class="form-group">
+          <label for="cost6">Cost 6:</label>
+          <input class="form-control" [(ngModel)]="card.cost[5]" type="number" id="cost6" placeholder="Cost 6">
+        </div>
+        
+        <div class="form-group">
+          <label for="front">Front Image:</label>
+          <input class="form-control" [(ngModel)]="card.front" type="text" id="front" placeholder="Front Image">
+        </div>
+    
+        <div class="form-group">
+          <label for="back">Back Image:</label>
+          <input class="form-control" [(ngModel)]="card.back" type="text" id="back" placeholder="Back Image">
+        </div>
+    
+        <div class="form-group">
+          <label for="frame">Frame Image:</label>
+          <input class="form-control" [(ngModel)]="card.frame" type="text" id="frame" placeholder="Frame Image">
+        </div>
+    
+      </div>
+    
+      <div class="col-md-6">
+    
+        <div class="form-group">
+          <label for="atk">Attack:</label>
+          <input class="form-control" [(ngModel)]="card.atk" type="number" id="atk" placeholder="Attack">
+        </div>
+    
+        <div class="form-group">
+          <label for="hp">HP:</label>
+          <input class="form-control" [(ngModel)]="card.hp" type="number" id="hp" placeholder="HP">
+        </div>
+    
+        <div class="form-group">
+          <label for="effect">Effect:</label>
+          <input class="form-control" [(ngModel)]="card.effect" type="text" id="effect" placeholder="Effect">
+        </div>
+    
+        <div class="form-group">
+          <label for="effectType">Effect Type:</label>
+          <input class="form-control" [(ngModel)]="card.effectType" type="text" id="effectType" placeholder="Effect Type">
+        </div>
+    
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <input class="form-control" [(ngModel)]="card.description" type="text" id="description" placeholder="Description">
+        </div>
+    
+        <div class="form-group">
+          <label for="requiredAge">Required Age:</label>
+          <input class="form-control" [(ngModel)]="card.requiredAge" type="number" id="requiredAge" placeholder="Required Age">
+        </div>
+    
+        <div class="form-group">
+          <label for="type">Type:</label>
+          <input class="form-control" [(ngModel)]="card.type" type="text" id="type" placeholder="Type">
+        </div>
+    
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" [(ngModel)]="card.isDead" type="checkbox" id="isDead">
+            <label class="form-check-label" for="isDead">Is Dead</label>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" [(ngModel)]="card.isDiscarted" type="checkbox" id="isDiscarted">
+            <label class="form-check-label" for="isDiscarted">Is Discarted</label>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" [(ngModel)]="card.isDestroyed" type="checkbox" id="isDestroyed">
+            <label class="form-check-label" for="isDestroyed">Is Destroyed</label>
+          </div>
+        </div>
+        
+    
+        <div class="form-group">
+          <label for="codeName">Code Name:</label>
+          <input class="form-control" [(ngModel)]="card.codeName" type="text" id="codeName" placeholder="Code Name">
+        </div>
+    
+        <div class="form-group">
+          <label for="creationDate">Creation Date:</label>
+          <input class="form-control" [(ngModel)]="card.creationDate" type="text" id="creationDate" placeholder="Creation Date">
+        </div>
+    
+        <div class="form-group">
+          <label for="modificationDate">Modification Date:</label>
+          <input class="form-control" [(ngModel)]="card.modificationDate" type="text" id="modificationDate" placeholder="Modification Date">
+        </div>
+      </div>
     </div>
+    
 
-    <div class="form-group">
-      <label for="faction">Faction:</label>
-      <input class="form-control" [(ngModel)]="card.faction" type="text" id="faction" placeholder="Faction">
-    </div>
-
-    <div class="form-group">
-      <label for="cost1">Cost 1:</label>
-      <input class="form-control" [(ngModel)]="card.cost[0]" type="number" id="cost1" placeholder="Cost 1">
-    </div>
-
-    <div class="form-group">
-      <label for="cost2">Cost 2:</label>
-      <input class="form-control" [(ngModel)]="card.cost[1]" type="number" id="cost2" placeholder="Cost 2">
-    </div>
-
-    <div class="form-group">
-      <label for="cost3">Cost 3:</label>
-      <input class="form-control" [(ngModel)]="card.cost[2]" type="number" id="cost3" placeholder="Cost 3">
-    </div>
-
-    <div class="form-group">
-      <label for="cost4">Cost 4:</label>
-      <input class="form-control" [(ngModel)]="card.cost[3]" type="number" id="cost4" placeholder="Cost 4">
-    </div>
-
-    <div class="form-group">
-      <label for="cost5">Cost 5:</label>
-      <input class="form-control" [(ngModel)]="card.cost[4]" type="number" id="cost5" placeholder="Cost 5">
-    </div>
-
-    <div class="form-group">
-      <label for="cost6">Cost 6:</label>
-      <input class="form-control" [(ngModel)]="card.cost[5]" type="number" id="cost6" placeholder="Cost 6">
-    </div>
-
-    <div class="form-group">
-      <label for="front">Front Image:</label>
-      <input class="form-control" [(ngModel)]="card.front" type="text" id="front" placeholder="Front Image">
-    </div>
-
-    <div class="form-group">
-      <label for="back">Back Image:</label>
-      <input class="form-control" [(ngModel)]="card.back" type="text" id="back" placeholder="Back Image">
-    </div>
-
-    <div class="form-group">
-      <label for="frame">Frame Image:</label>
-      <input class="form-control" [(ngModel)]="card.frame" type="text" id="frame" placeholder="Frame Image">
-    </div>
-
-    <div class="form-group">
-      <label for="atk">Attack:</label>
-      <input class="form-control" [(ngModel)]="card.atk" type="number" id="atk" placeholder="Attack">
-    </div>
-
-    <div class="form-group">
-      <label for="hp">HP:</label>
-      <input class="form-control" [(ngModel)]="card.hp" type="number" id="hp" placeholder="HP">
-    </div>
-
-    <div class="form-group">
-      <label for="effect">Effect:</label>
-      <input class="form-control" [(ngModel)]="card.effect" type="text" id="effect" placeholder="Effect">
-    </div>
-
-    <div class="form-group">
-      <label for="effectType">Effect Type:</label>
-      <input class="form-control" [(ngModel)]="card.effectType" type="text" id="effectType" placeholder="Effect Type">
-    </div>
-
-    <div class="form-group">
-      <label for="description">Description:</label>
-      <input class="form-control" [(ngModel)]="card.description" type="text" id="description" placeholder="Description">
-    </div>
-
-    <div class="form-group">
-      <label for="requiredAge">Required Age:</label>
-      <input class="form-control" [(ngModel)]="card.requiredAge" type="number" id="requiredAge"
-        placeholder="Required Age">
-    </div>
-
-    <div class="form-group">
-      <label for="type">Type:</label>
-      <input class="form-control" [(ngModel)]="card.type" type="text" id="type" placeholder="Type">
-    </div>
-
-    <div class="form-group">
-      <label for="isDead">Is Dead:</label>
-      <input class="form-control" [(ngModel)]="card.isDead" type="checkbox" id="isDead">
-    </div>
-
-    <div class="form-group">
-      <label for="isDiscarted">Is Discarted:</label>
-      <input class="form-control" [(ngModel)]="card.isDiscarted" type="checkbox" id="isDiscarted">
-    </div>
-
-    <div class="form-group">
-      <label for="isDestroyed">Is Destroyed:</label>
-      <input class="form-control" [(ngModel)]="card.isDestroyed" type="checkbox" id="isDestroyed">
-    </div>
-
-    <div class="form-group">
-      <label for="codeName">Code Name:</label>
-      <input class="form-control" [(ngModel)]="card.codeName" type="text" id="codeName" placeholder="Code Name">
-    </div>
-
-    <div class="form-group">
-      <label for="creationDate">Creation Date:</label>
-      <input class="form-control" [(ngModel)]="card.creationDate" type="text" id="creationDate"
-        placeholder="Creation Date">
-    </div>
-
-    <div class="form-group">
-      <label for="modificationDate">Modification Date:</label>
-      <input class="form-control" [(ngModel)]="card.modificationDate" type="text" id="modificationDate"
-        placeholder="Modification Date">
-    </div>
-
-
-
+    
   </div>
 </div>
 
-<table class="table" >
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>ID</th>
-      <th>Title</th>
-      <th>Faction</th>
-      <th>Cost</th>
-      <th>Front</th>
-      <th>Back</th>
-      <th>Frame</th>
-      <th>Attack</th>
-      <th>HP</th>
-      <th>Effect</th>
-      <th>Effect Type</th>
-      <th>Description</th>
-      <th>Required Age</th>
-      <th>Type</th>
-      <th>Is Dead</th>
-      <th>Is Discarted</th>
-      <th>Is Destroyed</th>
-      <th>Bonuses</th>
-      <th>Code Name</th>
-      <th>Creation Date</th>
-      <th>Modification Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let card of cardList, let i = index">
-      <td>{{ i +  1 }}</td>
-      <td>{{ card.id }}</td>
-      <td>{{ card.title }}</td>
-      <td>{{ card.faction }}</td>
-      <td>{{ card.cost | json }}</td>
-      <td>{{ card.front }}</td>
-      <td>{{ card.back }}</td>
-      <td>{{ card.frame }}</td>
-      <td>{{ card.atk }}</td>
-      <td>{{ card.hp }}</td>
-      <td>{{ card.effect }}</td>
-      <td>{{ card.effectType }}</td>
-      <td>{{ card.description }}</td>
-      <td>{{ card.requiredAge }}</td>
-      <td>{{ card.type | json }}</td>
-      <td>{{ card.isDead }}</td>
-      <td>{{ card.isDiscarted }}</td>
-      <td>{{ card.isDestroyed }}</td>
-      <td>{{ card.bonuses | json }}</td>
-      <td>{{ card.codeName }}</td>
-      <td>{{ card.creationDate }}</td>
-      <td>{{ card.modificationDate }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Faction</th>
+        <th>Cost</th>
+        <th>Front</th>
+        <th>Back</th>
+        <th>Frame</th>
+        <th>Attack</th>
+        <th>HP</th>
+        <th>Effect</th>
+        <th>Effect Type</th>
+        <th>Description</th>
+        <th>Required Age</th>
+        <th>Type</th>
+        <th>Is Dead</th>
+        <th>Is Discarded</th>
+        <th>Is Destroyed</th>
+        <th>Bonuses</th>
+        <th>Code Name</th>
+        <th>Creation Date</th>
+        <th>Modification Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let card of cardList; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ card.id }}</td>
+        <td>{{ card.title }}</td>
+        <td>{{ card.faction }}</td>
+        <td>{{ card.cost | json }}</td>
+        <td>{{ card.front }}</td>
+        <td>{{ card.back }}</td>
+        <td>{{ card.frame }}</td>
+        <td>{{ card.atk }}</td>
+        <td>{{ card.hp }}</td>
+        <td>{{ card.effect }}</td>
+        <td>{{ card.effectType }}</td>
+        <td>{{ card.description }}</td>
+        <td>{{ card.requiredAge }}</td>
+        <td>{{ card.type | json }}</td>
+        <td>{{ card.isDead }}</td>
+        <td>{{ card.isDiscarted }}</td>
+        <td>{{ card.isDestroyed }}</td>
+        <td>{{ card.bonuses | json }}</td>
+        <td>{{ card.codeName }}</td>
+        <td>{{ card.creationDate }}</td>
+        <td>{{ card.modificationDate }}</td>
+      </tr>
+    </tbody>
+

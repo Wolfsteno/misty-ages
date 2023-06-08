@@ -11,6 +11,20 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 })
 
 export class CardGenericComponent extends ImgCropperComponent implements OnInit, AfterViewInit {
+  
+  paths: string[] = [
+    './assets/images/_frames/frame-mechanic.png',
+    './assets/images/_frames/frame-mysticdominion.png',
+    './assets/images/_frames/frame-neutral2.png',
+    './assets/images/_frames/frame-obsidianeclipse.png',
+    './assets/images/_frames/frame-sacreddawn.png',
+    './assets/images/_frames/framed-bloodcult.png',
+    './assets/images/_frames/framed-shadowtribe.png',
+    './assets/images/_frames/frame-mystic-dominion.png',
+    './assets/images/_frames/frame-obsidianeclipse.png',
+    './assets/images/_frames/frame-sacreddawn.png',
+    './assets/images/_frames/framed-shadowtribe.png'
+  ];
 
   card = new Card(
     1,                    // id
@@ -121,5 +135,15 @@ export class CardGenericComponent extends ImgCropperComponent implements OnInit,
     ./assets/images/_frames/frame-sacreddawn.png
     ./assets/images/_frames/framed-shadowtribe.png
   */
+
+    showModal = false;
+
+    openModal() {
+      this.showModal = true;
+    }
+  
+    closeModal() {
+      this.showModal = false;
+    }
 
 }

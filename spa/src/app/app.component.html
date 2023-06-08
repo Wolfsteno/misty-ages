@@ -1,64 +1,25 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .card-menu {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      border-radius: 5px;
-    }
-
-    .card-menu li {
-      list-style-type: none;
-      margin-bottom: 10px;
-    }
-
-    .card-menu a {
-      padding: 5px;
-      color: #000000;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-
-    .card-menu a:hover {
-      background-color: #cccccc;
-    }
-
-    .card-menu-column {
-      text-align: center;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      flex: 0 0 50%;
-      max-width: 20%;
-    }
-
-    li {
-      width: 150px;
-      max-width: 150px;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="card-menu">
-    <li><a routerLink="/card-pj">Card pj</a></li>
-    <li><a routerLink="/card-minion">Card minion</a></li>
-    <li><a routerLink="/card-building">Card building</a></li>
-    <li><a routerLink="/card-action">Card action</a></li>
-    <li><a routerLink="/card-generic">Card generic</a></li>
-  </div>
-</body>
-
-</html>
-
-
+<div class="card-menu" style="height: 39px;" >
+  <ul class="nav">
+    <li class="nav-item">
+      <button type="button" class="btn btn-dark" routerLink="/rules">Rules</button>
+    </li>
+    <li class="nav-item">
+      <button type="button" class="btn btn-dark" routerLink="/lore">Lore</button>
+    </li>
+    <li class="nav-item">
+      <button type="button" class="btn btn-dark" routerLink="/game-assets-list">Game assets list</button>
+    </li>
+    <li class="nav-item">
+      <button type="button" class="btn btn-dark" routerLink="/card-list">Card list</button>
+    </li>
+    <li class="nav-item">
+      <button type="button" class="btn btn-dark" routerLink="/card-generic">Card creator</button>
+    </li>
+    <li class="nav-item">
+      <button type="button" class="btn btn-dark" routerLink="/deck-creator">Deck creator</button>
+    </li>
+  </ul>
+  
+</div>    
+  
 <router-outlet></router-outlet>

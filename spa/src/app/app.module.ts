@@ -16,18 +16,17 @@ import { CardBuildingComponent } from './cards/card-building/card-building.compo
 import { CardGenericComponent } from './cards/card-generic/card-generic.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ImgCropperComponent } from './components/ImgCropper/ImgCropper.component';
-
 import { environment } from "src/environments/environment";
 import { AngularFireModule } from '@angular/fire/compat';
 import { FirestoreModule } from '@angular/fire/firestore';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore/'; 
-// import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-// import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
+import { GameAssetsListComponent } from './game-assets-list/game-assets-list.component';
+import { LoreComponent } from './lore/lore.component';
+import { GameRulesComponent } from './game-rules/game-rules.component';
+import { DeckCreatorComponent } from './deck-creator/deck-creator.component';
 
 @NgModule({
   imports: [
-    // provideFirebaseApp(() => initializeApp({})),
-    // provideFirestore(() => getFirestore()),
     BrowserModule,
     BrowserAnimationsModule,
     MatDialogModule,
@@ -46,11 +45,13 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
     CardPjComponent,
     CardGenericComponent,
     MdComponent,
-    ImgCropperComponent
+    ImgCropperComponent,
+    GameAssetsListComponent,
+    LoreComponent,
+    GameRulesComponent,
+    DeckCreatorComponent
   ],
-  exports: [
-    MdComponent
-  ],
+  exports: [],
   providers: [ToolsService],
   bootstrap: [AppComponent]
 })

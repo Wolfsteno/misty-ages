@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Rectangle Dimensions</title>
-  <style>
-    .rectangle {
-      width: 520px;
-      height: 720px;
-    }
-  </style>
-</head>
-<body>
-  <div class="rectangle"></div>
-</body>
-</html>
+<!-- md.component.html -->
+<ng-template #modal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{title}}</h4>
+    <button *ngIf="hasClose" type="button" class="close" aria-label="Close" (click)="modal.dismiss('close')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ng-content></ng-content>
+  </div>
+  <div class="modal-footer" *ngIf="hasOk || hasCancel">
+    <button *ngIf="hasOk" type="button" class="btn btn-success" (click)="onOkClick()">{{textOk}}</button>
+    <button *ngIf="hasCancel" type="button" class="btn btn-outline-dark" (click)="onCancelClick()">{{textCancel}}</button>
+  </div>
+</ng-template>

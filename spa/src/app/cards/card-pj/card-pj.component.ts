@@ -11,5 +11,15 @@ export class CardPjComponent implements OnInit {
 
   ngOnInit() {
   }
+  
+  showModal = false;
+
+  openModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
 
 }
