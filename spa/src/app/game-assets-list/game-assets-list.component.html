@@ -1,37 +1,35 @@
-<button type="button" class="btn btn-primary" (click)="buildingsMd.open()">Buildings</button>
-<button type="button" class="btn btn-primary" (click)="minionsMd.open()">Minions</button>
-<button type="button" class="btn btn-primary" (click)="actionsMd.open()">Actions</button>
-<button type="button" class="btn btn-primary" (click)="framesMd.open()">Frames</button>
-<button type="button" class="btn btn-primary" (click)="gameAssetsMd.open()">Game assets</button>
+<div>
+  <button type="button" class="btn btn-primary" style="margin-right: 5px;"
+    (click)="buildingsMd.open()">Buildings</button>
+  <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="minionsMd.open()">Minions</button>
+  <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="actionsMd.open()">Actions</button>
+  <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="framesMd.open()">Frames</button>
+  <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="gameAssetsMd.open()">Game
+    assets</button>
+</div>
 
-
-<app-md #buildingsMd fullscreen="xl" [title]="'Buildings'" (onOk)="handleOk()" (onCancel)="handleCancel()">
-
+<app-md #buildingsMd [title]="'Buildings'" (onOk)="handleOk()" (onCancel)="handleCancel()">
   <div class="card">
     <div class="card-body">
-      <h5>Blood cult </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(buildings[0])">
-        Upload blood cult building</button>
+      <h5>Blood cult</h5>
+      <button [disabled]="!selectedImage" (click)="uploadImage(buildings[0])">Upload blood cult building</button>
       <input type="file" (change)="onImageSelected($event)" />
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-
-        <div style="margin: 5px;" *ngFor="let img of imgBuildings.bloodCult">
+      <div class="image-container">
+        <div class="image-item" *ngFor="let img of imgBuildings.bloodCult">
           <a [href]="img" target="_blank">
-            <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+            <img class="uploaded-image" [src]="img" alt="Uploaded image" />
           </a>
-
-          <!-- <div style="width: 100%;">
-            <textarea>{{buildings[0]}} {{img}}</textarea>
-            <button style="width: 85%; height: 25px; font-size: 10px;" class="btn btn-danger"
-              (click)="deleteImg(parseFirebasePath(buildings[0], img))"><fa-icon [icon]="faTimes"></fa-icon>
+          <div class="image-details">
+            <textarea>{{ buildings[0] }} {{ img }}</textarea>
+            <button class="delete-btn" (click)="deleteImg(parseFirebasePath(buildings[0], img))">
+              <fa-icon [icon]="faTimes"></fa-icon>
             </button>
-          </div> -->
-          
+          </div>
         </div>
-
       </div>
     </div>
   </div>
+</app-md>
 
 
   <div class="card">
@@ -132,7 +130,7 @@
 
 </app-md>
 
-<app-md #minionsMd fullscreen="xl" [title]="'Minions'" (onOk)="handleOk()" (onCancel)="handleCancel()">
+<app-md #minionsMd [title]="'Minions'" (onOk)="handleOk()" (onCancel)="handleCancel()">
 
   <div class="card">
     <div class="card-body">
@@ -299,7 +297,7 @@
   </div> -->
 </app-md>
 
-<app-md #actionsMd fullscreen="xl" [title]="'Actions'" (onOk)="handleOk()" (onCancel)="handleCancel()">
+<app-md #actionsMd [title]="'Actions'" (onOk)="handleOk()" (onCancel)="handleCancel()">
 
   <div class="card">
     <div class="card-body">
@@ -402,7 +400,7 @@
 
 </app-md>
 
-<app-md #framesMd fullscreen="xl" [title]="'Frames'" (onOk)="handleOk()" (onCancel)="handleCancel()">
+<app-md #framesMd [title]="'Frames'" (onOk)="handleOk()" (onCancel)="handleCancel()">
 
   <div class="card">
     <div class="card-body">
@@ -473,7 +471,7 @@
 
 </app-md>
 
-<app-md #gameAssetsMd fullscreen="xl" [title]="'Game assets'" (onOk)="handleOk()" (onCancel)="handleCancel()">
+<app-md #gameAssetsMd [title]="'Game assets'" (onOk)="handleOk()" (onCancel)="handleCancel()">
 
   <div class="card">
     <div class="card-body">

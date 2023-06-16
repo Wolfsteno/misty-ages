@@ -12,8 +12,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 
 export class AppComponent implements AfterViewInit {
@@ -51,7 +50,7 @@ export class AppComponent implements AfterViewInit {
   showHideEffect: boolean = false;
   showHideDescription: boolean = false;
 
-  constructor(private dialog: MatDialog, private tools: ToolsService, private fire: DbService,private storage: AngularFireStorage) {
+  constructor(private dialog: MatDialog, private tools: ToolsService, private fire: DbService, private storage: AngularFireStorage) {
     this.brownCards = Array(4).fill(0);
     this.blueCards = Array(4).fill(0);
     this.goldCards = Array(5).fill(0);
@@ -96,11 +95,11 @@ export class AppComponent implements AfterViewInit {
     if (this.selectedImage) {
       const url = await this.fire.uploadImage(this.selectedImage, 'test/' + this.selectedImage.name);
       // this.images.push(url);
-      
-      
-    }    
+
+
+    }
   }
-  
+
 
   async lImages() {
     for (const path of this.imagePaths) {

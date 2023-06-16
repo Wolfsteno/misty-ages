@@ -10,13 +10,12 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-game-assets-list',
-  templateUrl: './game-assets-list.component.html',
-  styleUrls: ['./game-assets-list.component.css']
+  templateUrl: './game-assets-list.component.html'
 })
-export class GameAssetsListComponent implements AfterViewInit {
+export class GameAssetsListComponent {
   faTimes = faTimes
 
-
+  // #region props + ctor
   buildings: string[] = [
     'cards/buildings/blood-cult',
     'cards/buildings/mechanic-league',
@@ -65,22 +64,30 @@ export class GameAssetsListComponent implements AfterViewInit {
   imgActions: ActionCards = new ActionCards();
   imgFrames: CardFrames = new CardFrames();
   imgGameAssets: GameAssets = new GameAssets();
-
   imagePaths: string[] = [];
 
   constructor(private fire: DbService, private storage: AngularFireStorage) {
-    this.loadImages();
+    this.load();
+  }
+
+  //#endregion
+
+  // #region loaders
+  async load() {
     this.loadBuildings();
     this.loadMinions();
     this.loadActions();
-    this.loadFrames();
-    this.loadGameAssets();
+    this.loadImages(this.frames, this.imgFrames, ['townCenters', 'buildings', 'minions', 'actions']);
+    this.loadImages(this.gameAssets, this.imgGameAssets, ['ages', 'icons', 'rarity', 'back']);
   }
 
-  async loadImages() {
-    const imagePaths = await this.fire.listAll('cards/buildings/blood-cult');
-    const urls = await this.fire.getImages(imagePaths);
-    this.imagePaths = urls;
+  async loadImages(array: string[], object: any, propertyNames: string[]) {
+    for (let i = 0; i < array.length; i++) {
+      const e = array[i];
+      object[propertyNames[i]] = await this.fire.listAll(e);
+      const urls = await this.fire.getImages(object[propertyNames[i]]);
+      object[propertyNames[i]] = urls;
+    }
   }
 
   async loadBuildings() {
@@ -262,7 +269,9 @@ export class GameAssetsListComponent implements AfterViewInit {
 
     }
   }
+  //#endregion
 
+  // #region image handler
   selectedImage?: File;
 
   onImageSelected(event: Event) {
@@ -275,48 +284,38 @@ export class GameAssetsListComponent implements AfterViewInit {
   async uploadImage(p: string) {
     if (this.selectedImage) {
       const url = await this.fire.uploadImage(this.selectedImage, p + '/' + this.selectedImage.name);
-      this.loadImages();
-      this.loadBuildings();
-      this.loadMinions();
-      this.loadActions();
-      this.loadFrames();
-      this.loadGameAssets();
+      this.load();
+
     }
     this.selectedImage = undefined;
   }
-
-  ngAfterViewInit() { }
-
-  handleOk() { }
-
-  handleCancel() { }
 
   async deleteImg(path: string) {
     try {
       await this.fire.deleteImage(path);
       console.log('Image deleted successfully');
-      this.loadImages();
-      this.loadBuildings();
-      this.loadMinions();
-      this.loadActions();
-      this.loadFrames();
-      this.loadGameAssets();
+      this.load();
     } catch (error) {
       console.error('Failed to delete image:', error);
     }
 
   }
+  //#endregion
 
-// Method to parse Firebase Storage path from download URL
-parseFirebasePath(directory: string, downloadUrl: string): string {
-  // Extract the file path from the download URL
-  const filePath = decodeURIComponent(downloadUrl.split('/o/')[1].split('?')[0]);
 
-  // Append the file path to the directory
-  const fullPath = `${directory}/${filePath.split('/').pop()}`;
+  handleOk() { }
 
-  return fullPath;
-}
+  handleCancel() { }
+
+  parseFirebasePath(directory: string, downloadUrl: string): string {
+    // Extract the file path from the download URL
+    const filePath = decodeURIComponent(downloadUrl.split('/o/')[1].split('?')[0]);
+
+    // Append the file path to the directory
+    const fullPath = `${directory}/${filePath.split('/').pop()}`;
+
+    return fullPath;
+  }
 
 
 }

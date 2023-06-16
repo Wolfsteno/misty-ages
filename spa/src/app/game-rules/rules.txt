@@ -1,0 +1,37 @@
+El juego se desarrolla en un campo de batalla dividido en dos secciones, una para cada jugador. Cada jugador tiene 4 casillas de edificios urbanos, como cuarteles, mercado y generadores de recursos.
+Al comienzo de la partida, cada jugador tiene construidas empalizadas en sus casillas defensivas, proporcionando una defensa básica.
+Cada jugador tiene un centro urbano, que es su carta vital. Si la vida del centro urbano llega a cero, el jugador pierde la partida.
+El juego se divide en 3 edades, cada una con sus propios mazos de unidades, edificios y eventos. Los jugadores tienen tres mazos para cada edad.
+Cada mazo puede contener hasta 50 cartas, incluyendo el centro urbano.
+El paso de edad se realiza pagando recursos específicos para cada edad. Los recursos se adquieren a través de diversas formas.
+Cada turno, los jugadores generan recursos según su facción. Estos recursos pueden ser Oro, Magia y Energía.
+Los recursos se utilizan para adquirir nuevas cartas, construir edificios, generar unidades y jugar eventos especiales.
+Los jugadores pueden utilizar unidades para atacar las casillas enemigas y el centro urbano del oponente.
+Las unidades solo pueden moverse hacia casillas adyacentes a su posición actual en el campo de batalla.
+Durante los combates, las unidades enfrentadas comparan sus atributos y se resuelven los resultados de acuerdo con las reglas de combate establecidas.
+Los jugadores pueden construir nuevos edificios en sus casillas urbanas disponibles para obtener beneficios estratégicos y nuevas habilidades.
+Las cartas de eventos ofrecen acciones especiales y tácticas que los jugadores pueden utilizar para influir en el curso del juego.
+Los jugadores pueden utilizar cartas de hechizos y habilidades para mejorar sus unidades, debilitar al oponente o alterar las condiciones del juego.
+La partida continúa hasta que uno de los jugadores logra reducir la vida del centro urbano del oponente a cero o hasta que se cumplan otras condiciones de victoria establecidas.
+
+
+
+1. Hay 3 edades en el juego.
+2. Tienes tres mazos de unidades/edificios/eventos para cada edad.
+3. Tu mazo puede contener hasta 50 cartas, incluyendo el centro urbano que es tu carta vital.
+4. Si la vida del centro urbano llega a cero, pierdes.
+6. El paso de edad se realiza pagando recursos.
+7. Cada facción genera 1 recurso por turno.
+10. Las unidades solo se pueden mover hacia casillas adyacentes.
+11. Hay diferentes tipos de recursos: Oro, Magia, y Energía.
+
+
+
+
+
+
+
+
+
+8. Los recursos se revelan cuando se coloca una unidad en ellos.
+9. La posición de los recursos en el tablero es aleatoria en cada partida.
