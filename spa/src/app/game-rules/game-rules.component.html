@@ -1,35 +1,221 @@
 <div>
-  <!-- <ul>
-    <li>Hay 3 edades en el juego.</li>
-    <li>Tienes mazos de unidades y mazos de edificios/eventos para cada edad.</li>
-    <li>Tu mazo puede contener hasta 60 cartas, incluyendo el centro urbano que es tu carta vital.</li>
-    <li>Si la vida del centro urbano llega a cero, pierdes.</li>
-    <li>Un mazo equilibrado tiene 10 cartas de unidades y 10 cartas de utilidad por cada edad.</li>
-    <li>El paso de edad se realiza pagando recursos y eligiendo un centro urbano.</li>
-    <li>Cada facción genera 1 recurso por turno.</li>
-    <li>Los recursos se revelan cuando se coloca una unidad en ellos.</li>
-    <li>La posición de los recursos en el tablero es aleatoria en cada partida.</li>
-    <li>Las unidades solo se pueden mover hacia adelante o a casillas adyacentes.</li>
-    <li>Hay diferentes tipos de recursos: Oro, Éterium, Cenizas de carbón, Esencia nocturna, Escamas de dragón y Esencia vital.</li>
-  </ul>   -->
-
-  <ul>
-    <li>El juego se desarrolla en un campo de batalla dividido en dos secciones, una para cada jugador. Cada jugador tiene 4 casillas de edificios urbanos, como cuarteles, mercado y generadores de recursos.</li>
-    <li>Al comienzo de la partida, cada jugador tiene construidas empalizadas en sus casillas defensivas, proporcionando una defensa básica.</li>
-    <li>Cada jugador tiene un centro urbano, que es su carta vital. Si la vida del centro urbano llega a cero, el jugador pierde la partida.</li>
-    <li>El juego se divide en 3 edades, cada una con sus propios mazos de unidades, edificios y eventos. Los jugadores tienen tres mazos para cada edad.</li>
-    <li>Cada mazo puede contener hasta 50 cartas, incluyendo el centro urbano.</li>
-    <li>El paso de edad se realiza pagando recursos específicos para cada edad. Los recursos se adquieren a través de diversas formas.</li>
-    <li>Cada turno, los jugadores generan recursos según su facción. Estos recursos pueden ser Oro, Magia y Energía.</li>
-    <li>Los recursos se utilizan para adquirir nuevas cartas, construir edificios, generar unidades y jugar eventos especiales.</li>
-    <li>Los jugadores pueden utilizar unidades para atacar las casillas enemigas y el centro urbano del oponente.</li>
-    <li>Las unidades solo pueden moverse hacia casillas adyacentes a su posición actual en el campo de batalla.</li>
-    <li>Durante los combates, las unidades enfrentadas comparan sus atributos y se resuelven los resultados de acuerdo con las reglas de combate establecidas.</li>
-    <li>Los jugadores pueden construir nuevos edificios en sus casillas urbanas disponibles para obtener beneficios estratégicos y nuevas habilidades.</li>
-    <li>Las cartas de eventos ofrecen acciones especiales y tácticas que los jugadores pueden utilizar para influir en el curso del juego.</li>
-    <li>Los jugadores pueden utilizar cartas de hechizos y habilidades para mejorar sus unidades, debilitar al oponente o alterar las condiciones del juego.</li>
-    <li>La partida continúa hasta que uno de los jugadores logra reducir la vida del centro urbano del oponente a cero o hasta que se cumplan otras condiciones de victoria establecidas.</li>
+  <ul class="nav" style="margin-top: 5px;">
+    <li class="nav-item">
+      <button class="btn btn-secondary btn-sm" style="margin-right: 5px; font-size: 20px"
+        (click)="toggleAllSections(true)">Open all</button>
+    </li>
+    <li class="nav-item">
+      <button class="btn btn-secondary btn-sm" style="margin-right: 5px; font-size: 20px"
+        (click)="toggleAllSections(false)">Close
+        all</button>
+    </li>
   </ul>
- 
+</div>
+<div class="row" style="display: flex;height: 90vh;">
 
+
+  <div style="position: relative; flex: 1; border: 1px solid rgb(160, 160, 160);">
+    <div *ngFor="let section of sections">
+      <h4 (click)="toggleSection(section)">{{ section.title }}</h4>
+      <div [hidden]="!section.isOpen">
+        <ul>
+          <li *ngFor="let item of section.content">
+            <ng-container *ngIf="item === 'Breve descripción del juego.'">
+              <p [style.--p-color]="c">{{item}}</p>
+              <p>
+                <strong>Misty ages</strong> es un juego de cartas colecionables online que combina dos elementos:
+                Mecanicas
+                tipicas de un juego de cartas de fantasia (con influencias de Hearthstone, Duelyst, Magic...) y la
+                estrategia en el
+                campo de batalla (con influencias de Risk, Age of empires...)
+              </p>
+            </ng-container>
+            <ng-container *ngIf="item === 'Objetivo general del juego.'">
+              <p [style.--p-color]="c">{{item}}</p>
+              <p>
+                El objetivo principal del juego es derrotar a tu rival haciendo que los puntos de vida de su cnetro
+                urbano
+                desciendan a 0 o por otras condiciones de victoria especificadas en la seccion 'Condiciones de victoria'
+                >
+                'Explicación clara de cómo se determina el ganador del juego'
+              </p>
+            </ng-container>
+            <ng-container *ngIf="item === 'Cómo se juega el juego en un entorno en línea.'">
+              <p [style.--p-color]="c">{{item}}</p>
+              <p>El juego puede tener sus inicios en web pero idealmente se publicaria en Steam como un juego gratuito y
+                los beneficios seran a raiz de sobres y demas.</p>
+            </ng-container>
+            <ng-container *ngIf="item === 'Descripción de las cartas utilizadas en el juego.'">
+              <p [style.--p-color]="c">{{item}}</p>
+              <p>Hay 4 tipos de cartas que pueden ser utilizadas:</p>
+              <ul>
+                <li>Carta de centro urbano (town center): Esta carta es la analoga de la carta de heroe en el
+                  Hearthstone.
+                  Tendra un efecto que es permanente durante toda la partida, cuando se mejora de edad, el centro urbano
+                  tambien mejorara en un version de si mas poderosa y con efectos mejores. el centro urbano proporciona
+                  un
+                  ingreso de recursos cada ronda que se podran gastar a eleccion del jugador.</li>
+                <li>Carta de unidad (minion): Son unidades al uso, con numeros para indicar el poder de ataque, los
+                  puntos de vida y su armadura (en caso de que tenga). Tambien, dentro de la carta de minion se
+                  encontrara
+                  su nombre, su efecto (si lo tiene) y un breve fragmento de historia general del lore del juego.
+                  Tambien
+                  se encuentra representada la edad, rareza y faccion de la carta.</li>
+                <li>Cartas de edificio (building): estas cartas se colocaran en casillas urbanas o de defensa y
+                  proporcionaran
+                  ciertos beneficios al jugador que la juege. Segun la calidad y el efecto del edificio, costara mas,
+                  tanto
+                  de recursos como tambien puede tener un tiempo de construccion (por ejemplo, dos turnos). Durante este
+                  tiempo de construccion, los puntos de armadura iran aumnetando cada turno hasta sus puntos de vida
+                  maximos, y solo entonces, una vez completada su construccion, el efecto del edificio y su utilizacion
+                  entraran en juego. </li>
+                <li>Carta de accion (action): Estas cartas podran ser jugadas en cualquier momento de la partida
+                  bajo las condiciones al carta en si especifique la misma. Por ejemplo: "Carta accion: Emboscada.
+                  Efecto:
+                  Durante de la fase de combate puedes jugar esta carta para invocar dos minions 2/2"</li>
+              </ul>
+            </ng-container>
+            <ng-container
+              *ngIf="item === 'Explicación de cualquier otro componente necesario, como fichas, marcadores, etc.'">
+              <p>Custom text for 'Explicación de cualquier otro componente necesario, como fichas, marcadores, etc.'</p>
+            </ng-container>
+            <ng-container
+              *ngIf="item === 'Mención de cualquier requisito técnico específico para jugar en línea (por ejemplo, una plataforma o una aplicación).'">
+              <p>Custom text for 'Mención de cualquier requisito técnico específico para jugar en línea (por ejemplo,
+                una
+                plataforma o una aplicación).'</p>
+            </ng-container>
+            <ng-container *ngIf="item === 'Explicación detallada de las reglas básicas del juego.'">
+              <p [style.--p-color]="c">{{item}}</p>
+              <ul>
+                <li>El juego se desarrolla en un campo de batalla dividido en dos secciones, una para cada jugador. Cada
+                  jugador
+                  tiene 4 casillas de edificios urbanos, como cuarteles, mercado y generadores de recursos.</li>
+                <li>Al comienzo de la partida, cada jugador tiene construidas empalizadas en sus casillas defensivas,
+                  proporcionando
+                  una defensa básica.</li>
+                <li>Cada jugador tiene un centro urbano, que es su carta vital. Si la vida del centro urbano llega a
+                  cero,
+                  el
+                  jugador pierde la partida.</li>
+                <li>El juego se divide en 3 edades, cada una con sus propios mazos de unidades, edificios y eventos. Los
+                  jugadores
+                  tienen tres mazos para cada edad.</li>
+                <li>Cada mazo puede contener hasta 50 cartas, incluyendo el centro urbano.</li>
+                <li>El paso de edad se realiza pagando recursos específicos para cada edad. Los recursos se adquieren a
+                  través de
+                  diversas formas.</li>
+                <li>Cada turno, los jugadores generan recursos según su facción. Estos recursos pueden ser Oro, Magia y
+                  Energía.
+                </li>
+                <li>Los recursos se utilizan para adquirir nuevas cartas, construir edificios, generar unidades y jugar
+                  eventos
+                  especiales.</li>
+                <li>Los jugadores pueden utilizar unidades para atacar las casillas enemigas y el centro urbano del
+                  oponente.</li>
+                <li>Las unidades solo pueden moverse hacia casillas adyacentes a su posición actual en el campo de
+                  batalla.</li>
+                <li>Durante los combates, las unidades enfrentadas comparan sus atributos y se resuelven los resultados
+                  de
+                  acuerdo
+                  con las reglas de combate establecidas.</li>
+                <li>Los jugadores pueden construir nuevos edificios en sus casillas urbanas disponibles para obtener
+                  beneficios
+                  estratégicos y nuevas habilidades.</li>
+                <li>Las cartas de eventos ofrecen acciones especiales y tácticas que los jugadores pueden utilizar para
+                  influir en
+                  el curso del juego.</li>
+                <li>Los jugadores pueden utilizar cartas de hechizos y habilidades para mejorar sus unidades, debilitar
+                  al
+                  oponente
+                  o alterar las condiciones del juego.</li>
+                <li>La partida continúa hasta que uno de los jugadores logra reducir la vida del centro urbano del
+                  oponente a cero o
+                  hasta que se cumplan otras condiciones de victoria establecidas.</li>
+              </ul>
+            </ng-container>
+            <ng-container
+              *ngIf="item === 'Información sobre cómo se distribuyen las cartas y cómo se manejan durante el juego.'">
+              <p>Custom text for 'Información sobre cómo se distribuyen las cartas y cómo se manejan durante el juego.'
+              </p>
+            </ng-container>
+            <ng-container *ngIf="item === 'Descripción de las acciones y movimientos permitidos en cada turno.'">
+              <p>Custom text for 'Descripción de las acciones y movimientos permitidos en cada turno.'</p>
+            </ng-container>
+            <ng-container
+              *ngIf="item === 'Explicación de cualquier regla especial o excepciones a las reglas generales.'">
+              <p>Custom text for 'Explicación de cualquier regla especial o excepciones a las reglas generales.'</p>
+            </ng-container>
+            <ng-container *ngIf="item === 'Descripción del flujo del juego, desde el inicio hasta el final.'">
+              <p [style.--p-color]="c">{{item}}</p>
+              <ul>
+                <li>Cada jugador empieza la partida con 7 cartas</li>
+                <li>Al segundo jugador se le proporcionara una carta de moneda de coste cero que le da 1 de oro.</li>
+              </ul>
+            </ng-container>
+            <ng-container *ngIf="item === 'Explicación de los diferentes tipos de turnos o fases en una partida.'">
+              <p>{{item}}</p>
+                <ol>
+                  <li>Despliegue: En esta fase, los jugadores tienen la oportunidad de desplegar sus unidades en el campo de juego. Las unidades suelen estar representadas por cartas con diferentes habilidades y características. La fase de despliegue permite a los jugadores posicionar estratégicamente sus unidades para acciones futuras y aprovechar las mecánicas del juego.</li>
+                  <li>Movimiento: Una vez que las unidades están desplegadas, comienza la fase de movimiento. Durante esta fase, los jugadores pueden optar por mover sus unidades a través del campo de juego. El movimiento de las unidades es fundamental para posicionarlas estratégicamente, obtener ventajas tácticas o responder a las acciones del oponente.</li>
+                  <li>Combate: La fase de combate implica el enfrentamiento de las unidades en batalla. Los jugadores pueden elegir atacar las unidades del oponente o defender sus propias unidades contra los ataques enemigos. El resultado del combate a menudo se determina por varios factores, como las habilidades y estadísticas de las unidades, así como las decisiones estratégicas tomadas por los jugadores.</li>
+                  <li>Comercio: Esta fase puede implicar el intercambio de recursos con otros jugadores o mecanismos dentro del juego. Dado que tu juego incluye cuatro tipos de recursos, esta fase permite a los jugadores intercambiar o adquirir los recursos necesarios para mejorar sus estrategias y fortalecer su posición en el juego.</li>
+                  <li>Recolectar recursos: Finalmente, ocurre la fase de recolección de recursos, donde los jugadores tienen la oportunidad de reunir recursos para turnos futuros. En tu juego, esto podría implicar recolectar oro y los tres recursos especiales. Los recursos se utilizan típicamente para desplegar más unidades, activar habilidades poderosas o comprar nuevas cartas para mejorar la baraja del jugador.</li>
+                </ol>                
+            </ng-container>
+            <ng-container
+              *ngIf="item === 'Información sobre cómo se resuelven los conflictos o disputas entre los jugadores.'">
+              <p>Custom text for 'Información sobre cómo se resuelven los conflictos o disputas entre los jugadores.'
+              </p>
+            </ng-container>
+            <ng-container
+              *ngIf="item === 'Detalles sobre cómo se avanza en el juego, por ejemplo, a través de rondas o niveles.'">
+              <p>Custom text for 'Detalles sobre cómo se avanza en el juego, por ejemplo, a través de rondas o niveles.'
+              </p>
+            </ng-container>
+            <ng-container *ngIf="item === 'Explicación clara de cómo se determina el ganador del juego.'">
+              <p>Custom text for 'Explicación clara de cómo se determina el ganador del juego.'</p>
+            </ng-container>
+            <ng-container
+              *ngIf="item === 'Mención de cualquier objetivo o logro específico que deba alcanzarse para ganar.'">
+              <p>Custom text for 'Mención de cualquier objetivo o logro específico que deba alcanzarse para ganar.'</p>
+            </ng-container>
+            <ng-container *ngIf="item === 'Información sobre empates y cómo se resuelven.'">
+              <p>Custom text for 'Información sobre empates y cómo se resuelven.'</p>
+            </ng-container>
+            <ng-container *ngIf="item === 'Sugerencias para mejorar la jugabilidad y estrategias para tener éxito.'">
+              <p>Custom text for 'Sugerencias para mejorar la jugabilidad y estrategias para tener éxito.'</p>
+            </ng-container>
+            <ng-container *ngIf="item === 'Consejos para los jugadores principiantes.'">
+              <p>Custom text for 'Consejos para los jugadores principiantes.'</p>
+            </ng-container>
+            <ng-container
+              *ngIf="item === 'Ejemplos de jugadas tácticas o estratégicas que los jugadores pueden considerar.'">
+              <p>Custom text for 'Ejemplos de jugadas tácticas o estratégicas que los jugadores pueden considerar.'</p>
+            </ng-container>
+            <ng-container
+              *ngIf="item === 'Una sección dedicada a responder preguntas comunes que los jugadores pueden tener.'">
+              <p>Custom text for 'Una sección dedicada a responder preguntas comunes que los jugadores pueden tener.'
+              </p>
+            </ng-container>
+            <ng-container *ngIf="item === 'Aclaración de cualquier ambigüedad o regla confusa.'">
+              <p>Custom text for 'Aclaración de cualquier ambigüedad o regla confusa.'</p>
+            </ng-container>
+            <ng-container *ngIf="item === 'Explicación de situaciones especiales o escenarios complicados.'">
+              <p>Custom text for 'Explicación de situaciones especiales o escenarios complicados.'</p>
+            </ng-container>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width: 500px;position: relative; flex: 1; border: 1px solid rgb(160, 160, 160);">
+    <div class="d-flex" style="width: 100%;">
+      <a href="./assets/images/field.png" target="_blank">
+        <img src="./assets/images/field.png" class="img-fluid" alt="Field Image">
+        <p class="text-center">Vista simple del juego</p>
+      </a>
+    </div>
+  </div>
 </div>

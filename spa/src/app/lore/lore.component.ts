@@ -4,11 +4,13 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-lore',
   templateUrl: './lore.component.html'
 })
-export class LoreComponent implements OnInit {
+export class LoreComponent {
 
   constructor() { }
 
-  ngOnInit() {
+  tLanguage = true;
+  toggleLanguage() {
+    this.tLanguage = !this.tLanguage;
   }
 
 }

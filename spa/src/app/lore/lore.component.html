@@ -1,13 +1,17 @@
 <div class="row">
 
-  <div class="col-5">
+  <button class="btn btn-primary" (click)="toggleLanguage()">
+    {{tLanguage?'Switch to spanish':'Cambiar a inglés'}}
+  </button>
+
+  <div *ngIf="tLanguage" class="col-12">
     <p>
-      In the mist-veiled world of Eldoria, where the sun's rays dance with the shadows, and the moon whispers secrets to
+      In the mist-veiled world of Dewdoria, where the sun's rays dance with the shadows, and the moon whispers secrets
+      to
       the stars, the echoes of an ancient prophecy stir the hearts of the mighty and the meek alike. Six factions, each
       a
       titan in its own right, stand on the precipice of destiny, their fates intertwined in a tapestry woven by the
-      hands
-      of time itself.
+      hands of time itself.
     </p>
 
     <p>
@@ -68,14 +72,37 @@
 
     <p>
       In the midst of this intricate dance of power and survival, the neutral faction stands as a wildcard, their
-      allegiance as unpredictable as the winds of Eldoria. Their buildings, minions, and actions, devoid of any singular
+      allegiance as unpredictable as the winds of Dewdoria. Their buildings, minions, and actions, devoid of any
+      singular
       allegiance, add a dynamic element to the ever-shifting alliances and rivalries.
     </p>
+
+    <br>
+
+    <p>
+      The Blood Cult and the Obsidian Eclipse share a common interest in the darker arts, forming an alliance based on
+      mutual respect for power and control.
+    </p>
+
+    <p>
+      The Mechanic League and the Mystic Dominion, despite their differences, have found common ground in their pursuit
+      of knowledge and have formed a strong alliance.
+    </p>
+    <p>
+      The Sacred Dawn and the Shadows Tribes, though seemingly opposite, have formed an alliance based on their shared
+      respect for the natural order and the balance of life and death.
+    </p>
+    <p>
+      The neutral faction, represented by neutral buildings, minions, and actions, is a wildcard in this world. They can
+      ally with any faction, providing a dynamic element to the ever-shifting alliances and rivalries of this misty
+      world.
+    </p>
+
   </div>
 
-  <div class="col-5">
+  <div *ngIf="!tLanguage" class="col-12">
     <p>
-      En el mundo velado por la niebla de Eldoria, donde los rayos del sol bailan con las sombras y la luna susurra
+      En el mundo velado por la niebla de Dewdoria, donde los rayos del sol bailan con las sombras y la luna susurra
       secretos a las estrellas, los ecos de una antigua profecía agitan los corazones de los poderosos y los humildes
       por igual. Seis facciones, cada una un titán en su propio derecho, se encuentran al borde del destino, sus
       destinos entrelazados en un tapiz tejido por las manos del tiempo mismo.
@@ -132,9 +159,32 @@
 
     <p>
       En medio de esta intrincada danza de poder y supervivencia, la facción neutral se presenta como un comodín, su
-      lealtad tan impredecible como los vientos de Eldoria. Sus edificios, secuaces y acciones, carentes de cualquier
+      lealtad tan impredecible como los vientos de Dewdoria. Sus edificios, secuaces y acciones, carentes de cualquier
       lealtad singular, añaden un elemento dinámico a las alianzas y rivalidades en constante cambio.
     </p>
+
+    <br>
+
+    <p>
+      The Blood Cult y Obsidian Eclipse comparten un interés común en las artes oscuras, formando una alianza basada en
+      el respeto mutuo por el poder y el control.
+    </p>
+    <p>
+      La Liga Mecánica y el Dominio Místico, a pesar de sus diferencias, han encontrado puntos en común en su búsqueda.
+      del conocimiento y han formado una fuerte alianza.
+    </p>
+    <p>
+      Las Tribus del Amanecer Sagrado y las Sombras, aunque aparentemente opuestas, han formado una alianza basada en su
+      el respeto por el orden natural y el equilibrio de la vida y la muerte.
+    </p>
+    <p>
+      La facción neutral, representada por edificios, secuaces y acciones neutrales, es un comodín en este mundo. Ellos
+      pueden
+      aliarse con cualquier facción, proporcionando un elemento dinámico a las siempre cambiantes alianzas y rivalidades
+      de este brumoso
+      mundo.
+    </p>
+
   </div>
 
 </div>

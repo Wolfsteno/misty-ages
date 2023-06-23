@@ -1,5 +1,12 @@
 @import '~prismjs/themes/prism.css';
 
+/* app.component.css */
+* {
+    font-size: 30px;
+    /* Adjust the value as per your preference */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 button.close {
     padding: 0;
     background-color: transparent;
@@ -22,11 +29,35 @@ button.close {
 }
 
 div {
-    margin: 10px;
-    padding: 10px;
+    /* margin: 10px; */
+    padding: 5px;
 }
 
 p {
-    margin: 10px;
+    /* margin: 10px; */
     padding: 10px;
 }
+
+h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
+    cursor: pointer;
+    /* Replace 'pointer' with the desired cursor style */
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: antiquewhite;
+    padding: 10px;
+        /* Replace 'Arial' with the desired font family name */
+}
+
+p {
+    color: var(--p-color);
+  }
+  
+  .section {
+    margin-bottom: 10px;
+  }
+  
+  .content {
+    display: none;
+  }

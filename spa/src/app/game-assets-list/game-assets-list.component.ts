@@ -15,6 +15,16 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 export class GameAssetsListComponent {
   faTimes = faTimes
 
+  parseFirebasePath(directory: string, downloadUrl: string): string {
+    // Extract the file path from the download URL
+    const filePath = decodeURIComponent(downloadUrl.split('/o/')[1].split('?')[0]);
+
+    // Append the file path to the directory
+    const fullPath = `${directory}/${filePath.split('/').pop()}`;
+
+    return fullPath;
+  }
+
   // #region props + ctor
   buildings: string[] = [
     'cards/buildings/blood-cult',
@@ -302,20 +312,10 @@ export class GameAssetsListComponent {
   }
   //#endregion
 
-
+  //#region md handlers
   handleOk() { }
 
   handleCancel() { }
-
-  parseFirebasePath(directory: string, downloadUrl: string): string {
-    // Extract the file path from the download URL
-    const filePath = decodeURIComponent(downloadUrl.split('/o/')[1].split('?')[0]);
-
-    // Append the file path to the directory
-    const fullPath = `${directory}/${filePath.split('/').pop()}`;
-
-    return fullPath;
-  }
-
+  //#endregion
 
 }
