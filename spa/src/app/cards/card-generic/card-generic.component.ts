@@ -1,149 +1,275 @@
-import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
-import { ImgCropperComponent } from 'src/app/components/ImgCropper/ImgCropper.component';
+import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Observable } from 'rxjs';
+import { CardFrames } from 'src/app/game-assets-list/models/card-frames';
+import { Card, FactionTypes, MinionTypes } from 'src/app/models/card';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { DbService } from 'src/app-core/db.service';
-import { Card } from 'src/app/models/card';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { GameAssets } from 'src/app/game-assets-list/models/game-assets';
 
 @Component({
-  selector: 'app-card-generic',
+  selector: 'card-generic',
   templateUrl: './card-generic.component.html',
-  styleUrls: ['./card-generic.component.css']
+  styles: [`
+* {
+font-size: 16px;
+font-family: 'MistyTxt';
+}
+
+.split-screen {
+display: flex;
+height: 90vh;
+}
+
+.left-half, .right-half {
+position: relative;
+flex: 1;
+border: 2px solid brown;
+}
+
+.left-half {
+display: flex;
+justify-content: center;
+}
+
+.right-half {
+padding: 10px;
+}
+
+.property {
+margin-bottom: 10px;
+}
+
+span {
+  font-size: 15px;
+
+}
+`]
 })
 
-export class CardGenericComponent extends ImgCropperComponent implements OnInit, AfterViewInit {
-  
-  paths: string[] = [
-    './assets/images/_frames/frame-mechanic.png',
-    './assets/images/_frames/frame-mysticdominion.png',
-    './assets/images/_frames/frame-neutral2.png',
-    './assets/images/_frames/frame-obsidianeclipse.png',
-    './assets/images/_frames/frame-sacreddawn.png',
-    './assets/images/_frames/framed-bloodcult.png',
-    './assets/images/_frames/framed-shadowtribe.png',
-    './assets/images/_frames/frame-mystic-dominion.png',
-    './assets/images/_frames/frame-obsidianeclipse.png',
-    './assets/images/_frames/frame-sacreddawn.png',
-    './assets/images/_frames/framed-shadowtribe.png'
+export class CardGenericComponent implements DbService, OnInit {
+  firestore: AngularFirestore;
+
+  randomCard: Card = {} as Card;
+
+  factionTypes: string[] = ['sacred-dawn', 'shadow-tribes', 'mystic-dominion', 'mechanic-league', 'obsidian-eclipse', 'blood-cult', 'neutral'];
+  minionTypes: string[] = ['angel', 'beast', 'demon', 'dragon', 'dwarf', 'elf', 'fairy', 'goblin', 'human', 'merfolk', 'orc', 'undead', 'vampire', 'werewolf', 'witch', 'elemental', 'knight'];
+  rarities: string[] = ["basic", "common", "epic", "rare", "legendary"];
+
+  constructor(
+    public dbService: DbService,
+    public storage: AngularFireStorage,
+    public angularFirestore: AngularFirestore,
+  ) {
+    this.firestore = this.angularFirestore;
+  }
+
+  getRandomValueFromArray<T>(array: T[]): T {
+    const randomIndex = Math.floor(Math.random() * array.length);
+    return array[randomIndex];
+  }
+  getRandomInt(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  generateRandomCard(): Card {
+    const randomFaction = this.getRandomValueFromArray(FactionTypes);
+    const randomType = this.getRandomValueFromArray(MinionTypes);
+    const randomCost = [
+      this.getRandomInt(1, 10),
+      this.getRandomInt(0, 3),
+      this.getRandomInt(0, 3),
+      this.getRandomInt(0, 3)
+    ];
+    const randomAtk = this.getRandomInt(0, 10);
+    const randomHp = this.getRandomInt(0, 10);
+
+    const randomCard = new Card(
+      1, // You can provide a unique identifier or generate it randomly as well
+      'Crossbreed warrior',
+      randomFaction,
+      randomType,
+      'https://firebasestorage.googleapis.com/v0/b/misty-ages.appspot.com/o/general%2Frarity%2Fcommon.png?alt=media&token=891ea42b-cb15-4c7c-bbdd-a4ef7a4ffee1',
+      randomCost,
+      'front',
+      'back',
+      'https://firebasestorage.googleapis.com/v0/b/misty-ages.appspot.com/o/frames%2Fminions%2Fmystic-dominion.png?alt=media&token=a7b77c50-2109-4187-8844-e3cfee74f5b1',
+      randomAtk,
+      'atkImg',      
+      0,
+      'rAtkImg',      
+      randomHp,
+      'hpImg',      
+      'Give +1/+1 to an ally. If it is damaged then give instead +0/+2',
+      'Warcry',
+      '"Within the shadows, forgotten whispers beckon, revealing the fractured tapestry of a lost realm."',
+      'creationDate',
+      'modificationDate'
+    );
+
+    return randomCard;
+  }
+
+  ngOnInit(): void {
+    this.randomCard = this.generateRandomCard();
+    this.load();
+  }
+
+  imgFrames: CardFrames = new CardFrames();
+
+  frames: string[] = [
+    'frames/minions',
   ];
 
-  card = new Card(
-    1,                    // id
-    'My Card',            // title
-    'neutral',            // faction
-    [0, 0, 0, 0, 0, 0],   // cost
-    'front image',        // front
-    'back image',         // back
-    'frame image',        // frame
-    0,                    // atk
-    0,                    // hp
-    'effect',             // effect
-    'effect type',        // effectType
-    'description',        // description
-    0,                    // requiredAge
-    ['human', 'angel'],   // type
-    false,                // isDead
-    false,                // isDiscarted
-    false,                // isDestroyed
-    [],                   // bonuses
-    'code name',          // codeName
-    '2023-06-02',         // creationDate
-    '2023-06-02'          // modificationDate
-  );
-
-  beautifyJson(jsonString: string): string {
-    try {
-      const parsedJson = JSON.parse(jsonString);
-      return JSON.stringify(parsedJson, null, 2);
-    } catch (error) {
-      console.error('Invalid JSON:', error);
-      return jsonString;
-    }
-  }
-
-  cardJson: string;
-
-  constructor(private dbCard: DbService) {
-    super();
-    this.cardJson = JSON.stringify(this.card, null, 2);
-  }
-
-  ngAfterViewInit(): void {
-    this.highlightCode();
-  }
-
-
-  highlightCode(): void {
-    // Prism.highlightAll(); 
-  }
-
-  cardList: Card[] = [];
-  ngOnInit() {
+  async load() {
     this.getCards();
+    this.loadImages(this.frames, this.imgFrames, ['minions']);
+    this.loadImages(this.gameAssets, this.imgGameAssets, ['ages', 'icons', 'rarity', 'back']);
   }
 
-  getCards() {
-    this.dbCard.getCards().subscribe(res => {
 
-      this.cardList = [];
+  onFactionChange() {
+    console.log('Faction changed:', this.randomCard.faction);
+    // Perform additional logic or actions based on the selected faction
 
-      res.forEach((e: any) => {
-        console.log(e.payload.doc.id);
-        this.cardList.push({
-          codeName: e.payload.doc.id,
-          ...e.payload.doc.data()
-        })
-      });
-      console.log(this.cardList);
-    })
-
-  }
-
-  createCard() {
-    this.dbCard.saveCard(this.card);
-    this.getCards();
-  }
-
-  override imageChangedEvent: any = '';
-  override croppedImage: any = '';
-
-  override fileChangeEvent(event: any): void {
-    this.imageChangedEvent = event;
-  }
-
-  override imageCropped(event: ImageCroppedEvent) {
-    this.croppedImage = event.base64;
-  }
-
-  override imageLoaded(event: LoadedImage) {
-    // show cropper
-  }
-
-  override cropperReady() {
-    // cropper ready
-  }
-
-  override loadImageFailed() {
-    // show message
-  }
-
-  imgFrame = './assets/images/mystic-dominion/frame-mystic-dominion.png'
-  path = './assets/images/_frames/frame-mystic-dominion.png'
-
-  /*
-    ./assets/images/_frames/frame-mystic-dominion.png
-    ./assets/images/_frames/frame-obsidianeclipse.png
-    ./assets/images/_frames/frame-sacreddawn.png
-    ./assets/images/_frames/framed-shadowtribe.png
-  */
-
-    showModal = false;
-
-    openModal() {
-      this.showModal = true;
+    switch (this.randomCard.faction) {
+      case 'sacred-dawn':
+        this.getImage('sacred-dawn.jpg');
+        break;
+      case 'shadow-tribes':
+        this.getImage('shadow-tribes.jpg');
+        break;
+      case 'mystic-dominion':
+        this.getImage('mystic-dominion.jpg');
+        break;
+      case 'mechanic-league':
+        this.getImage('mechanic-league.jpg');
+        break;
+      case 'obsidian-eclipse':
+        this.getImage('obsidian-eclipse.jpg');
+        break;
+      case 'blood-cult':
+        this.getImage('blood-cult.jpg');
+        break;
+      case 'neutral':
+        this.getImage('neutral.jpg');
+        break;
+      default:
+        this.randomCard.frame = ''; // Reset the image URL if no match is found
+        break;
     }
-  
-    closeModal() {
-      this.showModal = false;
-    }
+  }
 
+
+  selectFrame(imageUrl: string) {
+    this.randomCard.frame = imageUrl;
+  }
+
+  selectRarity(imageUrl: string) {
+    this.randomCard.rarity = imageUrl;
+  }
+
+  selectAtkImg(imageUrl: string) {
+    this.randomCard.rarity = imageUrl;
+    for (let i = 0; i < this.imgGameAssets.icons.length; i++) {
+      this.randomCard.atkImg = this.imgGameAssets.icons[2];
+    }
+  }
+
+  selectHpImg(imageUrl: string) {
+    this.randomCard.rarity = imageUrl;
+    for (let i = 0; i < this.imgGameAssets.icons.length; i++) {
+      this.randomCard.atkImg = this.imgGameAssets.icons[1];
+    }
+  }
+
+
+  imagePaths: string[] = [];
+
+  imgGameAssets: GameAssets = new GameAssets();
+
+  gameAssets: string[] = [
+    'general/ages',
+    'general/icons',
+    'general/rarity',
+    'general/back'
+  ];
+
+
+  async loadGameAssets() {
+    for (let i = 0; i < this.gameAssets.length; i++) {
+      const e = this.gameAssets[i];
+
+      if (i == 0) {
+        this.imgGameAssets.ages = await this.dbService.listAll(e);
+        const urls = await this.dbService.getImages(this.imgGameAssets.ages);
+        this.imgGameAssets.ages = urls;
+      }
+      if (i == 1) {
+        this.imgGameAssets.icons = await this.dbService.listAll(e);
+        const urls = await this.dbService.getImages(this.imgGameAssets.icons);
+        this.imgGameAssets.icons = urls;
+      }
+      if (i == 2) {
+        this.imgGameAssets.rarity = await this.dbService.listAll(e);
+        const urls = await this.dbService.getImages(this.imgGameAssets.rarity);
+        this.imgGameAssets.rarity = urls;
+      }
+      if (i == 3) {
+        this.imgGameAssets.back = await this.dbService.listAll(e);
+        const urls = await this.dbService.getImages(this.imgGameAssets.back);
+        this.imgGameAssets.back = urls;
+      }
+
+    }
+  }
+
+  //#region NOT IMPLEMENTED:
+  async loadImages(array: string[], object: any, propertyNames: string[]) {
+    for (let i = 0; i < array.length; i++) {
+      const e = array[i];
+      object[propertyNames[i]] = await this.dbService.listAll(e);
+      const urls = await this.dbService.getImages(object[propertyNames[i]]);
+      object[propertyNames[i]] = urls;
+    }
+  }
+
+  getCards(): Observable<any> {
+    return this.firestore.collection('cards').snapshotChanges();
+  }
+
+  saveCard(card: Card): Promise<any> {
+    throw new Error('Method not implemented.');
+  }
+  uploadImage(image: File, path: string): Promise<string> {
+    throw new Error('Method not implemented.');
+  }
+  uploadImages(images: File[], path: string): Promise<string[]> {
+    throw new Error('Method not implemented.');
+  }
+
+  getImage(imageName: string): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      const storageRef = this.storage.ref(imageName);
+      storageRef.getDownloadURL().subscribe(
+        url => {
+          resolve(url);
+        },
+        error => {
+          console.log('Error loading image from Firebase:', error);
+          reject(error);
+        }
+      );
+    });
+  }
+
+  getImages(paths: string[]): Promise<string[]> {
+    throw new Error('Method not implemented.');
+  }
+  listAll(directory: string): Promise<string[]> {
+    throw new Error('Method not implemented.');
+  }
+  deleteImage(path: string): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+  //#endregion
 }

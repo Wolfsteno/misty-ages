@@ -25,6 +25,11 @@ import { LoreComponent } from './lore/lore.component';
 import { GameRulesComponent } from './game-rules/game-rules.component';
 import { DeckCreatorComponent } from './deck-creator/deck-creator.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CardComponent } from './cards/card/card.component';
+import { ChartCircleComponent } from './components/chart-circle/chart-circle.component';
+import { BoardComponent } from './components/board/board.component';
+
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   imports: [
@@ -38,9 +43,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FirestoreModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     FontAwesomeModule,
+    DragDropModule
   ],
   declarations: [
     AppComponent,
+    CardComponent,
     CardActionComponent,
     CardBuildingComponent,
     CardMinionComponent,
@@ -51,7 +58,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     GameAssetsListComponent,
     LoreComponent,
     GameRulesComponent,
-    DeckCreatorComponent
+    DeckCreatorComponent,
+    ChartCircleComponent,
+    BoardComponent
   ],
   exports: [],
   providers: [ToolsService],

@@ -1,9 +1,11 @@
 <div>
-  <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="buildingsMd.open()">Buildings</button>
+  <button type="button" class="btn btn-primary" style="margin-right: 5px;"
+    (click)="buildingsMd.open()">Buildings</button>
   <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="minionsMd.open()">Minions</button>
   <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="actionsMd.open()">Actions</button>
   <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="framesMd.open()">Frames</button>
-  <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="gameAssetsMd.open()">Game assets</button>
+  <button type="button" class="btn btn-primary" style="margin-right: 5px;" (click)="gameAssetsMd.open()">Game
+    assets</button>
 </div>
 
 <app-md #buildingsMd [title]="'Buildings'" (onOk)="handleOk()" (onCancel)="handleCancel()">
@@ -444,13 +446,6 @@
         Upload minions frames</button>
       <input type="file" (change)="onImageSelected($event)" />
     </div>
-    <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-      <div style="margin: 5px;" *ngFor="let img of imgFrames.minions">
-        <a [href]="img" target="_blank">
-          <img style="max-height: 350px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-        </a>
-      </div>
-    </div>
   </div>
 
 
@@ -515,11 +510,14 @@
         Upload rarity assets</button>
       <input type="file" (change)="onImageSelected($event)" />
     </div>
+
     <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
       <div style="margin: 5px;" *ngFor="let img of imgGameAssets.rarity">
+
         <a [href]="img" target="_blank">
           <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
         </a>
+
       </div>
     </div>
   </div>

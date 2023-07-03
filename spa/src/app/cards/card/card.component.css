@@ -1,0 +1,288 @@
+* {
+    font-size: 18px;
+    font-family: 'MistyTxt';
+}
+
+.card-container {
+    display: flex;
+    background-color: rgba(194, 194, 194, 0);
+    z-index: -5;
+}
+
+.card {
+    position: relative;
+    width: 600px;
+    height: 800px;
+    background-color: rgba(194, 194, 194, 0);
+}
+
+.frame {
+    position: relative;
+    background-position: -1px -2.5px;
+    /* Adjust the position as desired */
+    background-repeat: no-repeat;
+    background-color: rgba(194, 194, 194, 0);
+}
+
+/* .card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background-color: black;
+  } */
+
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.card-top {
+    margin-left: -1%;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    grid-template-areas:
+        ". . . . ."
+        ". resources resources resources ."
+    ;
+    width: 600px;
+    height: 200px;
+    /* border: 1px solid green; */
+}
+
+.card-mid-t {
+    margin-left: -1%;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    grid-template-areas:
+        ". . . . ."
+    ;
+    width: 600px;
+    height: 200px;
+    /* border: 1px solid green; */
+}
+
+.card-mid-b {
+    margin-left: -1%;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+        "attack attack . hitpoints hitpoints"
+        "attack attack . hitpoints hitpoints"
+        ". rarity rarity rarity ."
+        ". title title title ."
+    ;
+    width: 600px;
+    height: 200px;
+}
+
+.card-bot {
+    margin-left: -1%;
+    padding: 0%;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    grid-template-areas:
+        ". details details details ."
+        ". lore lore lore ."
+
+    ;
+    width: 600px;
+    height: 200px;
+    /* border: 1px solid green; */
+}
+
+.front-img {
+    position: absolute;
+    top: 325px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 425px;
+    height: 525px;
+    background-color: rgb(194, 194, 194);
+    border: 2px solid rgb(56, 56, 31);
+    z-index: -1;
+}
+
+
+
+.age {
+    text-align: center;
+    grid-area: age;
+}
+
+.title {
+    font-size: 25px;
+    margin-top: 2.5%;
+    text-align: center;
+    grid-area: title;
+    color: white;
+    text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black;
+    filter: drop-shadow(0px 0px 2px black);
+    filter: drop-shadow(0px 0px 1px black);
+    filter: drop-shadow(0px 0px 3px black);
+
+}
+
+
+.rarity {
+    margin-left: 25.20%;
+    grid-area: rarity;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 10;
+    transform: scale(0.5);
+    filter: drop-shadow(0px 0px 5px white);
+}
+
+
+.resources {
+    font-family: 'MistyExtraBold';
+    margin-left: 55px;
+    margin-top: 2px;
+    text-align: center;
+    grid-area: resources;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    text-shadow: 0 0 0.5px black, 0 0 0.5px black, 0 0 0.5px black, 0 0 0.5px black;
+    filter: drop-shadow(0px 0px 1px black);
+    font-size: 12px; /* Decreased font size */
+    width: 70%; /* Decreased element width */
+    height: 70%; /* Decreased element height */
+  }
+
+  
+.gold-resource {
+    font-family: 'MistyExtraBold';
+    margin-bottom: 30px;
+    padding-top: -5px;
+    color: white;
+    text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black;
+    filter: drop-shadow(0px 0px 2px black);
+    filter: drop-shadow(0px 0px 1px black);
+    filter: drop-shadow(0px 0px 3px black);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.red-resource {
+    font-size: 25px;
+    font-family: 'MistyExtraBold';
+    position: absolute;
+    top: 0;
+    right: -15px;
+    width: calc(50% - -75px);
+    height: calc(50% - 0px);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black;
+    filter: drop-shadow(0px 0px 2px black);
+    filter: drop-shadow(0px 0px 1px black);
+    filter: drop-shadow(0px 0px 3px black);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.green-resource {
+    font-size: 25px;
+    font-family: 'MistyExtraBold';
+    position: absolute;
+    top: -25px;
+    left: 0;
+    width: calc(50% - -125px);
+    height: calc(50% - 0px);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black;
+    filter: drop-shadow(0px 0px 2px black);
+    filter: drop-shadow(0px 0px 1px black);
+    filter: drop-shadow(0px 0px 3px black);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.blue-resource {
+    font-size: 25px;
+    font-family: 'MistyExtraBold';
+    position: absolute;
+    top: 0;
+    left: -15px;
+    width: calc(50% - -75px);
+    height: calc(50% - 0px);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black;
+    filter: drop-shadow(0px 0px 2px black);
+    filter: drop-shadow(0px 0px 1px black);
+    filter: drop-shadow(0px 0px 3px black);
+}
+
+.attack {
+    font-size: 50px;
+    text-align: center;
+    grid-area: attack;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    text-shadow: 0 0 10px black, 0 0 10px black, 0 0 10px black, 0 0 10px black;
+
+}
+
+.hitpoints {
+    font-size: 50px;
+    text-align: center;
+    grid-area: hitpoints;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    text-shadow: 0 0 10px black, 0 0 10px black, 0 0 10px black, 0 0 10px black;
+
+}
+
+.details {
+    margin-top: -2.5%;
+    text-align: center;
+    grid-area: details;
+    line-height: 1.00;
+}
+
+.lore {
+    margin-top: -2.5%;
+    text-align: center;
+    grid-area: lore;
+    line-height: 1.00;
+    text-shadow: 0 0 2px white, 0 0 2px white, 0 0 2px white, 0 0 2px white;
+}
+
+.type {
+    margin-top: 10.5%;
+    text-align: center;
+    grid-area: lore;
+    line-height: 1.00;
+    text-shadow: 0 0 2px white, 0 0 2px white, 0 0 2px white, 0 0 2px white;
+}

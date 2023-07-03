@@ -1,0 +1,55 @@
+<div class="card-container">
+    <div class="card">
+        <div class="frame" [style.background-image]="'url(' + card.frame + ')'">
+
+            <div class="front-img">&nbsp;</div>
+
+            <div class="background-image" [style.background-image]="'url(' + card.front + ')'">&nbsp;</div>
+
+
+            <div class="card-top">
+                <div class="resources" [style.background-image]="goldResource">&nbsp;
+                    <div class="gold-resource">
+                        <span style="font-family: 'MistyExtraBold'; font-size: 40px;">{{card.cost[0]}}</span>
+                    </div>
+                    <div class="red-resource" [style.background-image]="goldResource">
+                        {{card.cost[1]}}
+                    </div>
+                    <div class="green-resource" [style.background-image]="goldResource">
+                        {{card.cost[2]}}
+                    </div>
+                    <div class="blue-resource" [style.background-image]="goldResource">
+                        {{card.cost[3]}}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-mid-t">
+            </div>
+
+            <div class="card-mid-b">
+                <div class="attack" style="font-family: 'MistyExtraBold'" [style.background-image]="atkImg">
+                    {{ card.atk }}</div>
+                <div class="hitpoints" style="font-family: 'MistyExtraBold'" [style.background-image]="hitpointsImg">
+                    {{ card.hp }}</div>
+                <div class="rarity" [style.background-image]="'url(' + card.rarity + ')'">&nbsp;</div>
+                <div class="title" style="font-family: 'MistyTitle'">{{ card.title }}</div>
+            </div>
+
+            <div class="card-bot">
+                <div class="details">
+                    <span style="font-family: 'MistyTitle'; font-size: 16px">{{ card.effectType }}: </span>
+                    <span style="font-family: 'MistyTxt'; font-size: 14px">{{ card.effect }}: </span>
+                </div>
+                <div class="lore">
+                    <div style="font-family: 'MistyTxtItalic'; font-size: 14px">{{ card.lore }}</div>
+                </div>
+                <div class="type">
+                    <div style="font-family: 'MistyTitle'; font-size: 14px">ELEMENTAL</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

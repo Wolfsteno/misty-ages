@@ -1,40 +1,41 @@
-.board {
-    margin: 20px;
-  }
-  
-  .row {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .card {
-    width: 130px;
-    height: 180px;
-    margin: 5px;
-    cursor: pointer; 
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .card:hover {
-    background-color:lightgray; 
-    color: lightgray; 
-  }
-  
-  .red-card {
-    background-color: red;
-  }
-  
-  .brown-card {
-    background-color: brown;
-  }
-  
-  .blue-card {
-    background-color: blue;
-  }
-  
-  .gold-card {
-    background-color: gold;
-    width: 110px;
-    height: 110px;
-    margin: 5px;
-  }
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(40, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  height: 100%;
+  width: 100%;
+}
+
+.cell {
+  border: 0.5px solid lightsteelblue;
+  height: 45px;
+  width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cell.edge {
+  background-color: green;
+}
+
+.card {
+  border: 0.5px solid lightsteelblue;
+  background-color: grey;
+  height: 80px;
+  width: 60px;
+}
+
+.anchor-point {
+  padding: 4px;
+  min-height: 1px;
+  min-width: 1px;
+  background-color: lightgray;
+}
+
+.dropped-element {
+  border: 1px solid black;
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+}

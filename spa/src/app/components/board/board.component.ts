@@ -1,33 +1,65 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { ToolsService } from 'src/app-core/tools.service';
-import { MdComponent } from '../md/md.component';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
-  selector: 'app-board',
+  selector: 'board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css']
 })
+export class BoardComponent implements OnInit {
 
-export class AppComponent {
-  brownCards: number[]; // Array to hold the number of brown cards
-  blueCards: number[]; // Array to hold the number of blue cards
-  goldCards: number[]; // Array to hold the number of gold cards
-
-  constructor(private dialog: MatDialog, private tools: ToolsService) {
-    this.brownCards = Array(4).fill(0);
-    this.blueCards = Array(4).fill(0);
-    this.goldCards = Array(5).fill(0);
+  ngOnInit(): void {
+    this.initBoard();
   }
 
-  openModal(): void {
-    const dialogRef = this.dialog.open(MdComponent, {
-      // Add any configuration options for the modal here
-    });
-  
-    dialogRef.afterClosed().subscribe(result => {
-      // Handle any actions after the modal is closed
-    });
+  cellData = {
+    enabled: false,
+    canDrop: '',
+    elements: '',
+    color: ''
   }
+
+  cells = new Array(800).fill(null).map(_ => ({ ...this.cellData }));
+  cards = Array.from({ length: 10 }, (_, i) => ({ name: `Card ${i + 1}` }));
+
+  getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  initBoard() {
+    let rows = 20;
+    let cols = 40;
+
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < cols; j++) {
+        let index = i * cols + j;
+        if (i == 0 || i == rows - 1 || j == 0 || j == cols - 1) {
+          this.cells[index].color = 'green';
+        } else {
+          this.cells[index].color = '';
+        }
+      }
+    }
+  }
+
+  droppedElements: any[] = [];
+
+  onDrop(event: CdkDragDrop<any>) {
+    const droppedElement = event.item.data;
+    const targetIndex = this.droppedElements.length; // Stick to the end of the array
+    moveItemInArray(this.droppedElements, event.previousIndex, targetIndex);
+    console.log(this.droppedElements);
+  } 
   
+  
+  items = ['Zero', 'One', 'Two', 'Three'];
+
+  onDrop2(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.items, event.previousIndex, event.currentIndex);
+  }
 }

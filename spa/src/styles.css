@@ -1,63 +1,116 @@
 @import '~prismjs/themes/prism.css';
 
-/* app.component.css */
+@font-face {
+  font-family: 'MistyTxt';
+  src: url('src/assets/fonts/Exo2-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MistyExtraBold';
+  src: url('src/assets/fonts/static/Cinzel-ExtraBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MistyBold';
+  src: url('src/assets/fonts/static/Cinzel-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MistyTxtItalic';
+  src: url('src/assets/fonts/static/Exo2-LightItalic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MistyTitle';
+  src: url('src/assets/fonts/static/Cinzel-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'MistyLightTitle';
+  src: url('src/assets/fonts/static/Cinzel-SemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
-    font-size: 30px;
-    /* Adjust the value as per your preference */
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 18px;
+  font-family: 'MistyTxt';
 }
 
 button.close {
-    padding: 0;
-    background-color: transparent;
-    border: 0;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
 }
 
 .close {
-    float: right;
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1;
-    color: #000;
-    text-shadow: 0 1px 0 #fff;
-    opacity: .5;
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5;
 }
 
 .custom-modal .modal-dialog {
-    max-width: 90vw !important;
-    width: 90vw !important;
+  max-width: 90vw !important;
+  width: 90vw !important;
 }
 
 div {
-    /* margin: 10px; */
-    padding: 5px;
+  /* margin: 10px; */
+  padding: 5px;
 }
 
 p {
-    /* margin: 10px; */
-    padding: 10px;
+  /* margin: 10px; */
+  padding: 10px;
 }
 
-h1:hover, h2:hover, h3:hover, h4:hover, h5:hover {
-    cursor: pointer;
-    /* Replace 'pointer' with the desired cursor style */
+h1:hover,
+h2:hover,
+h3:hover,
+h4:hover,
+h5:hover {
+  cursor: pointer;
+  /* Replace 'pointer' with the desired cursor style */
 }
 
-h1, h2, h3, h4, h5 {
-    font-family: 'Times New Roman', Times, serif;
-    background-color: antiquewhite;
-    padding: 10px;
-        /* Replace 'Arial' with the desired font family name */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'MistyLightTitle';
+  background-color: antiquewhite;
+  padding: 10px;
+  /* Replace 'Arial' with the desired font family name */
 }
 
 p {
-    color: var(--p-color);
-  }
-  
-  .section {
-    margin-bottom: 10px;
-  }
-  
-  .content {
-    display: none;
-  }
+  color: var(--p-color);
+}
+
+.section {
+  margin-bottom: 10px;
+}
+
+.content {
+  display: none;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: bold;
+}

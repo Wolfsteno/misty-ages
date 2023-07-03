@@ -10,6 +10,7 @@ import { CardListComponent } from './cards/card-list/card-list.component';
 import { GameAssetsListComponent } from './game-assets-list/game-assets-list.component';
 import { LoreComponent } from './lore/lore.component';
 import { GameRulesComponent } from './game-rules/game-rules.component';
+import { BoardComponent } from './components/board/board.component';
 
 const routes: Routes = [
   // { path: 'card-pj', component: CardPjComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
   // { path: 'card-building', component: CardBuildingComponent },
   // { path: 'card-action', component: CardActionComponent },
   // { path: 'card-generic', component: CardGenericComponent },
+  { path: 'board', component: BoardComponent },
   { path: 'rules', component: GameRulesComponent },
   { path: 'lore', component: LoreComponent },
   { path: 'game-assets-list', component: GameAssetsListComponent },

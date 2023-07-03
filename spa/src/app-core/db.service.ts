@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 export class DbService {
 
   constructor(
-    private firestore: AngularFirestore,
-    private storage: AngularFireStorage
+    public firestore: AngularFirestore,
+    public storage: AngularFireStorage
   ) { }
 
   getCards(): Observable<any> {
