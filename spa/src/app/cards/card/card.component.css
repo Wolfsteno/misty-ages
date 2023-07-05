@@ -75,15 +75,15 @@
 }
 
 .card-mid-b {
+    margin-top: 50px;
     margin-left: -1%;
     position: relative;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(3, 1fr);
     grid-template-areas:
-        "attack attack . hitpoints hitpoints"
-        "attack attack . hitpoints hitpoints"
-        ". rarity rarity rarity ."
+        "attack attack rarity hitpoints hitpoints"
+        "attack attack rarity hitpoints hitpoints"
         ". title title title ."
     ;
     width: 600px;
@@ -127,26 +127,27 @@
 }
 
 .title {
-    font-size: 25px;
-    margin-top: 2.5%;
+    font-family: 'TxtTitle';
+    font-size: 24px;
+    margin-top: -9%;
     text-align: center;
     grid-area: title;
-    color: white;
-    text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black;
-    filter: drop-shadow(0px 0px 2px black);
-    filter: drop-shadow(0px 0px 1px black);
-    filter: drop-shadow(0px 0px 3px black);
-
+    color: black;
+    
+    text-shadow: 0 0 1px white, 0 0 1px white, 0 0 1px white, 0 0 1px white;
+    filter: drop-shadow(0px 0px 2px white);
+    filter: drop-shadow(0px 0px 1px white);
+    filter: drop-shadow(0px 0px 3px white);
 }
 
 
 .rarity {
-    margin-left: 25.20%;
+    margin-top: 15%;
     grid-area: rarity;
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 10;
-    transform: scale(0.5);
+    transform: scale(0.40);
     filter: drop-shadow(0px 0px 5px white);
 }
 
@@ -171,8 +172,8 @@
   
 .gold-resource {
     font-family: 'MistyExtraBold';
-    margin-bottom: 30px;
-    padding-top: -5px;
+    transform: scale(1.1);
+    margin-bottom: 40px;
     color: white;
     text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black;
     filter: drop-shadow(0px 0px 2px black);
@@ -241,7 +242,8 @@
 }
 
 .attack {
-    font-size: 50px;
+    transform: scale(0.7);
+    font-size: 75px;
     text-align: center;
     grid-area: attack;
     background-size: contain;
@@ -253,7 +255,8 @@
 }
 
 .hitpoints {
-    font-size: 50px;
+    transform: scale(0.7);
+    font-size: 75px;
     text-align: center;
     grid-area: hitpoints;
     background-size: contain;
@@ -265,7 +268,7 @@
 }
 
 .details {
-    margin-top: -2.5%;
+    margin-top: -9%;
     text-align: center;
     grid-area: details;
     line-height: 1.00;

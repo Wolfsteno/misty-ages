@@ -130,9 +130,9 @@ export class GameAssetsListComponent {
         this.imgBuildings.sacredDawn = urls;
       }
       if (i == 5) {
-        this.imgBuildings.shadowsTribes = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgBuildings.shadowsTribes);
-        this.imgBuildings.shadowsTribes = urls;
+        this.imgBuildings.shadowTribes = await this.dbService.listAll(e);
+        const urls = await this.dbService.getImages(this.imgBuildings.shadowTribes);
+        this.imgBuildings.shadowTribes = urls;
       }
       if (i == 6) {
         this.imgBuildings.neutral = await this.dbService.listAll(e);
@@ -173,9 +173,9 @@ export class GameAssetsListComponent {
         this.imgMinions.sacredDawn = urls;
       }
       if (i == 5) {
-        this.imgMinions.shadowsTribes = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgMinions.shadowsTribes);
-        this.imgMinions.shadowsTribes = urls;
+        this.imgMinions.shadowTribes = await this.dbService.listAll(e);
+        const urls = await this.dbService.getImages(this.imgMinions.shadowTribes);
+        this.imgMinions.shadowTribes = urls;
       }
       if (i == 6) {
         this.imgMinions.neutral = await this.dbService.listAll(e);
@@ -216,9 +216,9 @@ export class GameAssetsListComponent {
         this.imgActions.sacredDawn = urls;
       }
       if (i == 5) {
-        this.imgActions.shadowsTribes = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgActions.shadowsTribes);
-        this.imgActions.shadowsTribes = urls;
+        this.imgActions.shadowTribes = await this.dbService.listAll(e);
+        const urls = await this.dbService.getImages(this.imgActions.shadowTribes);
+        this.imgActions.shadowTribes = urls;
       }
 
     }

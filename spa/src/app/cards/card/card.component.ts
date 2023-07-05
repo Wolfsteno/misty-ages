@@ -13,8 +13,8 @@ export class CardComponent {
   atkImg = 'url(https://firebasestorage.googleapis.com/v0/b/misty-ages.appspot.com/o/general%2Ficons%2FICON_DAMAGE.png?alt=media&token=03363522-7ba1-4eda-b499-3f75fb3520be)'
   hpImg = 'url(https://firebasestorage.googleapis.com/v0/b/misty-ages.appspot.com/o/general%2Ficons%2FHEALTH_ICON.png?alt=media&token=94df9d0c-288a-4073-b88d-c2ca4d720173)'
   goldResource = 'url(https://firebasestorage.googleapis.com/v0/b/misty-ages.appspot.com/o/general%2Ficons%2FGOLD_ICON.png?alt=media&token=b7b4dec9-2d2e-402f-b041-84796718fb9c)'
-  redResource = 'https://firebasestorage.googleapis.com/v0/b/misty-ages.appspot.com/o/general%2Ficons%2FRed.png?alt=media&token=d43dd873-f9a5-4996-b5bb-116db047a413'
-  greenResource = 'https://firebasestorage.googleapis.com/v0/b/misty-ages.appspot.com/o/general%2Ficons%2FGreen.png?alt=media&token=21e9de6f-7746-4133-8bdd-c2911340f7f7'
-  blueResource = 'https://firebasestorage.googleapis.com/v0/b/misty-ages.appspot.com/o/general%2Ficons%2FBlue.png?alt=media&token=70f6cc1b-0d34-4287-8fc7-b784f7955efd'
+  redResource = 'url(https://firebasestorage.googleapis.com/v0/b/misty-ages.appspot.com/o/general%2Ficons%2FRed.png?alt=media&token=d43dd873-f9a5-4996-b5bb-116db047a413)'
+  greenResource = 'url(https://firebasestorage.googleapis.com/v0/b/misty-ages.appspot.com/o/general%2Ficons%2FGreen.png?alt=media&token=21e9de6f-7746-4133-8bdd-c2911340f7f7)'
+  blueResource = 'url(https://firebasestorage.googleapis.com/v0/b/misty-ages.appspot.com/o/general%2Ficons%2FBlue.png?alt=media&token=70f6cc1b-0d34-4287-8fc7-b784f7955efd)'
 
 }

@@ -69,9 +69,9 @@
 
   <div class="card">
     <div class="card-body">
-      <h5>action's frames </h5>
+      <h5>Obsidian eclipse frames </h5>
       <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(buildings[3])">
-        Upload action's frames building</button>
+        Upload obsidian eclipse frames building</button>
       <input type="file" (change)="onImageSelected($event)" />
       <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
         <div style="margin: 5px;" *ngFor="let img of imgBuildings.obisidianEclipse">
@@ -106,7 +106,7 @@
         Upload shadows tribes building</button>
       <input type="file" (change)="onImageSelected($event)" />
       <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgBuildings.shadowsTribes">
+        <div style="margin: 5px;" *ngFor="let img of imgBuildings.shadowTribes">
           <a [href]="img" target="_blank">
             <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
           </a>
@@ -225,7 +225,7 @@
         Upload shadows tribes minions</button>
       <input type="file" (change)="onImageSelected($event)" />
       <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgMinions.shadowsTribes">
+        <div style="margin: 5px;" *ngFor="let img of imgMinions.shadowTribes">
           <a [href]="img" target="_blank">
             <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
           </a>
@@ -287,7 +287,7 @@
 
   <p>Shadows tribes</p>
   <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-    <div style="margin: 5px;" *ngFor="let img of imgMinions.shadowsTribes">
+    <div style="margin: 5px;" *ngFor="let img of imgMinions.shadowTribes">
       <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
     </div>
   </div>
@@ -392,7 +392,7 @@
         Upload shadows tribes actions</button>
       <input type="file" (change)="onImageSelected($event)" />
       <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgActions.shadowsTribes">
+        <div style="margin: 5px;" *ngFor="let img of imgActions.shadowTribes">
           <a [href]="img" target="_blank">
             <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
           </a>

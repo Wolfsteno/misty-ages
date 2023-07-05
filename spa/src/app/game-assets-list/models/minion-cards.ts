@@ -5,6 +5,6 @@ export class MinionCards {
     mysticDominion: string[] = [];
     obisidianEclipse: string[] = [];
     sacredDawn: string[] = [];
-    shadowsTribes: string[] = [];
+    shadowTribes: string[] = [];
     neutral: string[] = [];
 }

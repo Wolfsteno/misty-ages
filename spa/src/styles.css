@@ -1,50 +1,66 @@
-@import '~prismjs/themes/prism.css';
+@import "~prismjs/themes/prism.css";
 
 @font-face {
-  font-family: 'MistyTxt';
-  src: url('src/assets/fonts/Exo2-VariableFont_wght.ttf') format('truetype');
+  font-family: "MistyTxt";
+  src: url("src/assets/fonts/Exo2-VariableFont_wght.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'MistyExtraBold';
-  src: url('src/assets/fonts/static/Cinzel-ExtraBold.ttf') format('truetype');
+  font-family: "MistyExtraBold";
+  src: url("src/assets/fonts/static/Cinzel-ExtraBold.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'MistyBold';
-  src: url('src/assets/fonts/static/Cinzel-Bold.ttf') format('truetype');
+  font-family: "MistyBold";
+  src: url("src/assets/fonts/static/Cinzel-Bold.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'MistyTxtItalic';
-  src: url('src/assets/fonts/static/Exo2-LightItalic.ttf') format('truetype');
+  font-family: "MistyTxtItalic";
+  src: url("src/assets/fonts/static/Exo2-LightItalic.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'MistyTitle';
-  src: url('src/assets/fonts/static/Cinzel-Bold.ttf') format('truetype');
+  font-family: "MistyTitle";
+  src: url("src/assets/fonts/static/Cinzel-Bold.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'MistyLightTitle';
-  src: url('src/assets/fonts/static/Cinzel-SemiBold.ttf') format('truetype');
+  font-family: "MistyLightTitle";
+  src: url("src/assets/fonts/static/Cinzel-SemiBold.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "MistyLightTitleBlack";
+  src: url("src/assets/fonts/static/Cinzel-Black.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TxtTitle";
+  src: url("src/assets/fonts/static/Exo2-ExtraBold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
 
 * {
   font-size: 18px;
-  font-family: 'MistyTxt';
+  font-family: "MistyTxt";
 }
 
 button.close {
@@ -60,7 +76,7 @@ button.close {
   line-height: 1;
   color: #000;
   text-shadow: 0 1px 0 #fff;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .custom-modal .modal-dialog {
@@ -92,7 +108,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'MistyLightTitle';
+  font-family: "MistyLightTitle";
   background-color: antiquewhite;
   padding: 10px;
   /* Replace 'Arial' with the desired font family name */
@@ -113,4 +129,19 @@ p {
 .name {
   font-size: 20px;
   font-weight: bold;
+}
+
+.minion-selector {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.capitalize-lowercase {
+  text-transform: lowercase;
+}
+
+.capitalize-lowercase:first-letter {
+  text-transform: uppercase;
 }

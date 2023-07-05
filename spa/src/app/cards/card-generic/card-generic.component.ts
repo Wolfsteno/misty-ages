@@ -1,50 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Observable } from 'rxjs';
 import { CardFrames } from 'src/app/game-assets-list/models/card-frames';
 import { Card, FactionTypes, MinionTypes } from 'src/app/models/card';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { DbService } from 'src/app-core/db.service';
 import { GameAssets } from 'src/app/game-assets-list/models/game-assets';
+import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
+import { finalize } from 'rxjs/operators';
+import { MinionCards } from 'src/app/game-assets-list/models/minion-cards';
+import { DbService } from 'src/app-core/db.service';
 
 @Component({
   selector: 'card-generic',
   templateUrl: './card-generic.component.html',
-  styles: [`
-* {
-font-size: 16px;
-font-family: 'MistyTxt';
-}
-
-.split-screen {
-display: flex;
-height: 90vh;
-}
-
-.left-half, .right-half {
-position: relative;
-flex: 1;
-border: 2px solid brown;
-}
-
-.left-half {
-display: flex;
-justify-content: center;
-}
-
-.right-half {
-padding: 10px;
-}
-
-.property {
-margin-bottom: 10px;
-}
-
-span {
-  font-size: 15px;
-
-}
-`]
+  styleUrls: ['./card-generic.component.css']
 })
 
 export class CardGenericComponent implements DbService, OnInit {
@@ -94,11 +63,11 @@ export class CardGenericComponent implements DbService, OnInit {
       'back',
       'https://firebasestorage.googleapis.com/v0/b/misty-ages.appspot.com/o/frames%2Fminions%2Fmystic-dominion.png?alt=media&token=a7b77c50-2109-4187-8844-e3cfee74f5b1',
       randomAtk,
-      'atkImg',      
+      'atkImg',
       0,
-      'rAtkImg',      
+      'rAtkImg',
       randomHp,
-      'hpImg',      
+      'hpImg',
       'Give +1/+1 to an ally. If it is damaged then give instead +0/+2',
       'Warcry',
       '"Within the shadows, forgotten whispers beckon, revealing the fractured tapestry of a lost realm."',
@@ -111,6 +80,7 @@ export class CardGenericComponent implements DbService, OnInit {
 
   ngOnInit(): void {
     this.randomCard = this.generateRandomCard();
+    this.loadMinions();
     this.load();
   }
 
@@ -223,7 +193,7 @@ export class CardGenericComponent implements DbService, OnInit {
     }
   }
 
-  //#region NOT IMPLEMENTED:
+  //#region NEED TO BE IMPLEMENTED:
   async loadImages(array: string[], object: any, propertyNames: string[]) {
     for (let i = 0; i < array.length; i++) {
       const e = array[i];
@@ -272,4 +242,110 @@ export class CardGenericComponent implements DbService, OnInit {
     throw new Error('Method not implemented.');
   }
   //#endregion
+
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+
+  imageCropped(event: ImageCroppedEvent) {
+    this.croppedImage = event.base64; // Assign the cropped image data to 'croppedImage'
+    this.randomCard.front = this.croppedImage; // Update the 'card.front' with the cropped image
+  }
+
+
+  @ViewChild('minions') minionsMd: any;
+
+  imageLoaded(event: any, faction: string) {
+    const factionKey = faction.replace(/-/g, ''); // Convert the faction name to match the property key
+    this.imgMinions[factionKey as keyof MinionCards] = event; // Set the selected image URL for the faction
+    this.imageCropped(event);
+    this.minionsMd.close(); // Close the modal
+  }
+
+
+
+
+
+  // Method called when the cropper is ready
+  cropperReady() {
+    // Handle cropper ready event if needed
+  }
+
+  // Method called when there's an error loading the image
+  loadImageFailed() {
+    // Handle load image failed event if needed
+  }
+
+  imgMinions: MinionCards = new MinionCards();
+  minions: string[] = [
+    'cards/minions/blood-cult',
+    'cards/minions/mechanic-league',
+    'cards/minions/mystic-dominion',
+    'cards/minions/obisidian-eclipse',
+    'cards/minions/sacred-dawn',
+    'cards/minions/shadows-tribes',
+    'cards/minions/neutral'
+  ];
+
+  async loadMinions() {
+    for (let i = 0; i < this.minions.length; i++) {
+      const e = this.minions[i];
+
+      if (i == 0) {
+        this.imgMinions.bloodCult = await this.dbService.listAll(e);
+        const urls = await this.dbService.getImages(this.imgMinions.bloodCult);
+        this.imgMinions.bloodCult = urls;
+      }
+      if (i == 1) {
+        this.imgMinions.mechanicLeague = await this.dbService.listAll(e);
+        const urls = await this.dbService.getImages(this.imgMinions.mechanicLeague);
+        this.imgMinions.mechanicLeague = urls;
+      }
+      if (i == 2) {
+        this.imgMinions.mysticDominion = await this.dbService.listAll(e);
+        const urls = await this.dbService.getImages(this.imgMinions.mysticDominion);
+        this.imgMinions.mysticDominion = urls;
+      }
+      if (i == 3) {
+        this.imgMinions.obisidianEclipse = await this.dbService.listAll(e);
+        const urls = await this.dbService.getImages(this.imgMinions.obisidianEclipse);
+        this.imgMinions.obisidianEclipse = urls;
+      }
+      if (i == 4) {
+        this.imgMinions.sacredDawn = await this.dbService.listAll(e);
+        const urls = await this.dbService.getImages(this.imgMinions.sacredDawn);
+        this.imgMinions.sacredDawn = urls;
+      }
+      if (i == 5) {
+        this.imgMinions.shadowTribes = await this.dbService.listAll(e);
+        const urls = await this.dbService.getImages(this.imgMinions.shadowTribes);
+        this.imgMinions.shadowTribes = urls;
+      }
+      if (i == 6) {
+        this.imgMinions.neutral = await this.dbService.listAll(e);
+        const urls = await this.dbService.getImages(this.imgMinions.neutral);
+        this.imgMinions.neutral = urls;
+      }
+
+    }
+  }
+
+  selectedImage?: File;
+
+  onImageSelected(event: Event) {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      this.selectedImage = file;
+    }
+  }
+
+
+  //#region md handlers
+  handleOk() { }
+
+  handleCancel() { }
+  //#endregion
+
+  selectedMinionImage: string | undefined;
+
+
 }

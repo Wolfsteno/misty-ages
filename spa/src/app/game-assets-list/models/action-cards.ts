@@ -5,5 +5,5 @@ export class ActionCards {
     mysticDominion: string[] = [];
     obisidianEclipse: string[] = [];
     sacredDawn: string[] = [];
-    shadowsTribes: string[] = [];
+    shadowTribes: string[] = [];
 }

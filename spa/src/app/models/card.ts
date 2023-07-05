@@ -1,7 +1,7 @@
 export const FactionTypes: string[] = ['sacred-dawn', 'shadow-tribes', 'mystic-dominion', 'mechanic-league', 'obsidian-eclipse', 'blood-cult', 'neutral'];
 export type Faction = typeof FactionTypes[number];
-export const ResourceType = ['gold', 'r', 'g', 'b'] as const;
-export type Resource = typeof ResourceType[number];
+// export const ResourceType = ['gold', 'r', 'g', 'b'] as const;
+// export type Resource = typeof ResourceType[number];
 export const MinionTypes: string[] = ['angel', 'beast', 'demon', 'dragon', 'dwarf', 'elf', 'fairy', 'goblin', 'human', 'merfolk', 'orc', 'undead', 'vampire', 'werewolf', 'witch', 'elemental', 'knight'];
 export type Minion = typeof MinionTypes[number];
 // export const Rarities: string[] = ["basic", "common", "rare", "epic", "legendary"];
@@ -99,7 +99,7 @@ export class Card {
   id: number = 0;
   title: string = '';
   faction: Faction = 'neutral';
-  cost: number[] = [0, 0, 0];
+  cost: number[] = [0, 0, 0, 0];
   front: string = '';
   back: string = '';
   frame: string = '';
