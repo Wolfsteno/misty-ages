@@ -1,51 +1,48 @@
 <div class="frame mt-" [style.background-image]="'url(' + card.frame + ')'">
-  
-    <div class="front-img">&nbsp;</div>
-  
-    <div class="background-image" [style.background-image]="'url(' + card.front + ')'">&nbsp;</div>
-  
-  
-    <div class="card-top">
-      <div class="resources" [style.background-image]="goldResource">&nbsp;
-        <div class="gold-resource">
-          <span class="font-weight-bold" style="font-size: 35px;">{{card.cost[0]}}</span>
-        </div>
-        <div class="red-resource" [style.background-image]="redResource">
-          {{card.cost[1]}}
-        </div>
-        <div class="green-resource" [style.background-image]="greenResource">
-          {{card.cost[2]}}
-        </div>
-        <div class="blue-resource" [style.background-image]="blueResource">
-          {{card.cost[3]}}
-        </div>
+
+  <div class="front-img" [style.background-image]="'url(' + card.front + ')'"></div>
+
+  <div class="card-top">
+    <div class="resources" [style.background-image]="goldResource">
+      <div class="gold-resource">
+        {{card.cost[0]}}
+      </div>
+      <div class="red-resource" [style.background-image]="redResource">
+        {{card.cost[1]}}
+      </div>
+      <div class="green-resource" [style.background-image]="greenResource">
+        {{card.cost[2]}}
+      </div>
+      <div class="blue-resource" [style.background-image]="blueResource">
+        {{card.cost[3]}}
       </div>
     </div>
-  
-    <div class="card-mid-t">
-    </div>
-  
-    <div class="card-mid-b">
-      <div class="attack" [style.background-image]="atkImg">
-        {{ card.atk }}</div>
-      <div class="hitpoints" [style.background-image]="hitpointsImg">
-        {{ card.hp }}</div>
-      <div class="rarity" [style.background-image]="'url(' + card.rarity + ')'">&nbsp;</div>
-      <div class="title">{{ card.title }}</div>
-    </div>
-  
-    <div class="card-bot">
-      <div class="details">
-        <span class="font-weight-bold" style="font-size: 16px">{{ card.effectType }}: </span>
-        <span style="font-size: 14px">{{ card.effect }}: </span>
-      </div>
-      <div class="lore">
-        <div style="font-size: 14px">{{ card.lore }}</div>
-      </div>
-      <div class="type">
-        <div class="font-weight-bold" style="font-size: 14px">ELEMENTAL</div>
-      </div>
-    </div>
-  
   </div>
-  
+
+  <div class="card-mid-t">
+  </div>
+
+  <div class="card-mid-b">
+    <div class="attack" [style.background-image]="atkImg">
+      {{ card.atk }}</div>
+    <div class="hitpoints" [style.background-image]="hitpointsImg">
+      {{ card.hp }}</div>
+    <div class="rarity" [style.background-image]="'url(' + card.rarity + ')'"></div>
+    <div class="title">{{ card.title }}</div>
+  </div>
+
+  <div class="card-bot">
+    <div class="details">
+      <span *ngIf="card.effectType!=''" style="font-size: 18px; font-variant: small-caps; font-family: 'TxtTitle';">{{
+        card.effectType }}: </span>
+      <span *ngIf="card.effect!=''" style="font-size: 14px">{{ card.effect }}. </span>
+    </div>
+    <div *ngIf="card.lore!=''" class="lore">
+      {{ card.lore }}
+    </div>
+    <div *ngIf="card.minionType!=''" class="type" style="text-transform: uppercase">
+      {{card.minionType}}
+    </div>
+  </div>
+
+</div>

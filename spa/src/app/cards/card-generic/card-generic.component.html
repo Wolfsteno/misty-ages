@@ -9,7 +9,7 @@
 
         <div>
             <image-cropper [imageChangedEvent]="imageChangedEvent" format="png" (imageCropped)="imageCropped($event)"
-                (imageLoaded)="imageLoaded($event, '')" (cropperReady)="cropperReady()"
+                (selectImg)="imageLoaded($event, '')" (cropperReady)="cropperReady()"
                 (loadImageFailed)="loadImageFailed()"></image-cropper>
         </div>
 
@@ -140,7 +140,7 @@
         <h5>Blood Cult</h5>
         <div class="minion-selector">
           <div style="margin: 5px;" *ngFor="let img of imgMinions.bloodCult">
-            <a (click)="imageLoaded(img, 'blood-cult')">
+            <a (click)="selectImg(img, 'blood-cult')">
               <img style="max-height: 200px; max-width: 100%;" [src]="img" />
             </a>
           </div>
@@ -149,7 +149,7 @@
         <h5>Mechanic League</h5>
         <div class="minion-selector">
           <div style="margin: 5px;" *ngFor="let img of imgMinions.mechanicLeague">
-            <a (click)="imageLoaded(img, 'mechanic-league')">
+            <a (click)="selectImg(img, 'mechanic-league')">
               <img style="max-height: 200px; max-width: 100%;" [src]="img" />
             </a>
           </div>
@@ -158,7 +158,7 @@
         <h5>Mystic Dominion</h5>
         <div class="minion-selector">
           <div style="margin: 5px;" *ngFor="let img of imgMinions.mysticDominion">
-            <a (click)="imageLoaded(img, 'mystic-dominion')">
+            <a (click)="selectImg(img, 'mystic-dominion')">
               <img style="max-height: 200px; max-width: 100%;" [src]="img" />
             </a>
           </div>
@@ -167,7 +167,7 @@
         <h5>Obsidian Eclipse</h5>
         <div class="minion-selector">
           <div style="margin: 5px;" *ngFor="let img of imgMinions.obisidianEclipse">
-            <a (click)="imageLoaded(img, 'obsidian-eclipse')">
+            <a (click)="selectImg(img, 'obsidian-eclipse')">
               <img style="max-height: 200px; max-width: 100%;" [src]="img" />
             </a>
           </div>
@@ -176,7 +176,7 @@
         <h5>Sacred Dawn</h5>
         <div class="minion-selector">
           <div style="margin: 5px;" *ngFor="let img of imgMinions.sacredDawn">
-            <a (click)="imageLoaded(img, 'sacred-dawn')">
+            <a (click)="selectImg(img, 'sacred-dawn')">
               <img style="max-height: 200px; max-width: 100%;" [src]="img" />
             </a>
           </div>
@@ -185,7 +185,7 @@
         <h5>Shadow Tribes</h5>
         <div class="minion-selector">
           <div style="margin: 5px;" *ngFor="let img of imgMinions.shadowTribes">
-            <a (click)="imageLoaded(img, 'shadow-tribes')">
+            <a (click)="selectImg(img, 'shadow-tribes')">
               <img style="max-height: 200px; max-width: 100%;" [src]="img" />
             </a>
           </div>
@@ -194,7 +194,7 @@
         <h5>Neutral</h5>
         <div class="minion-selector">
           <div style="margin: 5px;" *ngFor="let img of imgMinions.neutral">
-            <a (click)="imageLoaded(img, 'neutral')">
+            <a (click)="selectImg(img, 'neutral')">
               <img style="max-height: 200px; max-width: 100%;" [src]="img" />
             </a>
           </div>

@@ -129,6 +129,10 @@ export class CardGenericComponent implements DbService, OnInit {
     }
   }
 
+  selectImg(imageUrl: string, faction: string) {
+    this.randomCard.front = imageUrl;
+    this.minionsMd.close(); // Close the modal
+  }
 
   selectFrame(imageUrl: string) {
     this.randomCard.frame = imageUrl;

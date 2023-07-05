@@ -24,18 +24,6 @@
     background-color: rgba(194, 194, 194, 0);
 }
 
-/* .card::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 100%;
-    background-color: black;
-  } */
-
-
 .background-image {
     position: absolute;
     top: 0;
@@ -104,19 +92,21 @@
     ;
     width: 600px;
     height: 200px;
-    /* border: 1px solid green; */
 }
 
 .front-img {
     position: absolute;
-    top: 325px;
-    left: 50%;
+    top: 310px;
+    left: 300px;
     transform: translate(-50%, -50%);
     width: 425px;
     height: 525px;
     background-color: rgb(194, 194, 194);
     border: 2px solid rgb(56, 56, 31);
     z-index: -1;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 
@@ -127,13 +117,14 @@
 }
 
 .title {
+    font-variant: small-caps;
     font-family: 'TxtTitle';
-    font-size: 24px;
+    font-size: 25px;
     margin-top: -9%;
     text-align: center;
     grid-area: title;
     color: black;
-    
+
     text-shadow: 0 0 1px white, 0 0 1px white, 0 0 1px white, 0 0 1px white;
     filter: drop-shadow(0px 0px 2px white);
     filter: drop-shadow(0px 0px 1px white);
@@ -153,7 +144,6 @@
 
 
 .resources {
-    font-family: 'MistyExtraBold';
     margin-left: 55px;
     margin-top: 2px;
     text-align: center;
@@ -164,15 +154,17 @@
     color: white;
     text-shadow: 0 0 0.5px black, 0 0 0.5px black, 0 0 0.5px black, 0 0 0.5px black;
     filter: drop-shadow(0px 0px 1px black);
-    font-size: 12px; /* Decreased font size */
-    width: 70%; /* Decreased element width */
-    height: 70%; /* Decreased element height */
-  }
+    font-size: 12px;
+    width: 70%;
+    height: 70%;
+}
 
-  
+
 .gold-resource {
+    font-size: 35px;
     font-family: 'MistyExtraBold';
     transform: scale(1.1);
+    margin-top: 15px;
     margin-bottom: 40px;
     color: white;
     text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black;
@@ -184,10 +176,10 @@
     background-position: center;
 }
 
-.red-resource {
+.red-resource {   
     font-size: 25px;
     font-family: 'MistyExtraBold';
-    position: absolute;
+     position: absolute;
     top: 0;
     right: -15px;
     width: calc(50% - -75px);
@@ -268,23 +260,27 @@
 }
 
 .details {
-    margin-top: -9%;
     text-align: center;
+    margin-left: 30px;
+    margin-right: 40px;
+    margin-top: -10%;
     grid-area: details;
     line-height: 1.00;
 }
 
 .lore {
-    margin-top: -2.5%;
+    font-variant: 'MistyTxtItalic';
     text-align: center;
+    font-size: 14px;
     grid-area: lore;
     line-height: 1.00;
     text-shadow: 0 0 2px white, 0 0 2px white, 0 0 2px white, 0 0 2px white;
 }
 
 .type {
-    margin-top: 10.5%;
+    margin-top: 15%;
     text-align: center;
+    font-size: 14px;
     grid-area: lore;
     line-height: 1.00;
     text-shadow: 0 0 2px white, 0 0 2px white, 0 0 2px white, 0 0 2px white;
