@@ -1,204 +1,193 @@
 <div class="split-screen">
-    <div class="left-half">
-        <card [card]="randomCard"></card>
+  <div class="left-half">
+    <card [card]="randomCard"></card>
+  </div>
+  <div class="right-half" style="border-left: 1px solid black;">
+
+    <button type="button" class="btn btn-primary" (click)="minionsMd.open()">Select
+      minion</button>
+
+    <image-cropper *ngIf="showImageCropper" (imageCropped)="imageCropped($event)"></image-cropper>
+    <img *ngIf="croppedImage" [src]="croppedImage" alt="Cropped Image">
+
+    <div class="property">Faction:
+      <select [(ngModel)]="randomCard.faction" (change)="onFactionChange()">
+        <option *ngFor="let faction of factionTypes" [value]="faction">{{ faction }}</option>
+      </select>
     </div>
-    <div class="right-half" style="border-left: 1px solid black;">
-
-        <button type="button" class="btn btn-primary" (click)="minionsMd.open()">Select
-            minion</button>
-
-        <div>
-            <image-cropper [imageChangedEvent]="imageChangedEvent" format="png" (imageCropped)="imageCropped($event)"
-                (selectImg)="imageLoaded($event, '')" (cropperReady)="cropperReady()"
-                (loadImageFailed)="loadImageFailed()"></image-cropper>
-        </div>
-
-        <div class="property">Faction:
-            <select [(ngModel)]="randomCard.faction" (change)="onFactionChange()">
-                <option *ngFor="let faction of factionTypes" [value]="faction">{{ faction }}</option>
-            </select>
-        </div>
-        <div class="property">Title:
-            <input type="text" [(ngModel)]="randomCard.title">
-        </div>
-        <div class="property">Minion type:
-            <select [(ngModel)]="randomCard.minionType">
-                <option *ngFor="let type of minionTypes" [value]="type">{{ type }}</option>
-            </select>
-        </div>
-        <div class="property">Rarity:
-            <select [(ngModel)]="randomCard.rarity">
-                <option *ngFor="let type of rarities" [value]="type">{{ type }}</option>
-            </select>
-        </div>
-        <div class="property">Cost:
-            <input type="number" [(ngModel)]="randomCard.cost[0]">
-            <input type="number" [(ngModel)]="randomCard.cost[1]">
-            <input type="number" [(ngModel)]="randomCard.cost[2]">
-            <input type="number" [(ngModel)]="randomCard.cost[3]">
-        </div>
-        <div class="property">Attack:
-            <input type="number" [(ngModel)]="randomCard.atk">
-        </div>
-        <div class="property">Hit Points:
-            <input type="number" [(ngModel)]="randomCard.hp">
-        </div>
-        <div class="property">Effect Type:
-            <input type="text" [(ngModel)]="randomCard.effectType">
-        </div>
-        <div class="property">Effect:
-            <textarea [(ngModel)]="randomCard.effect"></textarea>
-        </div>
-        <div class="property">Lore:
-            <textarea [(ngModel)]="randomCard.lore"></textarea>
-        </div>
-        <div class="property">Required age:
-            <input type="number" [(ngModel)]="randomCard.requiredAge">
-        </div>
-
-        <h5>Frame </h5>
-        <div class="minion-selector">
-            <div style="margin: 5px;" *ngFor="let img of imgFrames.minions, let i = index">
-
-                <ng-container *ngFor="let faction of factionTypes">
-                    <span *ngIf="faction=='sacred-dawn' && i==0">
-
-                        <a>
-                            <img style="max-height: 150px; max-width: 100%; border: 2px solid transparent; cursor: pointer;"
-                                [src]="img" [ngClass]="{ 'selected': img === randomCard.frame }"
-                                (click)="selectFrame(img)" />
-                        </a>
-                    </span>
-                    <span *ngIf="faction=='shadow-tribes' && i==1">
-
-                        <a>
-                            <img style="max-height: 150px; max-width: 100%; border: 2px solid transparent; cursor: pointer;"
-                                [src]="img" [ngClass]="{ 'selected': img === randomCard.frame }"
-                                (click)="selectFrame(img)" />
-                        </a>
-                    </span>
-                    <span *ngIf="faction=='mystic-dominion' && i==2">
-
-                        <a>
-                            <img style="max-height: 150px; max-width: 100%; border: 2px solid transparent; cursor: pointer;"
-                                [src]="img" [ngClass]="{ 'selected': img === randomCard.frame }"
-                                (click)="selectFrame(img)" />
-                        </a>
-                    </span>
-                    <span *ngIf="faction=='mechanic-league' && i==3">
-
-                        <a>
-                            <img style="max-height: 150px; max-width: 100%; border: 2px solid transparent; cursor: pointer;"
-                                [src]="img" [ngClass]="{ 'selected': img === randomCard.frame }"
-                                (click)="selectFrame(img)" />
-                        </a>
-                    </span>
-                    <span *ngIf="faction=='obsidian-eclipse' && i==4">
-
-                        <a>
-                            <img style="max-height: 150px; max-width: 100%; border: 2px solid transparent; cursor: pointer;"
-                                [src]="img" [ngClass]="{ 'selected': img === randomCard.frame }"
-                                (click)="selectFrame(img)" />
-                        </a>
-                    </span>
-                    <span *ngIf="faction=='blood-cult' && i==5">
-
-                        <a>
-                            <img style="max-height: 150px; max-width: 100%; border: 2px solid transparent; cursor: pointer;"
-                                [src]="img" [ngClass]="{ 'selected': img === randomCard.frame }"
-                                (click)="selectFrame(img)" />
-                        </a>
-                    </span>
-                    <span *ngIf="faction=='neutral' && i==6 ">
-
-                        <a>
-                            <img style="max-height: 150px; max-width: 100%; border: 2px solid transparent; cursor: pointer;"
-                                [src]="img" [ngClass]="{ 'selected': img === randomCard.frame }"
-                                (click)="selectFrame(img)" />
-                        </a>
-                    </span>
-                </ng-container>
-
-            </div>
-        </div>
-
-        <h5>Rarity </h5>
-        <div class="minion-selector">
-            <div style="margin: 5px;" *ngFor="let img of imgGameAssets.rarity">
-                <a>
-                    <img (click)="selectRarity(img)"
-                        style="max-height: 25px; max-width: 100%; border: 2px solid transparent; cursor: pointer;"
-                        [src]="img" />
-                </a>
-            </div>
-        </div>
+    <div class="property">Title:
+      <input type="text" [(ngModel)]="randomCard.title">
+    </div>
+    <div class="property">Minion type:
+      <select [(ngModel)]="randomCard.minionType">
+        <option *ngFor="let type of minionTypes" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+    <div class="property">Rarity:
+      <select [(ngModel)]="randomCard.rarity">
+        <option *ngFor="let type of rarities" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+    <div class="property">Cost:
+      <input type="number" [(ngModel)]="randomCard.cost[0]">
+      <input type="number" [(ngModel)]="randomCard.cost[1]">
+      <input type="number" [(ngModel)]="randomCard.cost[2]">
+      <input type="number" [(ngModel)]="randomCard.cost[3]">
+    </div>
+    <div class="property">Attack:
+      <input type="number" [(ngModel)]="randomCard.atk">
+    </div>
+    <div class="property">Hit Points:
+      <input type="number" [(ngModel)]="randomCard.hp">
+    </div>
+    <div class="property">Effect Type:
+      <input type="text" [(ngModel)]="randomCard.effectType">
+    </div>
+    <div class="property">Effect:
+      <textarea [(ngModel)]="randomCard.effect"></textarea>
+    </div>
+    <div class="property">Lore:
+      <textarea [(ngModel)]="randomCard.lore"></textarea>
+    </div>
+    <div class="property">Required age:
+      <input type="number" [(ngModel)]="randomCard.requiredAge">
     </div>
 
+    <h5>Frame </h5>
+    <div class="minion-selector">
+      <div style="margin: 5px;" *ngFor="let img of imgFrames.minions, let i = index">
 
-    <app-md #minions (onOk)="handleOk()" (onCancel)="handleCancel()">
+        <ng-container *ngFor="let faction of factionTypes">
+          <span *ngIf="faction=='sacred-dawn' && i==0">
 
-        <h5>Blood Cult</h5>
-        <div class="minion-selector">
-          <div style="margin: 5px;" *ngFor="let img of imgMinions.bloodCult">
-            <a (click)="selectImg(img, 'blood-cult')">
-              <img style="max-height: 200px; max-width: 100%;" [src]="img" />
+            <a>
+              <img style="max-height: 150px; max-width: 100%; border: 2px solid transparent; cursor: pointer;"
+                [src]="img" [ngClass]="{ 'selected': img === randomCard.frame }" (click)="selectFrame(img)" />
             </a>
-          </div>
-        </div>
-      
-        <h5>Mechanic League</h5>
-        <div class="minion-selector">
-          <div style="margin: 5px;" *ngFor="let img of imgMinions.mechanicLeague">
-            <a (click)="selectImg(img, 'mechanic-league')">
-              <img style="max-height: 200px; max-width: 100%;" [src]="img" />
+          </span>
+          <span *ngIf="faction=='shadow-tribes' && i==1">
+
+            <a>
+              <img style="max-height: 150px; max-width: 100%; border: 2px solid transparent; cursor: pointer;"
+                [src]="img" [ngClass]="{ 'selected': img === randomCard.frame }" (click)="selectFrame(img)" />
             </a>
-          </div>
-        </div>
-      
-        <h5>Mystic Dominion</h5>
-        <div class="minion-selector">
-          <div style="margin: 5px;" *ngFor="let img of imgMinions.mysticDominion">
-            <a (click)="selectImg(img, 'mystic-dominion')">
-              <img style="max-height: 200px; max-width: 100%;" [src]="img" />
+          </span>
+          <span *ngIf="faction=='mystic-dominion' && i==2">
+
+            <a>
+              <img style="max-height: 150px; max-width: 100%; border: 2px solid transparent; cursor: pointer;"
+                [src]="img" [ngClass]="{ 'selected': img === randomCard.frame }" (click)="selectFrame(img)" />
             </a>
-          </div>
-        </div>
-      
-        <h5>Obsidian Eclipse</h5>
-        <div class="minion-selector">
-          <div style="margin: 5px;" *ngFor="let img of imgMinions.obisidianEclipse">
-            <a (click)="selectImg(img, 'obsidian-eclipse')">
-              <img style="max-height: 200px; max-width: 100%;" [src]="img" />
+          </span>
+          <span *ngIf="faction=='mechanic-league' && i==3">
+
+            <a>
+              <img style="max-height: 150px; max-width: 100%; border: 2px solid transparent; cursor: pointer;"
+                [src]="img" [ngClass]="{ 'selected': img === randomCard.frame }" (click)="selectFrame(img)" />
             </a>
-          </div>
-        </div>
-      
-        <h5>Sacred Dawn</h5>
-        <div class="minion-selector">
-          <div style="margin: 5px;" *ngFor="let img of imgMinions.sacredDawn">
-            <a (click)="selectImg(img, 'sacred-dawn')">
-              <img style="max-height: 200px; max-width: 100%;" [src]="img" />
+          </span>
+          <span *ngIf="faction=='obsidian-eclipse' && i==4">
+
+            <a>
+              <img style="max-height: 150px; max-width: 100%; border: 2px solid transparent; cursor: pointer;"
+                [src]="img" [ngClass]="{ 'selected': img === randomCard.frame }" (click)="selectFrame(img)" />
             </a>
-          </div>
-        </div>
-      
-        <h5>Shadow Tribes</h5>
-        <div class="minion-selector">
-          <div style="margin: 5px;" *ngFor="let img of imgMinions.shadowTribes">
-            <a (click)="selectImg(img, 'shadow-tribes')">
-              <img style="max-height: 200px; max-width: 100%;" [src]="img" />
+          </span>
+          <span *ngIf="faction=='blood-cult' && i==5">
+
+            <a>
+              <img style="max-height: 150px; max-width: 100%; border: 2px solid transparent; cursor: pointer;"
+                [src]="img" [ngClass]="{ 'selected': img === randomCard.frame }" (click)="selectFrame(img)" />
             </a>
-          </div>
-        </div>
-      
-        <h5>Neutral</h5>
-        <div class="minion-selector">
-          <div style="margin: 5px;" *ngFor="let img of imgMinions.neutral">
-            <a (click)="selectImg(img, 'neutral')">
-              <img style="max-height: 200px; max-width: 100%;" [src]="img" />
+          </span>
+          <span *ngIf="faction=='neutral' && i==6 ">
+
+            <a>
+              <img style="max-height: 150px; max-width: 100%; border: 2px solid transparent; cursor: pointer;"
+                [src]="img" [ngClass]="{ 'selected': img === randomCard.frame }" (click)="selectFrame(img)" />
             </a>
-          </div>
-        </div>
-      
-      </app-md>
-      
+          </span>
+        </ng-container>
+
+      </div>
+    </div>
+
+    <h5>Rarity </h5>
+    <div class="minion-selector">
+      <div style="margin: 5px;" *ngFor="let img of imgGameAssets.rarity">
+        <a>
+          <img (click)="selectRarity(img)"
+            style="max-height: 25px; max-width: 100%; border: 2px solid transparent; cursor: pointer;" [src]="img" />
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <app-md #minions (onOk)="handleOk()" (onCancel)="handleCancel()">
+
+    <h5>Blood Cult</h5>
+    <div class="minion-selector">
+      <div style="margin: 5px;" *ngFor="let img of (imgMinions.bloodCult | async)">
+        <a (click)="selectImg(img, 'blood-cult')">
+          <img style="max-height: 200px; max-width: 100%;" [src]="img" />
+        </a>
+      </div>
+    </div>
+  
+    <h5>Mechanic League</h5>
+    <div class="minion-selector">
+      <div style="margin: 5px;" *ngFor="let img of (imgMinions.mechanicLeague | async)">
+        <a (click)="selectImg(img, 'mechanic-league')">
+          <img style="max-height: 200px; max-width: 100%;" [src]="img" />
+        </a>
+      </div>
+    </div>
+  
+    <h5>Mystic Dominion</h5>
+    <div class="minion-selector">
+      <div style="margin: 5px;" *ngFor="let img of (imgMinions.mysticDominion | async)">
+        <a (click)="selectImg(img, 'mystic-dominion')">
+          <img style="max-height: 200px; max-width: 100%;" [src]="img" />
+        </a>
+      </div>
+    </div>
+  
+    <h5>Obsidian Eclipse</h5>
+    <div class="minion-selector">
+      <div style="margin: 5px;" *ngFor="let img of (imgMinions.obisidianEclipse | async)">
+        <a (click)="selectImg(img, 'obsidian-eclipse')">
+          <img style="max-height: 200px; max-width: 100%;" [src]="img" />
+        </a>
+      </div>
+    </div>
+  
+    <h5>Sacred Dawn</h5>
+    <div class="minion-selector">
+      <div style="margin: 5px;" *ngFor="let img of (imgMinions.sacredDawn | async)">
+        <a (click)="selectImg(img, 'sacred-dawn')">
+          <img style="max-height: 200px; max-width: 100%;" [src]="img" />
+        </a>
+      </div>
+    </div>
+  
+    <h5>Shadow Tribes</h5>
+    <div class="minion-selector">
+      <div style="margin: 5px;" *ngFor="let img of (imgMinions.shadowTribes | async)">
+        <a (click)="selectImg(img, 'shadow-tribes')">
+          <img style="max-height: 200px; max-width: 100%;" [src]="img" />
+        </a>
+      </div>
+    </div>
+  
+    <h5>Neutral</h5>
+    <div class="minion-selector">
+      <div style="margin: 5px;" *ngFor="let img of (imgMinions.neutral | async)">
+        <a (click)="selectImg(img, 'neutral')">
+          <img style="max-height: 200px; max-width: 100%;" [src]="img" />
+        </a>
+      </div>
+    </div>
+  
+  </app-md>
+  

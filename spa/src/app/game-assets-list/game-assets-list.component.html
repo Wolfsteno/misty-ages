@@ -142,7 +142,7 @@
         Upload blood cult minions</button>
       <input type="file" (change)="onImageSelected($event)" />
       <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgMinions.bloodCult">
+        <div style="margin: 5px;" *ngFor="let img of (imgMinions.bloodCult | async)">
           <a [href]="img" target="_blank">
             <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
           </a>
@@ -160,7 +160,7 @@
       <input type="file" (change)="onImageSelected($event)" />
     </div>
     <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-      <div style="margin: 5px;" *ngFor="let img of imgMinions.mechanicLeague">
+      <div style="margin: 5px;" *ngFor="let img of (imgMinions.mechanicLeague | async)">
         <a [href]="img" target="_blank">
           <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
         </a>
@@ -177,7 +177,7 @@
       <input type="file" (change)="onImageSelected($event)" />
     </div>
     <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-      <div style="margin: 5px;" *ngFor="let img of imgMinions.mysticDominion">
+      <div style="margin: 5px;" *ngFor="let img of (imgMinions.mysticDominion | async)">
         <a [href]="img" target="_blank">
           <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
         </a>
@@ -193,7 +193,7 @@
         Upload action's frames minions</button>
       <input type="file" (change)="onImageSelected($event)" />
       <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgMinions.obisidianEclipse">
+        <div style="margin: 5px;" *ngFor="let img of (imgMinions.obisidianEclipse | async)">
           <a [href]="img" target="_blank">
             <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
           </a>
@@ -209,7 +209,7 @@
         Upload sacred dawn minions</button>
       <input type="file" (change)="onImageSelected($event)" />
       <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgMinions.sacredDawn">
+        <div style="margin: 5px;" *ngFor="let img of (imgMinions.sacredDawn | async)">
           <a [href]="img" target="_blank">
             <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
           </a>
@@ -225,7 +225,7 @@
         Upload shadows tribes minions</button>
       <input type="file" (change)="onImageSelected($event)" />
       <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgMinions.shadowTribes">
+        <div style="margin: 5px;" *ngFor="let img of (imgMinions.shadowTribes | async)">
           <a [href]="img" target="_blank">
             <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
           </a>
@@ -241,7 +241,7 @@
         Upload neutral minions</button>
       <input type="file" (change)="onImageSelected($event)" />
       <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgMinions.neutral">
+        <div style="margin: 5px;" *ngFor="let img of (imgMinions.neutral | async)">
           <a [href]="img" target="_blank">
             <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
           </a>

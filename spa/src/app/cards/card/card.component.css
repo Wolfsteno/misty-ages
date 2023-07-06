@@ -138,7 +138,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     z-index: 10;
-    transform: scale(0.40);
+    transform: scale(0.35);
     filter: drop-shadow(0px 0px 5px white);
 }
 
@@ -234,7 +234,7 @@
 }
 
 .attack {
-    transform: scale(0.7);
+    transform: scale(0.6);
     font-size: 75px;
     text-align: center;
     grid-area: attack;
@@ -247,7 +247,7 @@
 }
 
 .hitpoints {
-    transform: scale(0.7);
+    transform: scale(0.6);
     font-size: 75px;
     text-align: center;
     grid-area: hitpoints;

@@ -3,6 +3,7 @@ import { Card } from 'src/app/models/card';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Observable } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +50,7 @@ export class DbService {
 
   // Get a single image
   getImage(path: string): Promise<string> {
-    return this.storage.ref(path).getDownloadURL().toPromise();
+    return firstValueFrom(this.storage.ref(path).getDownloadURL());
   }
 
   // Get multiple images
@@ -65,11 +66,11 @@ export class DbService {
   async listAll(directory: string): Promise<string[]> {
     try {
       const ref = this.storage.ref(directory);
-      const res = await ref.listAll().toPromise();
+      const res = await firstValueFrom(ref.listAll());
       if (res != undefined) {
-        return res.items.map(item => item.fullPath);
+        return res.items.map((item) => item.fullPath);
       } else {
-        return Promise.resolve(['ERROR']);
+        return ['ERROR'];
       }
     } catch (error) {
       console.error('Failed to list all files:', error);

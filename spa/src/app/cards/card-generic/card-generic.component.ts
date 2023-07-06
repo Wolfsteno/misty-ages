@@ -80,7 +80,6 @@ export class CardGenericComponent implements DbService, OnInit {
 
   ngOnInit(): void {
     this.randomCard = this.generateRandomCard();
-    this.loadMinions();
     this.load();
   }
 
@@ -92,6 +91,7 @@ export class CardGenericComponent implements DbService, OnInit {
 
   async load() {
     this.getCards();
+    this.loadMinions();
     this.loadImages(this.frames, this.imgFrames, ['minions']);
     this.loadImages(this.gameAssets, this.imgGameAssets, ['ages', 'icons', 'rarity', 'back']);
   }
@@ -129,10 +129,10 @@ export class CardGenericComponent implements DbService, OnInit {
     }
   }
 
-  selectImg(imageUrl: string, faction: string) {
-    this.randomCard.front = imageUrl;
-    this.minionsMd.close(); // Close the modal
-  }
+  // selectImg(imageUrl: string, faction: string) {
+  //   this.randomCard.front = imageUrl;
+  //   this.minionsMd.close(); // Close the modal
+  // }
 
   selectFrame(imageUrl: string) {
     this.randomCard.frame = imageUrl;
@@ -246,28 +246,49 @@ export class CardGenericComponent implements DbService, OnInit {
     throw new Error('Method not implemented.');
   }
   //#endregion
+  showImageCropper: boolean = false;
+  croppedImage: string = '';
+  
 
-  imageChangedEvent: any = '';
-  croppedImage: any = '';
-
-  imageCropped(event: ImageCroppedEvent) {
-    this.croppedImage = event.base64; // Assign the cropped image data to 'croppedImage'
-    this.randomCard.front = this.croppedImage; // Update the 'card.front' with the cropped image
+  selectImg(imageUrl: string, faction: string) {
+    // Store the original image URL
+    this.randomCard.front = imageUrl;
+  
+    // Perform any necessary operations with the imageUrl
+    // ...
+  
+    // Set the croppedImage property with the selected image URL
+    this.croppedImage = imageUrl;
+  
+    // Set any other necessary properties or perform additional actions
+    // ...
+  
+    // Set the flag to display the cropped image or trigger other logic
+    this.showImageCropper = true;
   }
+  
+  imageCropped(image: any) {
+    // Store the cropped image URL
+    this.randomCard.front = image;
+    
+    // Close the image cropper modal
+    this.showImageCropper = false;
+    this.minionsMd.close(); // Close the modal
+  }
+
+  // imageCropped(event: ImageCroppedEvent) {
+  //   this.croppedImage = event.base64; // Assign the cropped image data to 'croppedImage'
+  //   this.randomCard.front = this.croppedImage; // Update the 'card.front' with the cropped image
+  // }
 
 
   @ViewChild('minions') minionsMd: any;
 
-  imageLoaded(event: any, faction: string) {
-    const factionKey = faction.replace(/-/g, ''); // Convert the faction name to match the property key
-    this.imgMinions[factionKey as keyof MinionCards] = event; // Set the selected image URL for the faction
-    this.imageCropped(event);
-    this.minionsMd.close(); // Close the modal
+  imageLoaded(image: string, format: string): void {
+    console.log("Loaded image:", image);
+    console.log("Format:", format);
+    this.randomCard.front = image;
   }
-
-
-
-
 
   // Method called when the cropper is ready
   cropperReady() {
@@ -292,46 +313,41 @@ export class CardGenericComponent implements DbService, OnInit {
 
   async loadMinions() {
     for (let i = 0; i < this.minions.length; i++) {
-      const e = this.minions[i];
+        const e = this.minions[i];
+        let urls: string[];
 
-      if (i == 0) {
-        this.imgMinions.bloodCult = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgMinions.bloodCult);
-        this.imgMinions.bloodCult = urls;
-      }
-      if (i == 1) {
-        this.imgMinions.mechanicLeague = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgMinions.mechanicLeague);
-        this.imgMinions.mechanicLeague = urls;
-      }
-      if (i == 2) {
-        this.imgMinions.mysticDominion = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgMinions.mysticDominion);
-        this.imgMinions.mysticDominion = urls;
-      }
-      if (i == 3) {
-        this.imgMinions.obisidianEclipse = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgMinions.obisidianEclipse);
-        this.imgMinions.obisidianEclipse = urls;
-      }
-      if (i == 4) {
-        this.imgMinions.sacredDawn = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgMinions.sacredDawn);
-        this.imgMinions.sacredDawn = urls;
-      }
-      if (i == 5) {
-        this.imgMinions.shadowTribes = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgMinions.shadowTribes);
-        this.imgMinions.shadowTribes = urls;
-      }
-      if (i == 6) {
-        this.imgMinions.neutral = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgMinions.neutral);
-        this.imgMinions.neutral = urls;
-      }
+        if (i == 0) {
+            urls = await this.dbService.getImages(await this.dbService.listAll(e));
+            this.imgMinions.bloodCult = Promise.resolve(urls);
+        }
+        if (i == 1) {
+            urls = await this.dbService.getImages(await this.dbService.listAll(e));
+            this.imgMinions.mechanicLeague = Promise.resolve(urls);
+        }
+        if (i == 2) {
+            urls = await this.dbService.getImages(await this.dbService.listAll(e));
+            this.imgMinions.mysticDominion = Promise.resolve(urls);
+        }
+        if (i == 3) {
+            urls = await this.dbService.getImages(await this.dbService.listAll(e));
+            this.imgMinions.obisidianEclipse = Promise.resolve(urls);
+        }
+        if (i == 4) {
+            urls = await this.dbService.getImages(await this.dbService.listAll(e));
+            this.imgMinions.sacredDawn = Promise.resolve(urls);
+        }
+        if (i == 5) {
+            urls = await this.dbService.getImages(await this.dbService.listAll(e));
+            this.imgMinions.shadowTribes = Promise.resolve(urls);
+        }
+        if (i == 6) {
+            urls = await this.dbService.getImages(await this.dbService.listAll(e));
+            this.imgMinions.neutral = Promise.resolve(urls);
+        }
 
     }
-  }
+}
+
 
   selectedImage?: File;
 
@@ -351,5 +367,12 @@ export class CardGenericComponent implements DbService, OnInit {
 
   selectedMinionImage: string | undefined;
 
-
+  handleImageSelect(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      // Process the selected image file here (e.g., pass it to the image cropper)
+      console.log("Selected image file:", file);
+    }
+  }
 }
