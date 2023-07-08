@@ -7,8 +7,8 @@
     <button type="button" class="btn btn-primary" (click)="minionsMd.open()">Select
       minion</button>
 
-    <image-cropper *ngIf="showImageCropper" (imageCropped)="imageCropped($event)"></image-cropper>
-    <img *ngIf="croppedImage" [src]="croppedImage" alt="Cropped Image">
+    <!-- <image-cropper *ngIf="showImageCropper" (imageCropped)="imageCropped($event)"></image-cropper>
+    <img *ngIf="croppedImage" [src]="croppedImage" alt="Cropped Image"> -->
 
     <div class="property">Faction:
       <select [(ngModel)]="randomCard.faction" (change)="onFactionChange()">
