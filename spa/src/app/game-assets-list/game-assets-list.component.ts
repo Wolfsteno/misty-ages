@@ -87,8 +87,8 @@ export class GameAssetsListComponent {
     this.loadBuildings();
     this.loadMinions();
     this.loadActions();
-    this.loadImages(this.frames, this.imgFrames, ['townCenters', 'buildings', 'minions', 'actions']);
-    this.loadImages(this.gameAssets, this.imgGameAssets, ['ages', 'icons', 'rarity', 'back']);
+    this.loadFrames();
+    this.loadGameAssets();
   }
 
   async loadImages(array: string[], object: any, propertyNames: string[]) {
@@ -103,41 +103,35 @@ export class GameAssetsListComponent {
   async loadBuildings() {
     for (let i = 0; i < this.buildings.length; i++) {
       const e = this.buildings[i];
+      let urls: string[];
 
       if (i == 0) {
-        this.imgBuildings.bloodCult = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgBuildings.bloodCult);
-        this.imgBuildings.bloodCult = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgBuildings.bloodCult = Promise.resolve(urls);
       }
       if (i == 1) {
-        this.imgBuildings.mechanicLeague = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgBuildings.mechanicLeague);
-        this.imgBuildings.mechanicLeague = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgBuildings.mechanicLeague = Promise.resolve(urls);
       }
       if (i == 2) {
-        this.imgBuildings.mysticDominion = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgBuildings.mysticDominion);
-        this.imgBuildings.mysticDominion = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgBuildings.mysticDominion = Promise.resolve(urls);
       }
       if (i == 3) {
-        this.imgBuildings.obisidianEclipse = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgBuildings.obisidianEclipse);
-        this.imgBuildings.obisidianEclipse = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgBuildings.obisidianEclipse = Promise.resolve(urls);
       }
       if (i == 4) {
-        this.imgBuildings.sacredDawn = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgBuildings.sacredDawn);
-        this.imgBuildings.sacredDawn = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgBuildings.sacredDawn = Promise.resolve(urls);
       }
       if (i == 5) {
-        this.imgBuildings.shadowTribes = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgBuildings.shadowTribes);
-        this.imgBuildings.shadowTribes = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgBuildings.shadowTribes = Promise.resolve(urls);
       }
       if (i == 6) {
-        this.imgBuildings.neutral = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgBuildings.neutral);
-        this.imgBuildings.neutral = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgBuildings.neutral = Promise.resolve(urls);
       }
 
     }
@@ -145,74 +139,71 @@ export class GameAssetsListComponent {
 
   async loadMinions() {
     for (let i = 0; i < this.minions.length; i++) {
-        const e = this.minions[i];
-        let urls: string[];
+      const e = this.minions[i];
+      let urls: string[];
 
-        if (i == 0) {
-            urls = await this.dbService.getImages(await this.dbService.listAll(e));
-            this.imgMinions.bloodCult = Promise.resolve(urls);
-        }
-        if (i == 1) {
-            urls = await this.dbService.getImages(await this.dbService.listAll(e));
-            this.imgMinions.mechanicLeague = Promise.resolve(urls);
-        }
-        if (i == 2) {
-            urls = await this.dbService.getImages(await this.dbService.listAll(e));
-            this.imgMinions.mysticDominion = Promise.resolve(urls);
-        }
-        if (i == 3) {
-            urls = await this.dbService.getImages(await this.dbService.listAll(e));
-            this.imgMinions.obisidianEclipse = Promise.resolve(urls);
-        }
-        if (i == 4) {
-            urls = await this.dbService.getImages(await this.dbService.listAll(e));
-            this.imgMinions.sacredDawn = Promise.resolve(urls);
-        }
-        if (i == 5) {
-            urls = await this.dbService.getImages(await this.dbService.listAll(e));
-            this.imgMinions.shadowTribes = Promise.resolve(urls);
-        }
-        if (i == 6) {
-            urls = await this.dbService.getImages(await this.dbService.listAll(e));
-            this.imgMinions.neutral = Promise.resolve(urls);
-        }
+      if (i == 0) {
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgMinions.bloodCult = Promise.resolve(urls);
+      }
+      if (i == 1) {
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgMinions.mechanicLeague = Promise.resolve(urls);
+      }
+      if (i == 2) {
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgMinions.mysticDominion = Promise.resolve(urls);
+      }
+      if (i == 3) {
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgMinions.obisidianEclipse = Promise.resolve(urls);
+      }
+      if (i == 4) {
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgMinions.sacredDawn = Promise.resolve(urls);
+      }
+      if (i == 5) {
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgMinions.shadowTribes = Promise.resolve(urls);
+      }
+      if (i == 6) {
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgMinions.neutral = Promise.resolve(urls);
+      }
 
     }
-}
+  }
+
   async loadActions() {
     for (let i = 0; i < this.actions.length; i++) {
       const e = this.actions[i];
+      let urls: string[];
 
       if (i == 0) {
-        this.imgActions.bloodCult = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgActions.bloodCult);
-        this.imgActions.bloodCult = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgActions.bloodCult = Promise.resolve(urls);
       }
       if (i == 1) {
-        this.imgActions.mechanicLeague = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgActions.mechanicLeague);
-        this.imgActions.mechanicLeague = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgActions.mechanicLeague = Promise.resolve(urls);
       }
       if (i == 2) {
-        this.imgActions.mysticDominion = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgActions.mysticDominion);
-        this.imgActions.mysticDominion = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgActions.mysticDominion = Promise.resolve(urls);
       }
       if (i == 3) {
-        this.imgActions.obisidianEclipse = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgActions.obisidianEclipse);
-        this.imgActions.obisidianEclipse = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgActions.obisidianEclipse = Promise.resolve(urls);
       }
       if (i == 4) {
-        this.imgActions.sacredDawn = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgActions.sacredDawn);
-        this.imgActions.sacredDawn = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgActions.sacredDawn = Promise.resolve(urls);
       }
       if (i == 5) {
-        this.imgActions.shadowTribes = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgActions.shadowTribes);
-        this.imgActions.shadowTribes = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgActions.shadowTribes = Promise.resolve(urls);
       }
+
 
     }
   }
@@ -220,56 +211,49 @@ export class GameAssetsListComponent {
   async loadFrames() {
     for (let i = 0; i < this.frames.length; i++) {
       const e = this.frames[i];
+      let urls: string[];
 
       if (i == 0) {
-        this.imgFrames.townCenters = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgFrames.townCenters);
-        this.imgFrames.townCenters = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgFrames.townCenters = Promise.resolve(urls);
       }
       if (i == 1) {
-        this.imgFrames.buildings = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgFrames.buildings);
-        this.imgFrames.buildings = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgFrames.buildings = Promise.resolve(urls);
       }
       if (i == 2) {
-        this.imgFrames.minions = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgFrames.minions);
-        this.imgFrames.minions = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgFrames.minions = Promise.resolve(urls);
       }
       if (i == 3) {
-        this.imgFrames.actions = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgFrames.actions);
-        this.imgFrames.actions = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgFrames.actions = Promise.resolve(urls);
       }
-
     }
   }
+
 
   async loadGameAssets() {
     for (let i = 0; i < this.gameAssets.length; i++) {
       const e = this.gameAssets[i];
+      let urls: string[];
 
       if (i == 0) {
-        this.imgGameAssets.ages = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgGameAssets.ages);
-        this.imgGameAssets.ages = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgGameAssets.ages = Promise.resolve(urls);
       }
       if (i == 1) {
-        this.imgGameAssets.icons = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgGameAssets.icons);
-        this.imgGameAssets.icons = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgGameAssets.icons = Promise.resolve(urls);
       }
       if (i == 2) {
-        this.imgGameAssets.rarity = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgGameAssets.rarity);
-        this.imgGameAssets.rarity = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgGameAssets.rarity = Promise.resolve(urls);
       }
       if (i == 3) {
-        this.imgGameAssets.back = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgGameAssets.back);
-        this.imgGameAssets.back = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgGameAssets.back = Promise.resolve(urls);
       }
-
     }
   }
   //#endregion
@@ -277,10 +261,11 @@ export class GameAssetsListComponent {
   // #region image handler
   selectedImage?: File;
 
-  onImageSelected(event: Event) {
+  onImageSelected(event: Event, p: string = '') {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       this.selectedImage = file;
+      this.uploadImage(p);
     }
   }
 
@@ -288,7 +273,6 @@ export class GameAssetsListComponent {
     if (this.selectedImage) {
       const url = await this.dbService.uploadImage(this.selectedImage, p + '/' + this.selectedImage.name);
       this.load();
-
     }
     this.selectedImage = undefined;
   }
@@ -311,4 +295,7 @@ export class GameAssetsListComponent {
   handleCancel() { }
   //#endregion
 
+  isImageDisabled(): boolean {
+    return this.selectedImage == null || this.selectedImage == undefined;
+  }
 }

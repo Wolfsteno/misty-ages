@@ -86,14 +86,18 @@ export class CardGenericComponent implements DbService, OnInit {
   imgFrames: CardFrames = new CardFrames();
 
   frames: string[] = [
+    'frames/town-centers',
+    'frames/buildings',
     'frames/minions',
+    'frames/actions'
   ];
 
   async load() {
     this.getCards();
     this.loadMinions();
-    this.loadImages(this.frames, this.imgFrames, ['minions']);
-    this.loadImages(this.gameAssets, this.imgGameAssets, ['ages', 'icons', 'rarity', 'back']);
+    this.loadMinions();
+    this.loadGameAssets();
+    this.loadFrames();
   }
 
 
@@ -141,20 +145,19 @@ export class CardGenericComponent implements DbService, OnInit {
   selectRarity(imageUrl: string) {
     this.randomCard.rarity = imageUrl;
   }
-
-  selectAtkImg(imageUrl: string) {
+  
+  async selectAtkImg(imageUrl: string) {
     this.randomCard.rarity = imageUrl;
-    for (let i = 0; i < this.imgGameAssets.icons.length; i++) {
-      this.randomCard.atkImg = this.imgGameAssets.icons[2];
-    }
+    const icons = await this.imgGameAssets.icons;
+    this.randomCard.atkImg = icons[2];
   }
-
-  selectHpImg(imageUrl: string) {
+  
+  async selectHpImg(imageUrl: string) {
     this.randomCard.rarity = imageUrl;
-    for (let i = 0; i < this.imgGameAssets.icons.length; i++) {
-      this.randomCard.atkImg = this.imgGameAssets.icons[1];
-    }
+    const icons = await this.imgGameAssets.icons;
+    this.randomCard.atkImg = icons[1];
   }
+  
 
 
   imagePaths: string[] = [];
@@ -169,34 +172,54 @@ export class CardGenericComponent implements DbService, OnInit {
   ];
 
 
-  async loadGameAssets() {
-    for (let i = 0; i < this.gameAssets.length; i++) {
-      const e = this.gameAssets[i];
+  async loadFrames() {
+    for (let i = 0; i < this.frames.length; i++) {
+      const e = this.frames[i];
+      let urls: string[];
 
       if (i == 0) {
-        this.imgGameAssets.ages = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgGameAssets.ages);
-        this.imgGameAssets.ages = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgFrames.townCenters = Promise.resolve(urls);
       }
       if (i == 1) {
-        this.imgGameAssets.icons = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgGameAssets.icons);
-        this.imgGameAssets.icons = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgFrames.buildings = Promise.resolve(urls);
       }
       if (i == 2) {
-        this.imgGameAssets.rarity = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgGameAssets.rarity);
-        this.imgGameAssets.rarity = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgFrames.minions = Promise.resolve(urls);
       }
       if (i == 3) {
-        this.imgGameAssets.back = await this.dbService.listAll(e);
-        const urls = await this.dbService.getImages(this.imgGameAssets.back);
-        this.imgGameAssets.back = urls;
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgFrames.actions = Promise.resolve(urls);
       }
-
     }
   }
 
+
+  async loadGameAssets() {
+    for (let i = 0; i < this.gameAssets.length; i++) {
+      const e = this.gameAssets[i];
+      let urls: string[];
+      
+      if (i == 0) {
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgGameAssets.ages = Promise.resolve(urls);
+      }
+      if (i == 1) {
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgGameAssets.icons = Promise.resolve(urls);
+      }
+      if (i == 2) {
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgGameAssets.rarity = Promise.resolve(urls);
+      }
+      if (i == 3) {
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgGameAssets.back = Promise.resolve(urls);
+      }
+    }
+  }
   //#region NEED TO BE IMPLEMENTED:
   async loadImages(array: string[], object: any, propertyNames: string[]) {
     for (let i = 0; i < array.length; i++) {
@@ -248,29 +271,29 @@ export class CardGenericComponent implements DbService, OnInit {
   //#endregion
   showImageCropper: boolean = false;
   croppedImage: string = '';
-  
+
 
   selectImg(imageUrl: string, faction: string) {
     // Store the original image URL
     this.randomCard.front = imageUrl;
-  
+
     // Perform any necessary operations with the imageUrl
     // ...
-  
+
     // Set the croppedImage property with the selected image URL
     this.croppedImage = imageUrl;
-  
+
     // Set any other necessary properties or perform additional actions
     // ...
-  
+
     // Set the flag to display the cropped image or trigger other logic
     this.showImageCropper = true;
   }
-  
+
   imageCropped(image: any) {
     // Store the cropped image URL
     this.randomCard.front = image;
-    
+
     // Close the image cropper modal
     this.showImageCropper = false;
     this.minionsMd.close(); // Close the modal
@@ -313,42 +336,41 @@ export class CardGenericComponent implements DbService, OnInit {
 
   async loadMinions() {
     for (let i = 0; i < this.minions.length; i++) {
-        const e = this.minions[i];
-        let urls: string[];
+      const e = this.minions[i];
+      let urls: string[];
 
-        if (i == 0) {
-            urls = await this.dbService.getImages(await this.dbService.listAll(e));
-            this.imgMinions.bloodCult = Promise.resolve(urls);
-        }
-        if (i == 1) {
-            urls = await this.dbService.getImages(await this.dbService.listAll(e));
-            this.imgMinions.mechanicLeague = Promise.resolve(urls);
-        }
-        if (i == 2) {
-            urls = await this.dbService.getImages(await this.dbService.listAll(e));
-            this.imgMinions.mysticDominion = Promise.resolve(urls);
-        }
-        if (i == 3) {
-            urls = await this.dbService.getImages(await this.dbService.listAll(e));
-            this.imgMinions.obisidianEclipse = Promise.resolve(urls);
-        }
-        if (i == 4) {
-            urls = await this.dbService.getImages(await this.dbService.listAll(e));
-            this.imgMinions.sacredDawn = Promise.resolve(urls);
-        }
-        if (i == 5) {
-            urls = await this.dbService.getImages(await this.dbService.listAll(e));
-            this.imgMinions.shadowTribes = Promise.resolve(urls);
-        }
-        if (i == 6) {
-            urls = await this.dbService.getImages(await this.dbService.listAll(e));
-            this.imgMinions.neutral = Promise.resolve(urls);
-        }
+      if (i == 0) {
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgMinions.bloodCult = Promise.resolve(urls);
+      }
+      if (i == 1) {
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgMinions.mechanicLeague = Promise.resolve(urls);
+      }
+      if (i == 2) {
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgMinions.mysticDominion = Promise.resolve(urls);
+      }
+      if (i == 3) {
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgMinions.obisidianEclipse = Promise.resolve(urls);
+      }
+      if (i == 4) {
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgMinions.sacredDawn = Promise.resolve(urls);
+      }
+      if (i == 5) {
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgMinions.shadowTribes = Promise.resolve(urls);
+      }
+      if (i == 6) {
+        urls = await this.dbService.getImages(await this.dbService.listAll(e));
+        this.imgMinions.neutral = Promise.resolve(urls);
+      }
 
     }
-}
-
-
+  }
+  
   selectedImage?: File;
 
   onImageSelected(event: Event) {

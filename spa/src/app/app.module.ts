@@ -25,7 +25,7 @@ import { LoreComponent } from './lore/lore.component';
 import { GameRulesComponent } from './game-rules/game-rules.component';
 import { DeckCreatorComponent } from './deck-creator/deck-creator.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CardComponent } from './cards/card/card.component';
+import { CardComponent } from './components/card/card.component';
 import { ChartCircleComponent } from './components/chart-circle/chart-circle.component';
 import { BoardComponent } from './components/board/board.component';
 

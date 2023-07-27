@@ -8,534 +8,420 @@
     assets</button>
 </div>
 
-<app-md #buildingsMd [title]="'Buildings'" (onOk)="handleOk()" (onCancel)="handleCancel()">
-  <div class="card">
-    <div class="card-body">
-      <h5>Blood cult</h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(buildings[0])">
-        Upload blood cult building</button>
-      <input type="file" (change)="onImageSelected($event)" />
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-
-        <div style="margin: 5px;" *ngFor="let img of imgBuildings.bloodCult">
-          <a [href]="img" target="_blank">
-            <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-          </a>
-
-          <div style="width: 100%;">
-            <textarea>{{buildings[0]}} {{img}}</textarea>
-            <button style="width: 85%; height: 25px; font-size: 10px;" class="btn btn-danger"
-              (click)="deleteImg(parseFirebasePath(buildings[0], img))"><fa-icon [icon]="faTimes"></fa-icon>
-            </button>
-          </div>
-
-        </div>
-
+<app-md #buildingsMd [title]="'Buildings'">
+  <h5>Blood cult</h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(buildings[0])">
+    Upload blood cult building
+  </button>
+  <input type="file" (change)="onImageSelected($event, buildings[0])" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgBuildings.bloodCult | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 350px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
+      <div style="width: 100%;">
+        <textarea>{{buildings[0]}} {{img}}</textarea>
+        <button style="width: 85%; height: 40px; font-size: 10px;" class="btn btn-sm btn-danger"
+          (click)="deleteImg(parseFirebasePath(buildings[0], img))">
+          <fa-icon [icon]="faTimes"></fa-icon>
+        </button>
       </div>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-body">
-      <h5>Mechanic league </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(buildings[1])">
-        Upload mechanic league building</button>
-      <input type="file" (change)="onImageSelected($event)" />
-    </div>
-    <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-      <div style="margin: 5px;" *ngFor="let img of imgBuildings.mechanicLeague">
-        <a [href]="img" target="_blank">
-          <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-        </a>
+  <h5>Mechanic league</h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(buildings[1])">
+    Upload mechanic league building
+  </button>
+  <input type="file" (change)="onImageSelected($event, buildings[1])" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgBuildings.mechanicLeague | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
+      <div style="width: 100%;">
+        <textarea>{{buildings[1]}} {{img}}</textarea>
+        <button style="width: 85%; height: 40px; font-size: 10px;" class="btn btn-sm btn-danger"
+          (click)="deleteImg(parseFirebasePath(buildings[1], img))">
+          <fa-icon [icon]="faTimes"></fa-icon>
+        </button>
       </div>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-body">
-      <h5>Mystic dominion </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(buildings[2])">
-        Upload mystic dominion building</button>
-      <input type="file" (change)="onImageSelected($event)" />
-    </div>
-    <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-      <div style="margin: 5px;" *ngFor="let img of imgBuildings.mysticDominion">
-        <a [href]="img" target="_blank">
-          <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-        </a>
+  <h5>Mystic dominion</h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(buildings[2])">
+    Upload mystic dominion building
+  </button>
+  <input type="file" (change)="onImageSelected($event, buildings[2])" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgBuildings.mysticDominion | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
+      <div style="width: 100%;">
+        <textarea>{{buildings[2]}} {{img}}</textarea>
+        <button style="width: 85%; height: 40px; font-size: 10px;" class="btn btn-sm btn-danger"
+          (click)="deleteImg(parseFirebasePath(buildings[2], img))">
+          <fa-icon [icon]="faTimes"></fa-icon>
+        </button>
       </div>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-body">
-      <h5>Obsidian eclipse frames </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(buildings[3])">
-        Upload obsidian eclipse frames building</button>
-      <input type="file" (change)="onImageSelected($event)" />
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgBuildings.obisidianEclipse">
-          <a [href]="img" target="_blank">
-            <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-          </a>
-        </div>
+  <h5>Obsidian eclipse frames</h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(buildings[3])">
+    Upload obsidian eclipse frames building
+  </button>
+  <input type="file" (change)="onImageSelected($event, buildings[3])" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgBuildings.obisidianEclipse | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
+      <div style="width: 100%;">
+        <textarea>{{buildings[3]}} {{img}}</textarea>
+        <button style="width: 85%; height: 40px; font-size: 10px;" class="btn btn-sm btn-danger"
+          (click)="deleteImg(parseFirebasePath(buildings[3], img))">
+          <fa-icon [icon]="faTimes"></fa-icon>
+        </button>
       </div>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-body">
-      <h5>Sacred dawn </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(buildings[4])">
-        Upload sacred dawn building</button>
-      <input type="file" (change)="onImageSelected($event)" />
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgBuildings.sacredDawn">
-          <a [href]="img" target="_blank">
-            <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-          </a>
-        </div>
+  <h5>Sacred dawn</h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(buildings[4])">
+    Upload sacred dawn building
+  </button>
+  <input type="file" (change)="onImageSelected($event, buildings[4])" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgBuildings.sacredDawn | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
+      <div style="width: 100%;">
+        <textarea>{{buildings[4]}} {{img}}</textarea>
+        <button style="width: 85%; height: 40px; font-size: 10px;" class="btn btn-sm btn-danger"
+          (click)="deleteImg(parseFirebasePath(buildings[4], img))">
+          <fa-icon [icon]="faTimes"></fa-icon>
+        </button>
       </div>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-body">
-      <h5>Shadows tribes </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(buildings[5])">
-        Upload shadows tribes building</button>
-      <input type="file" (change)="onImageSelected($event)" />
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgBuildings.shadowTribes">
-          <a [href]="img" target="_blank">
-            <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-          </a>
-        </div>
+  <h5>Shadows tribes</h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(buildings[5])">
+    Upload shadows tribes building
+  </button>
+  <input type="file" (change)="onImageSelected($event, buildings[5])" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgBuildings.shadowTribes | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
+      <div style="width: 100%;">
+        <textarea>{{buildings[4]}} {{img}}</textarea>
+        <button style="width: 85%; height: 40px; font-size: 10px;" class="btn btn-sm btn-danger"
+          (click)="deleteImg(parseFirebasePath(buildings[5], img))">
+          <fa-icon [icon]="faTimes"></fa-icon>
+        </button>
       </div>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-body">
-      <h5>Neutral </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(buildings[6])">
-        Upload neutral building</button>
-      <input type="file" (change)="onImageSelected($event)" />
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgBuildings.neutral">
-          <a [href]="img" target="_blank">
-            <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-          </a>
-        </div>
+  <h5>Neutral</h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(buildings[6])">
+    Upload neutral building
+  </button>
+  <input type="file" (change)="onImageSelected($event, buildings[6])" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgBuildings.neutral | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
+      <div style="width: 100%;">
+        <textarea>{{buildings[6]}} {{img}}</textarea>
+        <button style="width: 85%; height: 40px; font-size: 10px;" class="btn btn-sm btn-danger"
+          (click)="deleteImg(parseFirebasePath(buildings[6], img))">
+          <fa-icon [icon]="faTimes"></fa-icon>
+        </button>
       </div>
     </div>
   </div>
 
 </app-md>
 
-<app-md #minionsMd [title]="'Minions'" (onOk)="handleOk()" (onCancel)="handleCancel()">
+<app-md #minionsMd [title]="'Minions'">
 
-  <div class="card">
-    <div class="card-body">
-      <h5>Blood cult </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(minions[0])">
-        Upload blood cult minions</button>
-      <input type="file" (change)="onImageSelected($event)" />
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of (imgMinions.bloodCult | async)">
-          <a [href]="img" target="_blank">
-            <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="card">
-    <div class="card-body">
-      <h5>Mechanic league </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(minions[1])">
-        Upload mechanic league minions</button>
-      <input type="file" (change)="onImageSelected($event)" />
-    </div>
-    <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-      <div style="margin: 5px;" *ngFor="let img of (imgMinions.mechanicLeague | async)">
-        <a [href]="img" target="_blank">
-          <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-        </a>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="card">
-    <div class="card-body">
-      <h5>Mystic dominion </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(minions[2])">
-        Upload mystic dominion minions</button>
-      <input type="file" (change)="onImageSelected($event)" />
-    </div>
-    <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-      <div style="margin: 5px;" *ngFor="let img of (imgMinions.mysticDominion | async)">
-        <a [href]="img" target="_blank">
-          <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-        </a>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="card">
-    <div class="card-body">
-      <h5>action's frames </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(minions[3])">
-        Upload action's frames minions</button>
-      <input type="file" (change)="onImageSelected($event)" />
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of (imgMinions.obisidianEclipse | async)">
-          <a [href]="img" target="_blank">
-            <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-body">
-      <h5>Sacred dawn </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(minions[4])">
-        Upload sacred dawn minions</button>
-      <input type="file" (change)="onImageSelected($event)" />
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of (imgMinions.sacredDawn | async)">
-          <a [href]="img" target="_blank">
-            <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-body">
-      <h5>Shadows tribes </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(minions[5])">
-        Upload shadows tribes minions</button>
-      <input type="file" (change)="onImageSelected($event)" />
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of (imgMinions.shadowTribes | async)">
-          <a [href]="img" target="_blank">
-            <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-body">
-      <h5>Neutral </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(minions[6])">
-        Upload neutral minions</button>
-      <input type="file" (change)="onImageSelected($event)" />
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of (imgMinions.neutral | async)">
-          <a [href]="img" target="_blank">
-            <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- <p>Blood cult</p>
+  <h5>Blood cult </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(minions[0])">
+    Upload blood cult minions</button>
+  <input type="file" (change)="onImageSelected($event)" />
   <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-    <div style="margin: 5px;" *ngFor="let img of imgMinions.bloodCult">
-      <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+    <div style="margin: 5px;" *ngFor="let img of (imgMinions.bloodCult | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
     </div>
   </div>
 
-  <p>Mechanic league</p>
+
+  <h5>Mechanic league </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(minions[1])">
+    Upload mechanic league minions</button>
+  <input type="file" (change)="onImageSelected($event)" />
   <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-    <div style="margin: 5px;" *ngFor="let img of imgMinions.mechanicLeague">
-      <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+    <div style="margin: 5px;" *ngFor="let img of (imgMinions.mechanicLeague | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
     </div>
   </div>
 
-  <p>Mystic dominion</p>
+
+  <h5>Mystic dominion </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(minions[2])">
+    Upload mystic dominion minions</button>
+  <input type="file" (change)="onImageSelected($event)" />
   <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-    <div style="margin: 5px;" *ngFor="let img of imgMinions.mysticDominion">
-      <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+    <div style="margin: 5px;" *ngFor="let img of (imgMinions.mysticDominion | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
     </div>
   </div>
 
-  <p>action's frames</p>
+
+  <h5>action's frames </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(minions[3])">
+    Upload action's frames minions</button>
+  <input type="file" (change)="onImageSelected($event)" />
   <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-    <div style="margin: 5px;" *ngFor="let img of imgMinions.obisidianEclipse">
-      <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+    <div style="margin: 5px;" *ngFor="let img of (imgMinions.obisidianEclipse | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
     </div>
   </div>
 
-  <p>Sacred dawn</p>
+  <h5>Sacred dawn </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(minions[4])">
+    Upload sacred dawn minions</button>
+  <input type="file" (change)="onImageSelected($event)" />
   <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-    <div style="margin: 5px;" *ngFor="let img of imgMinions.sacredDawn">
-      <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+    <div style="margin: 5px;" *ngFor="let img of (imgMinions.sacredDawn | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
     </div>
   </div>
 
-  <p>Shadows tribes</p>
+  <h5>Shadows tribes </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(minions[5])">
+    Upload shadows tribes minions</button>
+  <input type="file" (change)="onImageSelected($event)" />
   <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-    <div style="margin: 5px;" *ngFor="let img of imgMinions.shadowTribes">
-      <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+    <div style="margin: 5px;" *ngFor="let img of (imgMinions.shadowTribes | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
     </div>
   </div>
 
-  <p>Neutral</p>
+
+  <h5>Neutral </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(minions[6])">
+    Upload neutral minions</button>
+  <input type="file" (change)="onImageSelected($event)" />
   <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-    <div style="margin: 5px;" *ngFor="let img of imgMinions.neutral">
-      <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-    </div>
-  </div> -->
-</app-md>
-
-<app-md #actionsMd [title]="'Actions'" (onOk)="handleOk()" (onCancel)="handleCancel()">
-
-  <div class="card">
-    <div class="card-body">
-      <h5>Blood cult </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(actions[0])">
-        Upload blood cult actions</button>
-      <input type="file" (change)="onImageSelected($event)" />
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgActions.bloodCult">
-          <a [href]="img" target="_blank">
-            <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="card">
-    <div class="card-body">
-      <h5>Mechanic league </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(actions[1])">
-        Upload mechanic league actions</button>
-      <input type="file" (change)="onImageSelected($event)" />
-    </div>
-    <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-      <div style="margin: 5px;" *ngFor="let img of imgActions.mechanicLeague">
-        <a [href]="img" target="_blank">
-          <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-        </a>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="card">
-    <div class="card-body">
-      <h5>Mystic dominion </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(actions[2])">
-        Upload mystic dominion actions</button>
-      <input type="file" (change)="onImageSelected($event)" />
-    </div>
-    <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-      <div style="margin: 5px;" *ngFor="let img of imgActions.mysticDominion">
-        <a [href]="img" target="_blank">
-          <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-        </a>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="card">
-    <div class="card-body">
-      <h5>Obsidian eclipse </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(actions[3])">
-        Upload obsidian eclipse actions</button>
-      <input type="file" (change)="onImageSelected($event)" />
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgActions.obisidianEclipse">
-          <a [href]="img" target="_blank">
-            <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-body">
-      <h5>Sacred dawn </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(actions[4])">
-        Upload sacred dawn actions</button>
-      <input type="file" (change)="onImageSelected($event)" />
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgActions.sacredDawn">
-          <a [href]="img" target="_blank">
-            <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-body">
-      <h5>Shadows tribes </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(actions[5])">
-        Upload shadows tribes actions</button>
-      <input type="file" (change)="onImageSelected($event)" />
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgActions.shadowTribes">
-          <a [href]="img" target="_blank">
-            <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-          </a>
-        </div>
-      </div>
+    <div style="margin: 5px;" *ngFor="let img of (imgMinions.neutral | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
     </div>
   </div>
 
 </app-md>
 
-<app-md #framesMd [title]="'Frames'" (onOk)="handleOk()" (onCancel)="handleCancel()">
+<app-md #actionsMd [title]="'Actions'">
 
-  <div class="card">
-    <div class="card-body">
-      <h5>Town center's frames</h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(frames[0])">
-        Upload town center's frames</button>
-      <input type="file" (change)="onImageSelected($event)" />
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgFrames.townCenters">
-          <a [href]="img" target="_blank">
-            <img style="max-height: 350px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-          </a>
-        </div>
-      </div>
+  <h5>Blood cult </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(actions[0])">
+    Upload blood cult actions</button>
+  <input type="file" (change)="onImageSelected($event)" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgActions.bloodCult | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
     </div>
   </div>
 
 
-  <div class="card">
-    <div class="card-body">
-      <h5>Building's frames </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(frames[1])">
-        Upload buildings frames</button>
-      <input type="file" (change)="onImageSelected($event)" />
-    </div>
-    <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-      <div style="margin: 5px;" *ngFor="let img of imgFrames.buildings">
-        <a [href]="img" target="_blank">
-          <img style="max-height: 350px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-        </a>
-      </div>
+  <h5>Mechanic league </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(actions[1])">
+    Upload mechanic league actions</button>
+  <input type="file" (change)="onImageSelected($event)" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgActions.mechanicLeague | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
     </div>
   </div>
 
 
-  <div class="card">
-    <div class="card-body">
-      <h5>Minion's frames </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(frames[2])">
-        Upload minions frames</button>
-      <input type="file" (change)="onImageSelected($event)" />
+  <h5>Mystic dominion </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(actions[2])">
+    Upload mystic dominion actions</button>
+  <input type="file" (change)="onImageSelected($event)" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgActions.mysticDominion | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
     </div>
   </div>
 
 
-  <div class="card">
-    <div class="card-body">
-      <h5>Action's frames </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(frames[3])">
-        Upload action's frames frames</button>
-      <input type="file" (change)="onImageSelected($event)" />
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgFrames.actions">
-          <a [href]="img" target="_blank">
-            <img style="max-height: 350px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-          </a>
-        </div>
-      </div>
+  <h5>Obsidian eclipse </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(actions[3])">
+    Upload obsidian eclipse actions</button>
+  <input type="file" (change)="onImageSelected($event)" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgActions.obisidianEclipse | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
+    </div>
+  </div>
+
+  <h5>Sacred dawn </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(actions[4])">
+    Upload sacred dawn actions</button>
+  <input type="file" (change)="onImageSelected($event)" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgActions.sacredDawn | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
+    </div>
+  </div>
+
+  <h5>Shadows tribes </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(actions[5])">
+    Upload shadows tribes actions</button>
+  <input type="file" (change)="onImageSelected($event)" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgActions.shadowTribes | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
     </div>
   </div>
 
 </app-md>
 
-<app-md #gameAssetsMd [title]="'Game assets'" (onOk)="handleOk()" (onCancel)="handleCancel()">
+<app-md #framesMd [title]="'Frames'">
 
-  <div class="card">
-    <div class="card-body">
-      <h5>Ages </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(gameAssets[0])">
-        Upload ages assets</button>
-      <input type="file" (change)="onImageSelected($event)" />
-      <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-        <div style="margin: 5px;" *ngFor="let img of imgGameAssets.ages">
-          <a [href]="img" target="_blank">
-            <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-          </a>
-        </div>
-      </div>
+  <h5>Town center's frames</h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(frames[0])">
+    Upload town center's frames</button>
+  <input type="file" (change)="onImageSelected($event)" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgFrames.townCenters | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 350px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
     </div>
   </div>
 
 
-  <div class="card">
-    <div class="card-body">
-      <h5>Icons </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(gameAssets[1])">
-        Upload mechanic league assets</button>
-      <input type="file" (change)="onImageSelected($event)" />
-    </div>
-    <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-      <div style="margin: 5px;" *ngFor="let img of imgGameAssets.icons">
-        <a [href]="img" target="_blank">
-          <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-        </a>
-      </div>
+  <h5>Building's frames </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(frames[1])">
+    Upload buildings frames</button>
+  <input type="file" (change)="onImageSelected($event)" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgFrames.buildings | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 350px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
     </div>
   </div>
 
 
-  <div class="card">
-    <div class="card-body">
-      <h5>Rarity </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(gameAssets[2])">
-        Upload rarity assets</button>
-      <input type="file" (change)="onImageSelected($event)" />
+  <h5>Minion's frames </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(frames[2])">
+    Upload minions frames</button>
+  <input type="file" (change)="onImageSelected($event)" />
+
+
+  <h5>Action's frames </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(frames[3])">
+    Upload action's frames frames</button>
+  <input type="file" (change)="onImageSelected($event)" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgFrames.actions | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 350px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
     </div>
+  </div>
 
-    <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-      <div style="margin: 5px;" *ngFor="let img of imgGameAssets.rarity">
+</app-md>
 
-        <a [href]="img" target="_blank">
-          <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-        </a>
+<app-md #gameAssetsMd [title]="'Game assets'">
 
-      </div>
+  <h5>Ages </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(gameAssets[0])">
+    Upload ages assets</button>
+  <input type="file" (change)="onImageSelected($event)" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgGameAssets.ages | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
     </div>
   </div>
 
 
-  <div class="card">
-    <div class="card-body">
-      <h5>Back </h5>
-      <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(gameAssets[3])">
-        Upload back assets</button>
-      <input type="file" (change)="onImageSelected($event)" />
+  <h5>Icons </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(gameAssets[1])">
+    Upload mechanic league assets</button>
+  <input type="file" (change)="onImageSelected($event)" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgGameAssets.icons | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
     </div>
-    <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
-      <div style="margin: 5px;" *ngFor="let img of imgGameAssets.back">
-        <a [href]="img" target="_blank">
-          <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
-        </a>
-      </div>
+  </div>
+
+  <h5>Rarity </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(gameAssets[2])">
+    Upload rarity assets</button>
+  <input type="file" (change)="onImageSelected($event)" />
+
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgGameAssets.rarity | async)">
+
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
+
+    </div>
+  </div>
+
+
+  <h5>Back </h5>
+  <button [disabled]="selectedImage==null||selectedImage==undefined" (click)="uploadImage(gameAssets[3])">
+    Upload back assets</button>
+  <input type="file" (change)="onImageSelected($event)" />
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-start;">
+    <div style="margin: 5px;" *ngFor="let img of (imgGameAssets.back | async)">
+      <a [href]="img" target="_blank">
+        <img style="max-height: 250px; max-width: 100%;" [src]="img" alt="Uploaded image" />
+      </a>
     </div>
   </div>
 
